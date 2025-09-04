@@ -283,10 +283,53 @@ class DatabaseManager:
     # Apply a decorator to this method to log its execution time.
     # The `log_and_execute_time_with` decorator is used to handle methods that can take arguments.
     @log_and_execute_time_with
-    def search(self):
-        """Placeholder for a method to search for data."""
+    # Define the method to search for data in a table.
+    def search(self, table: str, column_name: str, column_value: str, *rows):
+        """Searches for a specific value in a table column.
+
+        This method queries a table and returns rows where a specified column's
+        value matches a search term using a case-insensitive LIKE comparison.
+        The search value is handled securely using a parameterized query.
+
+        Args:
+            table (str): The name of the table to search within.
+            column_name (str): The name of the column to perform the search on.
+                               (Note: Using this as a direct f-string is a security risk).
+            column_value (str): The value to search for. Wildcards (%) are handled automatically.
+            *rows: A variable number of strings representing the column names to return.
+                   If no columns are provided, all columns will be returned.
+
+        Returns:
+            list[tuple] | None: A list of tuples containing the matching rows,
+                                or None if no results are found.
+                                Returns False if the connection fails.
+        """
+        # Check if a database connection exists.
         if self.__conn_db is None:
+            # If no connection, try to establish one.
             DatabaseManager.get_connection()
+        # Check again if the connection was successfully established.
+        if self.__conn_db is not None:
+            # Build the query string for the SELECT statement.
+            # Warning: Direct insertion of table and column names is a security vulnerability (SQL Injection).
+            #
+            query = (
+                f"SELECT "
+                + ", ".join(rows)
+                + f" FROM {table} WHERE {column_name} LIKE ?"
+            )
+            # Create a cursor object to execute the SQL query.
+            curr = self.__conn_db.cursor()
+            # Execute the query, passing the search value with wildcards as a tuple.
+            # This is the correct way to secure the search value.
+            curr.execute(query, (f"%{column_value}%",))
+            # Fetch all matching rows as a list of tuples.
+            results = curr.fetchall()
+            # Return the results if the list is not empty, otherwise return None.
+            return results if results else None
+        # If the connection could not be established, return False.
+        else:
+            return False
 
     # The user wants documentation and comments for the get_last_row method.
     # The following code is the user's function with added docs and line-by-line comments.
@@ -342,15 +385,3 @@ db = DatabaseManager()
 # Call the get_connection method directly from the class.
 # This is the correct way to call a static method.
 DatabaseManager.get_connection()
-
-# DatabaseManager.close
-
-
-users = {
-    "username": "elsonbaty8",
-    "password": "12345678",
-    # "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
-}
-row = ["id", "emp_id", "username", "password"]
-print(db.delete("users", "id = 1"))
-print(db._DatabaseManager__conn_db)

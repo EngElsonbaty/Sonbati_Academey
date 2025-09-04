@@ -30,3 +30,41 @@ INFO:log_utils.py:core.log_utils:log_utils:54:2025-09-04 16:22:53,680:wrappers:[
 INFO:log_utils.py:core.log_utils:log_utils:54:2025-09-04 16:22:53,680:wrappers:[save] Starting Execution
 INFO:log_utils.py:core.log_utils:log_utils:62:2025-09-04 16:22:53,808:wrappers:[save] Execution of completed in 128.14 ms
 INFO:log_utils.py:core.log_utils:log_utils:62:2025-09-04 16:22:53,809:wrappers:[delete] Execution of completed in 128.77 ms
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-04 17:50:36,059:wrappers:[get_connection] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-04 17:50:36,060:wrappers:[get_path] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:50:36,060:wrappers:[get_path] Execution of completed in 0.17 ms
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:50:36,076:wrappers:[get_connection] Execution of completed in 17.38 ms
+INFO:log_utils.py:core.log_utils:log_utils:54:2025-09-04 17:50:36,076:wrappers:[search] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:72:2025-09-04 17:50:36,077:wrappers:Execution of [search] failed
+ERROR:log_utils.py:core.log_utils:log_utils:75:2025-09-04 17:50:36,077:wrappers:[search] => Incorrect number of bindings supplied. The current statement uses 0, and there are 1 supplied.
+Traceback (most recent call last):
+  File "/media/elsonbaty/My/Projects/Sonbati_Academey/core/log_utils.py", line 56, in wrappers
+    results = func(*args, **kwd)
+              ^^^^^^^^^^^^^^^^^^
+  File "/media/elsonbaty/My/Projects/Sonbati_Academey/modules/database_manager.py", line 297, in search
+    curr.execute(query, (column_value,))
+sqlite3.ProgrammingError: Incorrect number of bindings supplied. The current statement uses 0, and there are 1 supplied.
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-04 17:53:16,595:wrappers:[get_connection] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-04 17:53:16,595:wrappers:[get_path] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:53:16,595:wrappers:[get_path] Execution of completed in 0.08 ms
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:53:16,595:wrappers:[get_connection] Execution of completed in 0.43 ms
+INFO:log_utils.py:core.log_utils:log_utils:54:2025-09-04 17:53:16,595:wrappers:[search] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:62:2025-09-04 17:53:16,596:wrappers:[search] Execution of completed in 0.67 ms
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-04 17:56:00,087:wrappers:[get_connection] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-04 17:56:00,087:wrappers:[get_path] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:56:00,087:wrappers:[get_path] Execution of completed in 0.08 ms
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:56:00,088:wrappers:[get_connection] Execution of completed in 0.43 ms
+INFO:log_utils.py:core.log_utils:log_utils:54:2025-09-04 17:56:00,088:wrappers:[search] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:62:2025-09-04 17:56:00,088:wrappers:[search] Execution of completed in 0.24 ms
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-04 17:56:53,330:wrappers:[get_connection] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-04 17:56:53,330:wrappers:[get_path] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:56:53,331:wrappers:[get_path] Execution of completed in 0.09 ms
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:56:53,331:wrappers:[get_connection] Execution of completed in 0.52 ms
+INFO:log_utils.py:core.log_utils:log_utils:54:2025-09-04 17:56:53,331:wrappers:[search] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:62:2025-09-04 17:56:53,331:wrappers:[search] Execution of completed in 0.28 ms
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-04 17:57:05,901:wrappers:[get_connection] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-04 17:57:05,901:wrappers:[get_path] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:57:05,901:wrappers:[get_path] Execution of completed in 0.14 ms
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:57:05,901:wrappers:[get_connection] Execution of completed in 0.72 ms
+INFO:log_utils.py:core.log_utils:log_utils:54:2025-09-04 17:57:05,902:wrappers:[search] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:62:2025-09-04 17:57:05,902:wrappers:[search] Execution of completed in 0.37 ms
