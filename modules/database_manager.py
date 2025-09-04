@@ -107,19 +107,39 @@ class DatabaseManager:
     # The `log_and_execute_time_with` decorator is used to handle methods that can take arguments.
     @log_and_execute_time_with
     def insert(self, table: str, data: dict):
-        """Placeholder for a method to insert data."""
+        """Inserts a new row into the specified table.
+
+        This method securely inserts a new record into the database using a parameterized query.
+        It constructs the SQL statement from a dictionary of data.
+
+        Args:
+            table (str): The name of the table to insert into.
+            data (dict): A dictionary containing the column names and their corresponding values.
+
+        Returns:
+            bool: True if the insertion was successful, False otherwise.
+        """
+        # Check if a database connection exists.
         if self.__conn_db is None:
+            # If no connection exists, try to get one.
             DatabaseManager.get_connection()
+        # Check again if the connection was successfully established.
         if self.__conn_db is not None:
+            # Get the column names from the dictionary keys and join them into a string.
             columns = ", ".join(data.keys())
+            # Build the query string using f-strings for the table and columns.
             query = (
                 f"INSERT INTO {table}({columns}) VALUES("
                 + ", ".join(["?"] * len(data))
                 + ")"
             )
+            # Create a cursor object to execute the SQL query.
             curr = self.__conn_db.cursor()
+            # Execute the query, passing the values as a tuple.
             curr.execute(query, tuple(data.values()))
+            # Call the 'save' method to commit the changes to the database.
             self.save()
+            # Return True to indicate that the operation was successful.
             return True
 
     # A decorator that logs the execution time and handles exceptions for this method.
@@ -147,8 +167,6 @@ class DatabaseManager:
         # Check again if the connection was successfully established.
         if self.__conn_db is not None:
             # Build the query string for the UPDATE statement.
-            # This method of string concatenation is incorrect and can lead to syntax errors.
-            # It also creates a security vulnerability if the 'condition' string is not handled carefully.
             query = (
                 f"UPDATE {table} SET "
                 + " = ?, ".join(tuple(data.keys()))
@@ -157,8 +175,6 @@ class DatabaseManager:
             # Create a cursor object to execute the SQL query.
             curr = self.__conn_db.cursor()
             # Execute the query, passing the values from the data dictionary as a tuple.
-            # Note: This is vulnerable to SQL Injection in the 'condition' part.
-            # The number of placeholders '?' must match the number of values in the tuple.
             curr.execute(query, tuple(data.values()))
             # Call the 'save' method to commit the changes to the database.
             self.save()
@@ -211,8 +227,6 @@ class DatabaseManager:
             # If all_data is False, proceed with the conditional query.
             else:
                 # Construct the query by joining the provided column names.
-                # This method is vulnerable to SQL Injection if 'condition' is not handled safely.
-                # It also fails if no columns are provided.
                 query = (
                     f"SELECT " + ", ".join(columns) + f" FROM {table} WHERE {condition}"
                 )
@@ -231,10 +245,40 @@ class DatabaseManager:
     # Apply a decorator to this method to log its execution time.
     # The `log_and_execute_time_with` decorator is used to handle methods that can take arguments.
     @log_and_execute_time_with
-    def delete(self):
-        """Placeholder for a method to delete data."""
+    # Define the method to delete a row from a table.
+    def delete(self, table: str, condition: str):
+        """Deletes one or more rows from a table.
+
+        This method constructs and executes an SQL DELETE query based on a
+        specified table and a WHERE clause condition.
+
+        Args:
+            table (str): The name of the table to delete from.
+            condition (str): A string representing the SQL WHERE clause
+                             (e.g., "id = 5" or "username = 'test'").
+
+        Returns:
+            bool: True if the delete operation was successful, False otherwise.
+        """
+        # Check if a database connection exists.
         if self.__conn_db is None:
+            # If no connection, try to establish one.
             DatabaseManager.get_connection()
+        # Check again if the connection was successfully established.
+        if self.__conn_db is not None:
+            # Build the SQL query for the DELETE statement.
+            query = f"DELETE FROM {table} WHERE {condition}"
+            # Create a cursor object to execute the query.
+            curr = self.__conn_db.cursor()
+            # Execute the constructed query.
+            curr.execute(query)
+            # Call the 'save' method to commit the changes to the database.
+            self.save()
+            # Return True to indicate that the delete operation was successful.
+            return True
+        # If the connection could not be established, return False.
+        else:
+            return False
 
     # Apply a decorator to this method to log its execution time.
     # The `log_and_execute_time_with` decorator is used to handle methods that can take arguments.
@@ -308,5 +352,5 @@ users = {
     # "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
 }
 row = ["id", "emp_id", "username", "password"]
-print(db.get("users", "id = 3", False, *row))
+print(db.delete("users", "id = 1"))
 print(db._DatabaseManager__conn_db)
