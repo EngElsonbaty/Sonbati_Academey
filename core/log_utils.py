@@ -20,7 +20,7 @@ ROOT_LOG_FILE = os.path.join(
     "log",
     "application.log"
 )
-FORMAT_LOGGER = "%(levelname)s:%(filename)s:%(name)s:%(module)s:%(asctime)s:%(lineno)s:%(funcName)s:%(message)s"
+FORMAT_LOGGER = "%(levelname)s:%(filename)s:%(name)s:%(module)s:%(lineno)s:%(asctime)s:%(funcName)s:%(message)s"
 logging.basicConfig(filename=ROOT_LOG_FILE,
                     filemode="a",
                     format=FORMAT_LOGGER,
