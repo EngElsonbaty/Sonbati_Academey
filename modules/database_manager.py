@@ -78,7 +78,6 @@ class DatabaseManager:
     # Apply a decorator to this property to log its execution time.
     # The `log_and_execute_time_without` decorator is used as a property method does not take arguments beyond `self`.
     @log_and_execute_time_without
-    @property
     def close(self) -> None:
         """Placeholder for a method to close the database connection."""
         if DatabaseManager.__conn_db is not None:
@@ -123,21 +122,111 @@ class DatabaseManager:
             self.save()
             return True
 
-    # Apply a decorator to this method to log its execution time.
-    # The `log_and_execute_time_with` decorator is used to handle methods that can take arguments.
+    # A decorator that logs the execution time and handles exceptions for this method.
     @log_and_execute_time_with
-    def update(self):
-        """Placeholder for a method to update data."""
+    # Define the method to update data in a table.
+    def update(self, table: str, condition: str, data: dict) -> bool:
+        """Updates one or more rows in a table.
+
+        This method updates records in the database based on a given condition.
+        It constructs an SQL query using data from a dictionary and a condition string.
+
+        Args:
+            table (str): The name of the table to update.
+            condition (str): The string representing the WHERE clause (e.g., "id = 1").
+            data (dict): A dictionary where keys are column names to update
+                         and values are the new data.
+
+        Returns:
+            bool: True if the update operation was successful, False otherwise.
+        """
+        # Check if a database connection exists.
         if self.__conn_db is None:
+            # If no connection exists, try to get one.
             DatabaseManager.get_connection()
+        # Check again if the connection was successfully established.
+        if self.__conn_db is not None:
+            # Build the query string for the UPDATE statement.
+            # This method of string concatenation is incorrect and can lead to syntax errors.
+            # It also creates a security vulnerability if the 'condition' string is not handled carefully.
+            query = (
+                f"UPDATE {table} SET "
+                + " = ?, ".join(tuple(data.keys()))
+                + f" = ? WHERE {condition}"
+            )
+            # Create a cursor object to execute the SQL query.
+            curr = self.__conn_db.cursor()
+            # Execute the query, passing the values from the data dictionary as a tuple.
+            # Note: This is vulnerable to SQL Injection in the 'condition' part.
+            # The number of placeholders '?' must match the number of values in the tuple.
+            curr.execute(query, tuple(data.values()))
+            # Call the 'save' method to commit the changes to the database.
+            self.save()
+            # Return True to indicate that the update operation was successful.
+            return True
+        # If no database connection could be established, return False.
+        else:
+            return False
 
     # Apply a decorator to this method to log its execution time.
     # The `log_and_execute_time_with` decorator is used to handle methods that can take arguments.
     @log_and_execute_time_with
-    def get(self):
-        """Placeholder for a method to retrieve a specific row or rows."""
+    # Define the method to retrieve data from a table.
+    def get(
+        self,
+        table: str,
+        condition: str = "",
+        all_data: bool = False,
+        *columns,
+    ) -> tuple[bool, any]:
+        """Retrieves data from a database table.
+
+        This method fetches rows from a specified table. It can return all data
+        from the table or specific columns based on a condition.
+
+        Args:
+            table (str): The name of the table to query.
+            condition (str, optional): A string representing the SQL WHERE clause
+                                       (e.g., "id = 1"). Defaults to an empty string.
+            all_data (bool, optional): If True, all rows and columns are selected,
+                                        and other arguments are ignored. Defaults to False.
+            *columns: A variable number of strings representing the column names to select.
+
+        Returns:
+            tuple[bool, any]: A tuple containing a boolean indicating success (True) or failure (False)
+                              and the fetched data (a list of tuples) or a failure message.
+        """
+        # Check if a database connection exists.
         if self.__conn_db is None:
+            # If no connection, try to establish one.
             DatabaseManager.get_connection()
+        # After attempting to connect, check again if the connection is now active.
+        if self.__conn_db is not None:
+            # Initialize the query variable to None.
+            query = None
+            # Check if the user wants all data from the table.
+            if all_data:
+                # If True, construct a query to select all columns from the specified table.
+                query = f"SELECT * FROM {table}"
+            # If all_data is False, proceed with the conditional query.
+            else:
+                # Construct the query by joining the provided column names.
+                # This method is vulnerable to SQL Injection if 'condition' is not handled safely.
+                # It also fails if no columns are provided.
+                query = (
+                    f"SELECT " + ", ".join(columns) + f" FROM {table} WHERE {condition}"
+                )
+            # Create a cursor object to execute the SQL query.
+            curr = self.__conn_db.cursor()
+            # Execute the constructed query.
+            curr.execute(query)
+            # Fetch all the rows of the query result as a list of tuples.
+            results = curr.fetchall()
+            # Return the results of the query.
+            return results
+        # If the connection could not be established, return False.
+        else:
+            return False
 
     # Apply a decorator to this method to log its execution time.
     # The `log_and_execute_time_with` decorator is used to handle methods that can take arguments.
@@ -212,13 +301,12 @@ DatabaseManager.get_connection()
 
 # DatabaseManager.close
 
-last_id = db.get_last_row("users") + 1
+
 users = {
-    "id": last_id,
-    "emp_id": 3,
-    "username": "elsonbaty2",
-    "password": "12345",
+    "username": "elsonbaty8",
+    "password": "12345678",
     # "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
 }
-print(db.insert("users", users))
+row = ["id", "emp_id", "username", "password"]
+print(db.get("users", "id = 3", False, *row))
 print(db._DatabaseManager__conn_db)
