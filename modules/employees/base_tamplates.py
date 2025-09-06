@@ -6,7 +6,7 @@ root_path = os.path.dirname(path_modules)
 sys.path.append(path_modules)
 sys.path.append(root_path)
 
-from core.log_utils import log_and_execute_time_with, log_and_execute_time_without
+from core.log_utils import log_and_execute_time_with
 
 from modules.database_manager import db
 
@@ -17,7 +17,8 @@ class BaseTemplates:
 
     @log_and_execute_time_with
     def create(self, emp_id: int, data: dict):
-        pass
+        employee_data = {}
+        
 
     @log_and_execute_time_with
     def update(self, emp_id: int, data: dict):
@@ -29,8 +30,4 @@ class BaseTemplates:
 
     @log_and_execute_time_with
     def get(self, emp_id: int):
-        pass
-
-    @log_and_execute_time_with
-    def search(self, full_name: str = "", emp_id: int = 0):
         pass
