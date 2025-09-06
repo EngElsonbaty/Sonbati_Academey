@@ -114,6 +114,8 @@ salaries = {
     "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
 }
 
+# edit
+
 users = {
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
     "emp_id": "INTEGER NOT NULL UNIQUE",
@@ -148,4 +150,47 @@ exams = {
     "FOREIGN KEY": "(teacher_id) REFERENCES employees(id)",
     "FOREIGN KEY": "(course_id) REFERENCES courses(id)",
     "FOREIGN KEY": "(class_rooms_id) REFERENCES class_rooms(id)",
+}
+
+homework = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "teacher_id": "INTEGER NOT NULL",
+    "course_id": "INTEGER NOT NULL",
+    "class_room_id": "INTEGER NOT NULL",
+    "date": "DATETIME NOT NULL",
+    "FOREIGN KEY": "(student_id) REFERENCES students(id)",
+    "FOREIGN KEY": "(nationality_id) REFERENCES countries(id)",
+    "FOREIGN KEY": "(governorate_id) REFERENCES governorates(id)",
+}
+
+students = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "full_name": "TEXT NOT NULL",
+    "national_id": "TEXT NOT NULL UNIQUE",
+    "birthday": "DATE NOT NULL",
+    "gender": "TEXT NOT NULL CHECK(gender IN ('male', 'female'))",
+    "id_photo": "TEXT NOT NULL",
+    "photo": "TEXT NOT NULL",
+}
+
+student_details = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "student_id": "INTEGER NOT NULL UNIQUE",
+    "address": "TEXT NOT NULL",
+    "nationality_id": "INTEGER NOT NULL",
+    "governorate_id": "INTEGER NOT NULL",
+    "email": "TEXT NOT NULL UNIQUE",
+    "phone_number": "TEXT NOT NULL UNIQUE",
+    "fees": "REAL NOT NULL",
+    "FOREIGN KEY": "(student_id) REFERENCES students(id)",
+    "FOREIGN KEY": "(nationality_id) REFERENCES countries(id)",
+    "FOREIGN KEY": "(governorate_id) REFERENCES governorates(id)",
+}
+
+user_operation = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "emp_id": "INTEGER NOT NULL",
+    "operation_type": "TEXT NOT NULL",
+    "date": "DATETIME NOT NULL",
+    "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
 }
