@@ -1,4 +1,4 @@
-INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-07 02:33:19,600:wrappers:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-07 02:33:19,600:wrappers:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:log_utils.py:core.log_utils:log_utils:122:2025-09-07 02:33:19,600:wrappers:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.09 ms
-INFO:log_utils.py:core.log_utils:log_utils:122:2025-09-07 02:33:19,600:wrappers:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.46 ms
+INFO:114:2025-09-07 02:35:44,460:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:114:2025-09-07 02:35:44,460:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:122:2025-09-07 02:35:44,460:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.06 ms
+INFO:122:2025-09-07 02:35:44,460:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.33 ms

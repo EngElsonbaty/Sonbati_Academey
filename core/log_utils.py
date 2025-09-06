@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 ROOT_LOG_FILE = os.path.join(
     os.path.dirname(os.path.dirname(__file__)), "log", "application.log"
 )
-FORMAT_LOGGER = "%(levelname)s:%(name)s:%(lineno)s:%(asctime)s:%(message)s"
+FORMAT_LOGGER = "%(levelname)s:%(lineno)s:%(asctime)s:%(message)s"
 logging.basicConfig(
     filename=ROOT_LOG_FILE, filemode="a", format=FORMAT_LOGGER, level=logging.DEBUG
 )
