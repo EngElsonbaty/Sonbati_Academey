@@ -68,3 +68,15 @@ INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:57:05,901:wrappers:
 INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-04 17:57:05,901:wrappers:[get_connection] Execution of completed in 0.72 ms
 INFO:log_utils.py:core.log_utils:log_utils:54:2025-09-04 17:57:05,902:wrappers:[search] Starting Execution
 INFO:log_utils.py:core.log_utils:log_utils:62:2025-09-04 17:57:05,902:wrappers:[search] Execution of completed in 0.37 ms
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-07 02:10:10,840:wrappers:[get_connection] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-07 02:10:10,845:wrappers:[get_path] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-07 02:10:10,845:wrappers:[get_path] Execution of completed in 0.08 ms
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-07 02:10:10,865:wrappers:[get_connection] Execution of completed in 25.12 ms
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-07 02:10:11,171:wrappers:[get_connection] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-07 02:10:11,171:wrappers:[get_path] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-07 02:10:11,171:wrappers:[get_path] Execution of completed in 0.10 ms
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-07 02:10:11,171:wrappers:[get_connection] Execution of completed in 0.50 ms
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-07 02:13:57,960:wrappers:[get_connection] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:106:2025-09-07 02:13:57,960:wrappers:[get_path] Starting Execution
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-07 02:13:57,960:wrappers:[get_path] Execution of completed in 0.06 ms
+INFO:log_utils.py:core.log_utils:log_utils:114:2025-09-07 02:13:57,960:wrappers:[get_connection] Execution of completed in 0.35 ms
