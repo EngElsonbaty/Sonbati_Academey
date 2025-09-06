@@ -99,3 +99,20 @@ revenues = {
     "payment_method_id": "INTEGER NOT NULL",
     "notes": "TEXT",
 }
+
+salaries = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "emp_id": "INTEGER NOT NULL",
+    "payment_methods": "INTEGER NOT NULL",
+    "salary": "REAL NOT NULL",
+    "amount": "REAL NOT NULL",
+    "discounts": "REAL NOT NULL",
+    "date": "DATETIME NOT NULL",
+}
+
+users = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "emp_id": "INTEGER NOT NULL UNIQUE",
+    "username": "TEXT NOT NULL UNIQUE",
+    "password": "TEXT NOT NULL UNIQUE",
+}
