@@ -77,3 +77,25 @@ permissions = {
     "customize": "BOOLEAN NOT NULL DEFAULT 0 CHECK(customize IN (0, 1))",
     "FOREIGN KEY": "(role_id) REFERENCES employee_roles(id)",
 }
+
+expenses = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "expense_type": "TEXT NOT NULL",
+    "amount": "REAL NOT NULL",
+    "receiver": "TEXT NOT NULL",
+    "emp_id": "INTEGER NOT NULL",
+    "expense_date": "DATETIME NOT NULL",
+    "payment_method_id": "INTEGER NOT NULL",
+    "notes": "TEXT",
+}
+
+revenues = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "income_type": "TEXT NOT NULL",
+    "amount": "REAL NOT NULL",
+    "source_id": "INTEGER NOT NULL",
+    "emp_id": "INTEGER NOT NULL",
+    "transaction_date": "DATETIME NOT NULL",
+    "payment_method_id": "INTEGER NOT NULL",
+    "notes": "TEXT",
+}
