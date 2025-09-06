@@ -71,3 +71,38 @@ permissions = {
     "emp_id": "INTEGER NOT NULL UNIQUE",
     "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
 }
+
+student_permissions_manager = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "permission_id": "INTEGER NOT NULL UNIQUE",
+}
+
+employee_permissions_manager = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "permission_id": "INTEGER NOT NULL UNIQUE",
+}
+
+financial_transaction_permissions_manager = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "permission_id": "INTEGER NOT NULL UNIQUE",
+}
+
+course_permissions_manager = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "permission_id": "INTEGER NOT NULL UNIQUE",
+}
+
+classroom_permissions_manager = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "permission_id": "INTEGER NOT NULL UNIQUE",
+}
+
+exam_permissions_manager = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "permission_id": "INTEGER NOT NULL UNIQUE",
+}
+
+homework_permissions_manager = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "permission_id": "INTEGER NOT NULL UNIQUE",
+}
