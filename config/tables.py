@@ -68,41 +68,12 @@ employee_roles = {
 
 permissions = {
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
-    "emp_id": "INTEGER NOT NULL UNIQUE",
-    "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
-}
-
-student_permissions_manager = {
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
-    "permission_id": "INTEGER NOT NULL UNIQUE",
-}
-
-employee_permissions_manager = {
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
-    "permission_id": "INTEGER NOT NULL UNIQUE",
-}
-
-financial_transaction_permissions_manager = {
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
-    "permission_id": "INTEGER NOT NULL UNIQUE",
-}
-
-course_permissions_manager = {
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
-    "permission_id": "INTEGER NOT NULL UNIQUE",
-}
-
-classroom_permissions_manager = {
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
-    "permission_id": "INTEGER NOT NULL UNIQUE",
-}
-
-exam_permissions_manager = {
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
-    "permission_id": "INTEGER NOT NULL UNIQUE",
-}
-
-homework_permissions_manager = {
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
-    "permission_id": "INTEGER NOT NULL UNIQUE",
+    "role_id": "INTEGER NOT NULL UNIQUE",
+    "add": "BOOLEAN NOT NULL DEFAULT 0 CHECK(add IN (0, 1))",
+    "edit": "BOOLEAN NOT NULL DEFAULT 0 CHECK(edit IN (0, 1))",
+    "delete": "BOOLEAN NOT NULL DEFAULT 0 CHECK(delete IN (0, 1))",
+    "view": "BOOLEAN NOT NULL DEFAULT 0 CHECK(view IN (0, 1))",
+    "print": "BOOLEAN NOT NULL DEFAULT 0 CHECK(print IN (0, 1))",
+    "customize": "BOOLEAN NOT NULL DEFAULT 0 CHECK(customize IN (0, 1))",
+    "FOREIGN KEY": "(role_id) REFERENCES employee_roles(id)",
 }
