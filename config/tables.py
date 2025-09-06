@@ -87,6 +87,7 @@ expenses = {
     "expense_date": "DATETIME NOT NULL",
     "payment_method_id": "INTEGER NOT NULL",
     "notes": "TEXT",
+    "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
 }
 
 revenues = {
@@ -98,6 +99,8 @@ revenues = {
     "transaction_date": "DATETIME NOT NULL",
     "payment_method_id": "INTEGER NOT NULL",
     "notes": "TEXT",
+    "FOREIGN KEY": "(source_id) REFERENCES students(id)",
+    "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
 }
 
 salaries = {
@@ -108,6 +111,7 @@ salaries = {
     "amount": "REAL NOT NULL",
     "discounts": "REAL NOT NULL",
     "date": "DATETIME NOT NULL",
+    "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
 }
 
 users = {
@@ -115,4 +119,33 @@ users = {
     "emp_id": "INTEGER NOT NULL UNIQUE",
     "username": "TEXT NOT NULL UNIQUE",
     "password": "TEXT NOT NULL UNIQUE",
+    "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",
+}
+
+teacher_courses = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "teacher_id": "INTEGER NOT NULL",
+    "course_id": "INTEGER NOT NULL",
+    "class_room_id": "INTEGER NOT NULL",
+    "day_of_week": "TEXT NOT NULL",
+    "start_time": "TIME NOT NULL",
+    "end_time": "TIME NOT NULL",
+    "FOREIGN KEY": "(teacher_id) REFERENCES employees(id)",
+    "FOREIGN KEY": "(course_id) REFERENCES courses(id)",
+    "FOREIGN KEY": "(class_room_id) REFERENCES class_rooms(id)",
+}
+
+exams = {
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+    "course_id": "INTEGER NOT NULL",
+    "teacher_id": "INTEGER NOT NULL",
+    "class_rooms_id": "INTEGER NOT NULL",
+    "finally_grade": "REAL NOT NULL",
+    "full_time": "TIME NOT NULL",
+    "start_time": "TIME NOT NULL",
+    "end_time": "TIME NOT NULL",
+    "date": "DATE NOT NULL",
+    "FOREIGN KEY": "(teacher_id) REFERENCES employees(id)",
+    "FOREIGN KEY": "(course_id) REFERENCES courses(id)",
+    "FOREIGN KEY": "(class_rooms_id) REFERENCES class_rooms(id)",
 }
