@@ -45,14 +45,14 @@ def log_and_execute_time_with(func):
     def wrappers(*args, **kwd):
         # Store the original function's name for use in log messages.
         func_name = func.__name__
-        class_name = func.__class__
+        class_name = func.__qualname__
         # Record the start time using a high-resolution performance counter.
         start_time = perf_counter_ns()
         # Begin a try-except block to handle any potential errors during execution.
         try:
             # Log an informational message indicating the start of the function's execution.
             logger.info(
-                f"[{class_name}]=>[{class_name}]=>[{func_name}] Starting Execution"
+                f"[{class_name}]=>[{func_name}] Starting Execution"
             )
             # Execute the original function with its arguments and store the result.
             results = func(*args, **kwd)

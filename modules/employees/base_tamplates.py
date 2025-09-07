@@ -17,17 +17,19 @@ class BaseTemplates:
 
     @log_and_execute_time_with
     def create(self, emp_id: int, data: dict):
-        employee_data = {}
-        
+        employee_data = {"id": emp_id}
+        employee_data.update(data)
+        return db.insert(self.table_name, employee_data)
 
     @log_and_execute_time_with
     def update(self, emp_id: int, data: dict):
-        pass
+        return db.update(self.table_name, f"id = {emp_id}", data)
 
     @log_and_execute_time_with
     def delete(self, emp_id: int):
-        pass
+        return db.delete(self.table_name, f"id = {emp_id}")
 
     @log_and_execute_time_with
-    def get(self, emp_id: int):
-        pass
+    def get(self, emp_id: int, *rows):
+        results = db.get(self.table_name, f"id = {emp_id}", False, *rows)
+        return results if results != [] else None

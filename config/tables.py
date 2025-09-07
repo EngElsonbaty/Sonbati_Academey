@@ -130,9 +130,9 @@ permissions = {
     # The 'permissions' table defines access rights for each role.
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the permission set.
     "role_id": "INTEGER NOT NULL UNIQUE",  # The ID of the role, must be unique to assign one permission set per role.
-    "add": "BOOLEAN NOT NULL DEFAULT 0 CHECK(add IN (0, 1))",  # Permission to add data.
-    "edit": "BOOLEAN NOT NULL DEFAULT 0 CHECK(edit IN (0, 1))",  # Permission to edit data.
-    "delete": "BOOLEAN NOT NULL DEFAULT 0 CHECK(delete IN (0, 1))",  # Permission to delete data.
+    "addition": "BOOLEAN NOT NULL DEFAULT 0 CHECK(addition IN (0, 1))",  # Permission to add data.
+    "edition": "BOOLEAN NOT NULL DEFAULT 0 CHECK(edition IN (0, 1))",  # Permission to edit data.
+    "deletion": "BOOLEAN NOT NULL DEFAULT 0 CHECK(deletion IN (0, 1))",  # Permission to delete data.
     "view": "BOOLEAN NOT NULL DEFAULT 0 CHECK(view IN (0, 1))",  # Permission to view data.
     "print": "BOOLEAN NOT NULL DEFAULT 0 CHECK(print IN (0, 1))",  # Permission to print data.
     "customize": "BOOLEAN NOT NULL DEFAULT 0 CHECK(customize IN (0, 1))",  # Permission to customize settings.

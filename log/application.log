@@ -1,4 +1,0 @@
-INFO:114:2025-09-07 02:35:44,460:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-07 02:35:44,460:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-07 02:35:44,460:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.06 ms
-INFO:122:2025-09-07 02:35:44,460:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.33 ms

@@ -101,6 +101,8 @@ class DatabaseManager:
                 counter += 1
             curr = self.__conn_db.cursor()
             curr.execute(query)
+            return True
+        else:
             return False
 
     # Apply a decorator to this method to log its execution time.
@@ -141,6 +143,8 @@ class DatabaseManager:
             self.save()
             # Return True to indicate that the operation was successful.
             return True
+        else:
+            return False
 
     # A decorator that logs the execution time and handles exceptions for this method.
     @log_and_execute_time_with
