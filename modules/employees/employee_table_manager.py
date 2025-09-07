@@ -32,6 +32,15 @@ class EmployeeTableManager(BaseTemplates):
         # Call the constructor of the parent class (BaseTemplates)
         # and pass the specific table name "employees".
         super().__init__("employees")
+        self.row = [
+            "id",
+            "full_name",
+            "national_id",
+            "birthday",
+            "gender",
+            "id_photo",
+            "photo",
+        ]
 
     # The decorator logs and times the execution of the 'create' method.
     @log_and_execute_time_with
@@ -58,9 +67,9 @@ class EmployeeTableManager(BaseTemplates):
     # The decorator logs and times the execution of the 'get' method.
     @log_and_execute_time_with
     # The 'get' method retrieves an employee record and formats the result.
-    def get(self, emp_id, *rows):
+    def get(self, emp_id):
         # Call the 'get' method of the parent class to fetch the raw data.
-        results = super().get(emp_id, *rows)
+        results = super().get(emp_id, *self.row)
         # Initialize a variable to hold the formatted employee data.
         data_employee = None
         # Check if any results were returned from the database.
