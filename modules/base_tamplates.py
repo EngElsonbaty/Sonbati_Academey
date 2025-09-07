@@ -50,9 +50,11 @@ class BaseTemplates:
     # The decorator logs and times the execution of the 'create' method.
     @log_and_execute_time_with
     # The 'create' method inserts a new record into the database table.
-    def create(self, emp_id: int, data: dict):
+    def create(self, id: int, data: dict, subtable: bool = False, emp_id: int = 0):
         # Create a new dictionary and add the employee ID to it.
-        employee_data = {"id": emp_id}
+        employee_data = {"id": id}
+        if subtable:
+            employee_data.update({"emp_id": emp_id})
         # Update the dictionary with the provided data (e.g., name, age).
         employee_data.update(data)
         # Call the 'insert' method from the 'db' object to add the record.
@@ -85,4 +87,3 @@ class BaseTemplates:
         # Check if the results list is not empty.
         # If results are found, return the results; otherwise, return None.
         return results if results != [] else None
-

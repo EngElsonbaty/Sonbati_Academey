@@ -13,7 +13,7 @@ root_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(root_path)
 # Import the custom BaseTemplates class from the base_templates module.
 # This class provides the generic database management logic.
-from base_tamplates import BaseTemplates
+from modules.base_tamplates import BaseTemplates
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 from core.log_utils import log_and_execute_time_with
