@@ -100,3 +100,5 @@ class EmployeeDetailsTableManager(BaseTemplates):
             }
         # Return the formatted dictionary if results were found, otherwise return None.
         return data_employee
+
+
