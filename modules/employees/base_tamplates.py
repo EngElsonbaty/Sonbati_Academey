@@ -25,6 +25,8 @@ from core.log_utils import log_and_execute_time_with
 # connections and queries.
 from modules.database_manager import db
 
+from config.tables import employees
+
 
 class BaseTemplates:
     """
@@ -83,3 +85,4 @@ class BaseTemplates:
         # Check if the results list is not empty.
         # If results are found, return the results; otherwise, return None.
         return results if results != [] else None
+
