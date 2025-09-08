@@ -13,8 +13,8 @@ countries = {
 governorates = {
     # The 'governorates' table stores information about governorates.
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each governorate.
-    "governorate_name": "TEXT NOT NULL UNIQUE",  # The name of the governorate, must be unique.
     "country_id": "INTEGER NOT NULL",  # The ID of the country to which the governorate belongs.
+    "governorate_name": "TEXT NOT NULL",  # The name of the governorate.
     "FOREIGN KEY": "(country_id) REFERENCES countries(id)",  # Defines the foreign key relationship with the 'countries' table.
 }
 
