@@ -14,14 +14,15 @@ class GovernoratesTableManager:
     def __init__(self, country_id: int = 0, governorates: list = []):
         self.table_name = "governorates"
         self.rows = ["id", "country_id", "governorate_name"]
-        for item in governorates:
-            last_id = db.get_last_row(self.table_name) + 1
-            data_table = {
-                "id": last_id,
-                "country_id": country_id,
-                "governorate_name": item,
-            }
-            print(f"Governorate: {db.insert(self.table_name, data_table)}")
+        if False:
+            for item in governorates:
+                last_id = db.get_last_row(self.table_name) + 1
+                data_table = {
+                    "id": last_id,
+                    "country_id": country_id,
+                    "governorate_name": item,
+                }
+                print(f"Governorate: {db.insert(self.table_name, data_table)}")
 
     # Note: Test
     def get(self, gov_id: int = 0, all_table: bool = False):
@@ -31,3 +32,5 @@ class GovernoratesTableManager:
         else:
             results = db.get(self.table_name, f"id = {gov_id}", False, *self.rows)
         return results
+
+    

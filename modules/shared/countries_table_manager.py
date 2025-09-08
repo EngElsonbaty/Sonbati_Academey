@@ -15,18 +15,19 @@ class CountriesTableManager:
 
     # @log_and_execute_time_without
     def __init__(self):
-        start_time = time.perf_counter_ns()
         self.table_name = "countries"
         self.rows = ["id", "country_name"]
-        if db.get_last_row(self.table_name, self.rows[0]) == 0:
-            for item in countries:
-                last_id = db.get_last_row(self.table_name, self.rows[0]) + 1
-                data_country = {"id": last_id, "country_name": item[0]}
-                print(f"Countries:{db.insert(self.table_name, data_country)}")
-                g = GovernoratesTableManager(last_id, item[1])
-        end_time = time.perf_counter_ns()
-        execute_time = float((end_time - start_time) / 1_000_000)
-        print(execute_time)
+        if False:
+            start_time = time.perf_counter_ns()
+            if db.get_last_row(self.table_name, self.rows[0]) == 0:
+                for item in countries:
+                    last_id = db.get_last_row(self.table_name, self.rows[0]) + 1
+                    data_country = {"id": last_id, "country_name": item[0]}
+                    print(f"Countries:{db.insert(self.table_name, data_country)}")
+                    g = GovernoratesTableManager(last_id, item[1])
+            end_time = time.perf_counter_ns()
+            execute_time = float((end_time - start_time) / 1_000_000)
+            print(execute_time)
 
     # @log_and_execute_time_with
     def get(self, country_id: int = 0, all_countries: bool = False):
@@ -39,3 +40,4 @@ class CountriesTableManager:
 
 
 c = CountriesTableManager()
+print(c.get(1))
