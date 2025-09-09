@@ -72,12 +72,12 @@ class EmployeeDetailsTableManager(BaseTemplates):
     def delete(self, emp_id):
         # Call the 'delete' method of the parent class to remove the record.
         # It deletes the record where the ID matches the provided employee ID.
-        return super().delete(emp_id)
+        return super().delete(emp_id, True)
 
     # The decorator logs and times the execution of the 'get' method.
     @log_and_execute_time_with
     # The 'get' method retrieves an employee details record and formats the result.
-    def get(self, emp_id):
+    def get(self, emp_id: int, all_emp: bool = False):
         # Call the 'get' method of the parent class to fetch the raw data.
         # It uses the 'self.row' list to specify the columns to be retrieved.
         results = super().get(emp_id, *self.row)
@@ -100,5 +100,3 @@ class EmployeeDetailsTableManager(BaseTemplates):
             }
         # Return the formatted dictionary if results were found, otherwise return None.
         return data_employee
-
-

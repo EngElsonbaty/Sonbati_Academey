@@ -24,7 +24,7 @@ sys.path.append(root_path)
 # Import the custom BaseTemplates class from the base_templates module.
 # This class provides the generic database management logic.
 # Imports the base class for table management, providing core database functionalities.
-from modules.base_tamplates import BaseTemplates
+from governorates_table_manager import GovernoratesTableManager
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 # Imports a custom decorator used for logging function execution time.
@@ -68,7 +68,7 @@ class CountriesTableManager:
                 # Creates a dictionary of the country's data to be inserted.
                 data_country = {"id": last_id, "country_name": item[0]}
                 # This line is a user-defined print statement that likely intends to print the result of the database insertion.
-                Countries: {db.insert(self.table_name, data_country)}
+                db.insert(self.table_name, data_country)
                 # Creates a new instance of the governorates manager, passing the new country's ID and its list of governorates.
                 GovernoratesTableManager(last_id, item[1])
 
@@ -86,15 +86,19 @@ class CountriesTableManager:
         """
         # Initializes the results variable to None before the database query.
         results = None
+        data_country = None
         # Checks if the 'all_countries' flag is set to True.
         if all_countries:
             # If True, calls the database get method to fetch all records from the table.
             results = db.get(self.table_name, "", True, True, *self.rows)
+            return results
         # If 'all_countries' is False, this block handles retrieving a specific country by ID.
         else:
             # Calls the database get method to fetch the record with the matching country ID.
             results = db.get(
                 self.table_name, f"id = {country_id}", False, False, *self.rows
             )
+        data_country = {"id": results[0][0], "country_name": results[0][1]}
         # Returns the final results of the database query.
-        return results
+        return data_country
+

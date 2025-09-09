@@ -75,16 +75,22 @@ class PaymentMethodsTableManager:
         """
         # Initializes the results variable to None before the database query.
         results = None
+        data_payment = None
         # Checks if the 'all_table' flag is set to True.
         if all_table:
             # If True, calls the database's get method to fetch all records from the table.
             results = db.get(self.table_name, "", True, True, *self.rows)
+            return results
         # If 'all_table' is False, this block handles retrieving a specific payment method by ID.
         else:
             # Calls the database's get method to fetch the record with the matching ID.
             # Note: The syntax 'False * self.rows' is likely a mistake and will produce an empty list.
             results = db.get(
-                self.table_name, f"id = {payment_id}", False, False * self.rows
+                self.table_name, f"id = {payment_id}", False, False, *self.rows
             )
+        data_payment = {
+            "id": results[0][0],
+            "method_name": results[0][1],
+        }
         # Returns the final results of the database query.
-        return results
+        return data_payment

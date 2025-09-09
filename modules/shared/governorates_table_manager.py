@@ -12,8 +12,6 @@ import os
 # The 'sys' module provides access to system-specific parameters and functions.
 import sys
 
-# Imports the GovernoratesTableManager class from its module.
-from governorates_table_manager import GovernoratesTableManager
 
 # Gets the absolute path of the directory containing the current file.
 # The 'os.path.dirname' function is called three times to navigate up
@@ -87,15 +85,23 @@ class GovernoratesTableManager:
         """
         # Initializes the results variable to None before the database query.
         results = None
+        data_governorates = None
         # Checks if the 'all_table' flag is set to True.
         if all_table:
             # If True, calls the database's get method to fetch all records from the table.
             results = db.get(self.table_name, "", True, True, *self.rows)
+            return results
         # If 'all_table' is False, this block handles retrieving a specific governorate by ID.
         else:
             # Calls the database's get method to fetch the record with the matching ID.
             results = db.get(
                 self.table_name, f"id = {gov_id}", False, False, *self.rows
             )
+        data_governorates = {
+            "id": results[0][0],
+            "country_id": results[0][1],
+            "governorate_name": results[0][2],
+        }
         # Returns the final results of the database query.
-        return results
+        return data_governorates
+

@@ -87,3 +87,4 @@ class RolesTableManager:
             )
         # Returns the final results of the database query.
         return results
+
