@@ -83,7 +83,7 @@ class BaseTemplates:
         # Call the 'get' method from the 'db' object to retrieve the record.
         # 'False' indicates that we are not performing a search operation, and '*rows' allows for
         # fetching specific columns.
-        results = db.get(self.table_name, f"id = {emp_id}", False, *rows)
+        results = db.get(self.table_name, f"id = {emp_id}", False, False, *rows)
         # Check if the results list is not empty.
         # If results are found, return the results; otherwise, return None.
         return results if results != [] else None

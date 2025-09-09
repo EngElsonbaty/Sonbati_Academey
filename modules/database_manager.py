@@ -196,6 +196,7 @@ class DatabaseManager:
         self,
         table: str,
         condition: str = "",
+        all_table: bool = False,
         all_data: bool = False,
         *columns,
     ) -> tuple[bool, any]:
@@ -225,10 +226,12 @@ class DatabaseManager:
             # Initialize the query variable to None.
             query = None
             # Check if the user wants all data from the table.
-            if all_data:
+            if all_table:
                 # If True, construct a query to select all columns from the specified table.
                 query = f"SELECT * FROM {table}"
             # If all_data is False, proceed with the conditional query.
+            elif all_data:
+                query = f"SELECT " + ", ".join(columns) + f" FROM {table} WHERE {condition}"
             else:
                 # Construct the query by joining the provided column names.
                 query = (
