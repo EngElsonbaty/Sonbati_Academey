@@ -79,7 +79,7 @@ class EmployeeRolesTableManager(BaseTemplates):
         # Merges the provided role data into the final data dictionary.
         data_table.update(data)
         # Returns the result of calling the parent's create method with the prepared data.
-        return super().create(id, data_table, subtable, emp_id)
+        return super().create(id, data_table, subtable, emp_id, emp_id, False, 0)
 
     def update(self, emp_id, data):
         """

@@ -56,7 +56,7 @@ class EmployeeDetailsTableManager(BaseTemplates):
         # Call the 'create' method of the parent class (BaseTemplates).
         # It handles the actual database insertion.
         # This call passes the record_id, data dictionary, a boolean 'True', and the emp_id.
-        return super().create(record_id, data, True, emp_id)
+        return super().create(record_id, data, True, emp_id, False, 0)
 
     # The decorator logs and times the execution of the 'update' method.
     @log_and_execute_time_with
