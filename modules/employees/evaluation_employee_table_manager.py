@@ -30,11 +30,10 @@ class EvaluationEmployeeTableManager(BaseTemplates):
         return super().create(id, data, True, emp_id)
 
     def update(self, emp_id, data):
-        return super().update(emp_id, data)
+        return super().update(emp_id, data, True)
 
-    def delete(self, emp_id, submodule=False):
-        return super().delete(emp_id, submodule)
+    def delete(self, emp_id):
+        return super().delete(emp_id, True)
 
     def get(self, emp_id, *rows):
         return super().get(emp_id, True, False, *self.rows)
-

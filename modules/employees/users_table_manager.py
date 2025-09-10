@@ -4,6 +4,7 @@ This file contains the UserTableManager class, which is responsible for managing
 It provides a clear and consistent interface for creating, updating, deleting, and retrieving
 user records by inheriting from a base class.
 """
+
 # The 'os' module provides functions for interacting with the operating system.
 import os
 
@@ -37,6 +38,7 @@ class UserTableManager(BaseTemplates):
     deleting, and retrieving user records. It inherits its core database logic
     from the BaseTemplates class to ensure consistency and reusability.
     """
+
     def __init__(self):
         """
         Initializes the class by setting the table name and columns.
@@ -56,7 +58,7 @@ class UserTableManager(BaseTemplates):
         # Calls the parent class's initializer, passing the table name.
         super().__init__(self.table_name)
 
-    def create(self, id, data, subtable=False, emp_id=0):
+    def create(self, id, data, emp_id=0):
         """
         Creates a new record in the 'users' table.
 
@@ -70,15 +72,15 @@ class UserTableManager(BaseTemplates):
             any: The result of the create operation from the parent class.
         """
         # Initializes a dictionary to hold the record's data, starting with the ID.
-        data_table = {"id": id}
-        # Checks if a valid employee ID was provided.
-        if emp_id > 0:
-            # Adds the employee ID to the data dictionary.
-            data_table.update({"emp_id": emp_id})
-        # Merges the provided user data into the final data dictionary.
-        data_table.update(data)
+        # data_table = {"id": id}
+        # # Checks if a valid employee ID was provided.
+        # if subtable:
+        #     # Adds the employee ID to the data dictionary.
+        #     data_table.update({"emp_id": emp_id})
+        # # Merges the provided user data into the final data dictionary.
+        # data_table.update(data)
         # Returns the result of calling the parent's create method with the prepared data.
-        return super().create(id, data_table, subtable, emp_id)
+        return super().create(id, data, True, emp_id)
 
     def update(self, emp_id, data):
         """
@@ -92,7 +94,7 @@ class UserTableManager(BaseTemplates):
             any: The result of the update operation from the parent class.
         """
         # Returns the result of calling the parent's update method with the employee ID and new data.
-        return super().update(emp_id, data)
+        return super().update(emp_id, data, True)
 
     def delete(self, emp_id):
         """
@@ -105,7 +107,7 @@ class UserTableManager(BaseTemplates):
             any: The result of the delete operation from the parent class.
         """
         # Returns the result of calling the parent's delete method with the employee ID.
-        return super().delete(emp_id)
+        return super().delete(emp_id, True, False)
 
     def get(self, emp_id):
         """
@@ -118,7 +120,7 @@ class UserTableManager(BaseTemplates):
             dict or None: A dictionary containing the user data if found, otherwise None.
         """
         # Calls the parent's get method to fetch data from the specified columns based on employee ID.
-        results = super().get(emp_id, *self.rows)
+        results = super().get(emp_id, True, False, *self.rows)
         # Initializes a variable to hold the user data, defaulting to None.
         data_user = None
         # Checks if the database query returned any results.
@@ -132,3 +134,12 @@ class UserTableManager(BaseTemplates):
             }
         # Returns the final dictionary of user data or None.
         return data_user
+
+
+u = UserTableManager()
+
+data_emp = {"username": "elsonbaty111", "password": "123"}
+
+# print(u.create(1, data_emp, 5))
+
+print(u.delete(5))

@@ -33,17 +33,17 @@ class PermissionsTableManager(BaseTemplates):
         ]
         super().__init__("permissions")
 
-    def create(self, id, data, subtable=False, emp_id=0, role_id: int = 0):
-        return super().create(id, data, subtable, emp_id, True, role_id)
+    def create(self, id, data, role_id: int = 0):
+        return super().create(id, data, False, 0, True, role_id)
 
     def update(self, emp_id, data):
-        return super().update(emp_id, data)
+        return super().update(emp_id, data, False, True)
 
-    def delete(self, emp_id, submodule=False):
-        return super().delete(emp_id, submodule)
+    def delete(self, emp_id):
+        return super().delete(emp_id, False, True)
 
     def get(self, emp_id):
-        results = super().get(emp_id, *self.rows)
+        results = super().get(emp_id, False, True, *self.rows)
         data_permissions = None
         if results:
             data_permissions = {
@@ -57,3 +57,17 @@ class PermissionsTableManager(BaseTemplates):
                 "customize": results[0][7],
             }
         return data_permissions
+
+
+p = PermissionsTableManager()
+
+data_table = {
+    "addition": True,
+    "edition": False,
+    "deletion": False,
+    "view": True,
+    "print": True,
+    "customize": True,
+}
+
+print(p.get(2))

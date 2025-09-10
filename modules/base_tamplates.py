@@ -73,32 +73,43 @@ class BaseTemplates:
     # The decorator logs and times the execution of the 'update' method.
     @log_and_execute_time_with
     # The 'update' method modifies an existing record in the database.
-    def update(self, emp_id: int, data: dict):
+    def update(
+        self, emp_id: int, data: dict, subtable: bool = False, role: bool = False
+    ):
         # Call the 'update' method from the 'db' object.
         # It updates the record where the id matches the provided employee ID.
-        return db.update(self.table_name, f"id = {emp_id}", data)
+        if subtable:
+            return db.update(self.table_name, f"emp_id = {emp_id}", data)
+        elif role:
+            return db.update(self.table_name, f"role_id = {emp_id}", data)
+        else:
+            return db.update(self.table_name, f"id = {emp_id}", data)
 
     # The decorator logs and times the execution of the 'delete' method.
     @log_and_execute_time_with
     # The 'delete' method removes a record from the database.
-    def delete(self, emp_id: int, submodule: bool = False):
+    def delete(self, emp_id: int, submodule: bool = False, role: bool = False):
         # Call the 'delete' method from the 'db' object.
         # It deletes the record where the id matches the provided employee ID.
         if submodule:
             return db.delete(self.table_name, f"emp_id = {emp_id}")
+        elif role:
+            return db.delete(self.table_name, f"role_id = {emp_id}")
         else:
             return db.delete(self.table_name, f"id = {emp_id}")
 
     # The decorator logs and times the execution of the 'get' method.
     @log_and_execute_time_with
     # The 'get' method retrieves a single record from the database.
-    def get(self, emp_id: int, sub_module: bool = False, role_table=False, *rows):
+    def get(self, emp_id: int, sub_module: bool = False, role: bool = False, *rows):
         # Call the 'get' method from the 'db' object to retrieve the record.
         # 'False' indicates that we are not performing a search operation, and '*rows' allows for
         # fetching specific columns.
         results = None
         if sub_module:
             results = db.get(self.table_name, f"emp_id = {emp_id}", False, True, *rows)
+        elif role:
+            results = db.get(self.table_name, f"role_id = {emp_id}", False, True, *rows)
         else:
             results = db.get(self.table_name, f"id = {emp_id}", False, False, *rows)
         # Check if the results list is not empty.

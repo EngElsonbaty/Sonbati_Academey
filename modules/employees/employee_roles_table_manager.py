@@ -55,7 +55,7 @@ class EmployeeRolesTableManager(BaseTemplates):
             "role_id",
         ]
 
-    def create(self, id, data, subtable=False, emp_id=0):
+    def create(self, id, data, emp_id=0):
         """
         Creates a new record in the 'employee_roles' table.
 
@@ -68,18 +68,8 @@ class EmployeeRolesTableManager(BaseTemplates):
         Returns:
             any: The result of the create operation from the parent class.
         """
-        # Initializes a dictionary to hold the record's data, starting with the ID.
-        data_table = {
-            "id": id,
-        }
-        # Checks if a valid employee ID was provided.
-        if emp_id > 0:
-            # Adds the employee ID to the data dictionary.
-            data_table.update({"emp_id": emp_id})
-        # Merges the provided role data into the final data dictionary.
-        data_table.update(data)
         # Returns the result of calling the parent's create method with the prepared data.
-        return super().create(id, data_table, subtable, emp_id, emp_id, False, 0)
+        return super().create(id, data, True, emp_id)
 
     def update(self, emp_id, data):
         """
@@ -93,7 +83,7 @@ class EmployeeRolesTableManager(BaseTemplates):
             any: The result of the update operation from the parent class.
         """
         # Returns the result of calling the parent's update method with the employee ID and new data.
-        return super().update(emp_id, data)
+        return super().update(emp_id, data, True)
 
     def delete(self, emp_id):
         """
@@ -106,7 +96,7 @@ class EmployeeRolesTableManager(BaseTemplates):
             any: The result of the delete operation from the parent class.
         """
         # Returns the result of calling the parent's delete method with the employee ID.
-        return super().delete(emp_id)
+        return super().delete(emp_id, True)
 
     def get(self, emp_id):
         """
@@ -121,14 +111,15 @@ class EmployeeRolesTableManager(BaseTemplates):
         # Initializes a variable to hold the role data, defaulting to None.
         data_roles = None
         # Calls the parent's get method to fetch data from the specified columns based on employee ID.
-        results = super().get(emp_id, *self.rows)
+        results = super().get(emp_id, True, False, *self.rows)
         # Checks if the database query returned any results.
         if results is not None:
             # Creates a dictionary from the fetched tuple for easier data access by name.
-            data_roles = {
-                "id": results[0][0],
-                "emp_id": results[0][1],
-                "role_id": results[0][2],
-            }
+            # data_roles = {
+            #     "id": results[0][0],
+            #     "emp_id": results[0][1],
+            #     "role_id": results[0][2],
+            # }
+            pass
         # Returns the final dictionary of role data or None.
-        return data_roles
+        return results
