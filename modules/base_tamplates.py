@@ -92,11 +92,15 @@ class BaseTemplates:
     # The decorator logs and times the execution of the 'get' method.
     @log_and_execute_time_with
     # The 'get' method retrieves a single record from the database.
-    def get(self, emp_id: int, *rows):
+    def get(self, emp_id: int, sub_module: bool = False, role_table=False, *rows):
         # Call the 'get' method from the 'db' object to retrieve the record.
         # 'False' indicates that we are not performing a search operation, and '*rows' allows for
         # fetching specific columns.
-        results = db.get(self.table_name, f"id = {emp_id}", False, False, *rows)
+        results = None
+        if sub_module:
+            results = db.get(self.table_name, f"emp_id = {emp_id}", False, True, *rows)
+        else:
+            results = db.get(self.table_name, f"id = {emp_id}", False, False, *rows)
         # Check if the results list is not empty.
         # If results are found, return the results; otherwise, return None.
         return results if results != [] else None
