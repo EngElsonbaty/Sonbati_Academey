@@ -115,11 +115,10 @@ class EmployeeRolesTableManager(BaseTemplates):
         # Checks if the database query returned any results.
         if results is not None:
             # Creates a dictionary from the fetched tuple for easier data access by name.
-            # data_roles = {
-            #     "id": results[0][0],
-            #     "emp_id": results[0][1],
-            #     "role_id": results[0][2],
-            # }
-            pass
+            data_roles = {
+                "id": results[0][0],
+                "emp_id": results[0][1],
+                "role_id": results[0][2],
+            }
         # Returns the final dictionary of role data or None.
-        return results
+        return data_roles

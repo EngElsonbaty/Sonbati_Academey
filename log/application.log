@@ -1,182 +1,98 @@
-INFO:114:2025-09-10 19:45:21,340:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-10 19:45:21,340:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-10 19:45:21,341:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-10 19:45:21,341:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.52 ms
-INFO:54:2025-09-10 19:45:21,342:[BaseTemplates.create]=>[create] Starting Execution
-INFO:54:2025-09-10 19:45:21,342:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:76:2025-09-10 19:45:21,342:Execution of [DatabaseManager.insert]=>[insert] failed
-ERROR:79:2025-09-10 19:45:21,342:[DatabaseManager.insert]=>[insert] => table users has no column named operation_type
+INFO:114:2025-09-12 00:19:50,291:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:114:2025-09-12 00:19:50,291:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:122:2025-09-12 00:19:50,291:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.10 ms
+INFO:122:2025-09-12 00:19:50,291:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.50 ms
+INFO:54:2025-09-12 00:19:50,292:[BaseTemplates.create]=>[create] Starting Execution
+INFO:54:2025-09-12 00:19:50,293:[DatabaseManager.insert]=>[insert] Starting Execution
+INFO:54:2025-09-12 00:19:50,294:[DatabaseManager.save]=>[save] Starting Execution
+INFO:64:2025-09-12 00:19:50,437:[DatabaseManager.save]=>[save] Execution of completed in 142.62 ms
+INFO:64:2025-09-12 00:19:50,437:[DatabaseManager.insert]=>[insert] Execution of completed in 144.75 ms
+INFO:64:2025-09-12 00:19:50,437:[BaseTemplates.create]=>[create] Execution of completed in 144.99 ms
+INFO:114:2025-09-12 00:20:14,933:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:114:2025-09-12 00:20:14,933:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:122:2025-09-12 00:20:14,933:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
+INFO:122:2025-09-12 00:20:14,933:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.37 ms
+INFO:54:2025-09-12 00:20:14,934:[BaseTemplates.create]=>[create] Starting Execution
+INFO:54:2025-09-12 00:20:14,934:[DatabaseManager.insert]=>[insert] Starting Execution
+INFO:76:2025-09-12 00:20:14,934:Execution of [DatabaseManager.insert]=>[insert] failed
+ERROR:79:2025-09-12 00:20:14,934:[DatabaseManager.insert]=>[insert] => UNIQUE constraint failed: class_rooms.classroom_name
 Traceback (most recent call last):
   File "/media/elsonbaty/My/Projects/Sonbati_Academey/core/log_utils.py", line 58, in wrappers
     results = func(*args, **kwd)
               ^^^^^^^^^^^^^^^^^^
   File "/media/elsonbaty/My/Projects/Sonbati_Academey/modules/database_manager.py", line 141, in insert
     curr.execute(query, tuple(data.values()))
-sqlite3.OperationalError: table users has no column named operation_type
-INFO:64:2025-09-10 19:45:21,347:[BaseTemplates.create]=>[create] Execution of completed in 5.58 ms
-INFO:114:2025-09-10 19:45:27,377:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-10 19:45:27,377:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-10 19:45:27,377:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.06 ms
-INFO:122:2025-09-10 19:45:27,377:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.37 ms
-INFO:54:2025-09-10 19:45:27,378:[BaseTemplates.create]=>[create] Starting Execution
-INFO:54:2025-09-10 19:45:27,378:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:76:2025-09-10 19:45:27,379:Execution of [DatabaseManager.insert]=>[insert] failed
-ERROR:79:2025-09-10 19:45:27,379:[DatabaseManager.insert]=>[insert] => table users has no column named operation_type
+sqlite3.IntegrityError: UNIQUE constraint failed: class_rooms.classroom_name
+INFO:64:2025-09-12 00:20:14,937:[BaseTemplates.create]=>[create] Execution of completed in 3.05 ms
+INFO:114:2025-09-12 00:20:33,942:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:114:2025-09-12 00:20:33,942:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:122:2025-09-12 00:20:33,942:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
+INFO:122:2025-09-12 00:20:33,943:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.38 ms
+INFO:54:2025-09-12 00:20:33,943:[BaseTemplates.create]=>[create] Starting Execution
+INFO:54:2025-09-12 00:20:33,943:[DatabaseManager.insert]=>[insert] Starting Execution
+INFO:54:2025-09-12 00:20:33,944:[DatabaseManager.save]=>[save] Starting Execution
+INFO:64:2025-09-12 00:20:34,020:[DatabaseManager.save]=>[save] Execution of completed in 76.23 ms
+INFO:64:2025-09-12 00:20:34,021:[DatabaseManager.insert]=>[insert] Execution of completed in 77.16 ms
+INFO:64:2025-09-12 00:20:34,021:[BaseTemplates.create]=>[create] Execution of completed in 77.31 ms
+INFO:114:2025-09-12 00:20:49,271:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:114:2025-09-12 00:20:49,271:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:122:2025-09-12 00:20:49,271:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
+INFO:122:2025-09-12 00:20:49,271:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.41 ms
+INFO:54:2025-09-12 00:20:49,272:[BaseTemplates.create]=>[create] Starting Execution
+INFO:54:2025-09-12 00:20:49,272:[DatabaseManager.insert]=>[insert] Starting Execution
+INFO:54:2025-09-12 00:20:49,273:[DatabaseManager.save]=>[save] Starting Execution
+INFO:64:2025-09-12 00:20:49,354:[DatabaseManager.save]=>[save] Execution of completed in 81.15 ms
+INFO:64:2025-09-12 00:20:49,354:[DatabaseManager.insert]=>[insert] Execution of completed in 82.01 ms
+INFO:64:2025-09-12 00:20:49,354:[BaseTemplates.create]=>[create] Execution of completed in 82.14 ms
+INFO:114:2025-09-12 00:21:25,790:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:114:2025-09-12 00:21:25,790:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:122:2025-09-12 00:21:25,790:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.15 ms
+INFO:122:2025-09-12 00:21:25,790:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.61 ms
+INFO:54:2025-09-12 00:21:25,791:[BaseTemplates.update]=>[update] Starting Execution
+INFO:54:2025-09-12 00:21:25,791:[DatabaseManager.update]=>[update] Starting Execution
+INFO:54:2025-09-12 00:21:25,792:[DatabaseManager.save]=>[save] Starting Execution
+INFO:64:2025-09-12 00:21:25,866:[DatabaseManager.save]=>[save] Execution of completed in 74.02 ms
+INFO:64:2025-09-12 00:21:25,866:[DatabaseManager.update]=>[update] Execution of completed in 75.03 ms
+INFO:64:2025-09-12 00:21:25,866:[BaseTemplates.update]=>[update] Execution of completed in 75.23 ms
+INFO:114:2025-09-12 00:21:42,288:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:114:2025-09-12 00:21:42,288:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:122:2025-09-12 00:21:42,288:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.09 ms
+INFO:122:2025-09-12 00:21:42,289:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.53 ms
+INFO:54:2025-09-12 00:21:42,290:[BaseTemplates.delete]=>[delete] Starting Execution
+INFO:54:2025-09-12 00:21:42,290:[DatabaseManager.delete]=>[delete] Starting Execution
+INFO:54:2025-09-12 00:21:42,291:[DatabaseManager.save]=>[save] Starting Execution
+INFO:64:2025-09-12 00:21:42,367:[DatabaseManager.save]=>[save] Execution of completed in 75.99 ms
+INFO:64:2025-09-12 00:21:42,367:[DatabaseManager.delete]=>[delete] Execution of completed in 77.08 ms
+INFO:64:2025-09-12 00:21:42,367:[BaseTemplates.delete]=>[delete] Execution of completed in 77.25 ms
+INFO:114:2025-09-12 00:21:49,315:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:114:2025-09-12 00:21:49,315:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:122:2025-09-12 00:21:49,315:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.12 ms
+INFO:122:2025-09-12 00:21:49,315:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.61 ms
+INFO:54:2025-09-12 00:21:49,316:[BaseTemplates.get]=>[get] Starting Execution
+INFO:54:2025-09-12 00:21:49,316:[DatabaseManager.get]=>[get] Starting Execution
+INFO:76:2025-09-12 00:21:49,317:Execution of [DatabaseManager.get]=>[get] failed
+ERROR:79:2025-09-12 00:21:49,317:[DatabaseManager.get]=>[get] => no such column: role_id
 Traceback (most recent call last):
   File "/media/elsonbaty/My/Projects/Sonbati_Academey/core/log_utils.py", line 58, in wrappers
     results = func(*args, **kwd)
               ^^^^^^^^^^^^^^^^^^
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/modules/database_manager.py", line 141, in insert
-    curr.execute(query, tuple(data.values()))
-sqlite3.OperationalError: table users has no column named operation_type
-INFO:64:2025-09-10 19:45:27,383:[BaseTemplates.create]=>[create] Execution of completed in 5.36 ms
-INFO:114:2025-09-10 19:46:08,630:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-10 19:46:08,630:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-10 19:46:08,630:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-10 19:46:08,631:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.44 ms
-INFO:54:2025-09-10 19:46:08,631:[BaseTemplates.create]=>[create] Starting Execution
-INFO:54:2025-09-10 19:46:08,632:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:54:2025-09-10 19:46:08,632:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-10 19:46:08,763:[DatabaseManager.save]=>[save] Execution of completed in 131.00 ms
-INFO:64:2025-09-10 19:46:08,763:[DatabaseManager.insert]=>[insert] Execution of completed in 131.79 ms
-INFO:64:2025-09-10 19:46:08,763:[BaseTemplates.create]=>[create] Execution of completed in 131.93 ms
-INFO:114:2025-09-11 01:01:04,084:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:01:04,084:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:01:04,084:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.09 ms
-INFO:122:2025-09-11 01:01:04,086:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 2.10 ms
-INFO:54:2025-09-11 01:01:04,086:[BaseTemplates.create]=>[create] Starting Execution
-INFO:54:2025-09-11 01:01:04,087:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:76:2025-09-11 01:01:04,087:Execution of [DatabaseManager.insert]=>[insert] failed
-ERROR:79:2025-09-11 01:01:04,087:[DatabaseManager.insert]=>[insert] => UNIQUE constraint failed: user_operation.id
-Traceback (most recent call last):
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/core/log_utils.py", line 58, in wrappers
-    results = func(*args, **kwd)
-              ^^^^^^^^^^^^^^^^^^
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/modules/database_manager.py", line 141, in insert
-    curr.execute(query, tuple(data.values()))
-sqlite3.IntegrityError: UNIQUE constraint failed: user_operation.id
-INFO:64:2025-09-11 01:01:04,097:[BaseTemplates.create]=>[create] Execution of completed in 10.27 ms
-INFO:114:2025-09-11 01:01:45,592:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:01:45,592:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:01:45,592:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-11 01:01:45,592:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.59 ms
-INFO:54:2025-09-11 01:01:45,593:[BaseTemplates.create]=>[create] Starting Execution
-INFO:54:2025-09-11 01:01:45,593:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:76:2025-09-11 01:01:45,594:Execution of [DatabaseManager.insert]=>[insert] failed
-ERROR:79:2025-09-11 01:01:45,594:[DatabaseManager.insert]=>[insert] => UNIQUE constraint failed: user_operation.id
-Traceback (most recent call last):
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/core/log_utils.py", line 58, in wrappers
-    results = func(*args, **kwd)
-              ^^^^^^^^^^^^^^^^^^
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/modules/database_manager.py", line 141, in insert
-    curr.execute(query, tuple(data.values()))
-sqlite3.IntegrityError: UNIQUE constraint failed: user_operation.id
-INFO:64:2025-09-11 01:01:45,599:[BaseTemplates.create]=>[create] Execution of completed in 6.09 ms
-INFO:114:2025-09-11 01:02:03,243:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:02:03,243:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:02:03,244:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.06 ms
-INFO:122:2025-09-11 01:02:03,244:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.36 ms
-INFO:54:2025-09-11 01:02:03,244:[BaseTemplates.update]=>[update] Starting Execution
-INFO:54:2025-09-11 01:02:03,244:[DatabaseManager.update]=>[update] Starting Execution
-INFO:54:2025-09-11 01:02:03,245:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-11 01:02:03,348:[DatabaseManager.save]=>[save] Execution of completed in 102.72 ms
-INFO:64:2025-09-11 01:02:03,349:[DatabaseManager.update]=>[update] Execution of completed in 104.24 ms
-INFO:64:2025-09-11 01:02:03,349:[BaseTemplates.update]=>[update] Execution of completed in 104.66 ms
-INFO:114:2025-09-11 01:02:18,835:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:02:18,835:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:02:18,835:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.10 ms
-INFO:122:2025-09-11 01:02:18,836:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.56 ms
-INFO:54:2025-09-11 01:02:18,836:[BaseTemplates.get]=>[get] Starting Execution
-INFO:54:2025-09-11 01:02:18,836:[DatabaseManager.get]=>[get] Starting Execution
-INFO:76:2025-09-11 01:02:18,837:Execution of [DatabaseManager.get]=>[get] failed
-ERROR:79:2025-09-11 01:02:18,837:[DatabaseManager.get]=>[get] => no such column: username
-Traceback (most recent call last):
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/core/log_utils.py", line 58, in wrappers
-    results = func(*args, **kwd)
-              ^^^^^^^^^^^^^^^^^^
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/modules/database_manager.py", line 243, in get
+  File "/media/elsonbaty/My/Projects/Sonbati_Academey/modules/database_manager.py", line 245, in get
     curr.execute(query)
-sqlite3.OperationalError: no such column: username
-INFO:64:2025-09-11 01:02:18,841:[BaseTemplates.get]=>[get] Execution of completed in 4.89 ms
-INFO:114:2025-09-11 01:04:11,502:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:04:11,502:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:04:11,502:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-11 01:04:11,502:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.39 ms
-INFO:54:2025-09-11 01:04:11,503:[BaseTemplates.create]=>[create] Starting Execution
-INFO:54:2025-09-11 01:04:11,503:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:54:2025-09-11 01:04:11,504:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-11 01:04:11,611:[DatabaseManager.save]=>[save] Execution of completed in 107.28 ms
-INFO:64:2025-09-11 01:04:11,611:[DatabaseManager.insert]=>[insert] Execution of completed in 108.19 ms
-INFO:64:2025-09-11 01:04:11,611:[BaseTemplates.create]=>[create] Execution of completed in 108.36 ms
-INFO:114:2025-09-11 01:04:36,706:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:04:36,706:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:04:36,706:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-11 01:04:36,706:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.45 ms
-INFO:54:2025-09-11 01:04:36,707:[BaseTemplates.update]=>[update] Starting Execution
-INFO:54:2025-09-11 01:04:36,708:[DatabaseManager.update]=>[update] Starting Execution
-INFO:54:2025-09-11 01:04:36,708:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-11 01:04:36,827:[DatabaseManager.save]=>[save] Execution of completed in 118.14 ms
-INFO:64:2025-09-11 01:04:36,827:[DatabaseManager.update]=>[update] Execution of completed in 119.29 ms
-INFO:64:2025-09-11 01:04:36,827:[BaseTemplates.update]=>[update] Execution of completed in 119.58 ms
-INFO:114:2025-09-11 01:04:51,258:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:04:51,258:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:04:51,258:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.06 ms
-INFO:122:2025-09-11 01:04:51,259:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.34 ms
-INFO:54:2025-09-11 01:04:51,259:[BaseTemplates.get]=>[get] Starting Execution
-INFO:54:2025-09-11 01:04:51,259:[DatabaseManager.get]=>[get] Starting Execution
-INFO:64:2025-09-11 01:04:51,260:[DatabaseManager.get]=>[get] Execution of completed in 0.54 ms
-INFO:64:2025-09-11 01:04:51,260:[BaseTemplates.get]=>[get] Execution of completed in 0.66 ms
-INFO:114:2025-09-11 01:05:19,789:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:05:19,789:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:05:19,789:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-11 01:05:19,789:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.40 ms
-INFO:54:2025-09-11 01:05:19,790:[BaseTemplates.get]=>[get] Starting Execution
-INFO:54:2025-09-11 01:05:19,790:[DatabaseManager.get]=>[get] Starting Execution
-INFO:64:2025-09-11 01:05:19,791:[DatabaseManager.get]=>[get] Execution of completed in 0.57 ms
-INFO:64:2025-09-11 01:05:19,791:[BaseTemplates.get]=>[get] Execution of completed in 0.69 ms
-INFO:114:2025-09-11 01:05:48,930:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:05:48,930:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:05:48,930:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
-INFO:122:2025-09-11 01:05:48,931:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.39 ms
-INFO:54:2025-09-11 01:05:48,931:[BaseTemplates.delete]=>[delete] Starting Execution
-INFO:54:2025-09-11 01:05:48,932:[DatabaseManager.delete]=>[delete] Starting Execution
-INFO:54:2025-09-11 01:05:48,932:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-11 01:05:49,091:[DatabaseManager.save]=>[save] Execution of completed in 158.15 ms
-INFO:64:2025-09-11 01:05:49,091:[DatabaseManager.delete]=>[delete] Execution of completed in 159.24 ms
-INFO:64:2025-09-11 01:05:49,091:[BaseTemplates.delete]=>[delete] Execution of completed in 159.42 ms
-INFO:114:2025-09-11 01:06:21,136:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:06:21,136:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:06:21,136:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.17 ms
-INFO:122:2025-09-11 01:06:21,137:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.64 ms
-INFO:54:2025-09-11 01:06:21,137:[BaseTemplates.create]=>[create] Starting Execution
-INFO:54:2025-09-11 01:06:21,137:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:54:2025-09-11 01:06:21,138:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-11 01:06:21,259:[DatabaseManager.save]=>[save] Execution of completed in 120.89 ms
-INFO:64:2025-09-11 01:06:21,259:[DatabaseManager.insert]=>[insert] Execution of completed in 121.90 ms
-INFO:64:2025-09-11 01:06:21,259:[BaseTemplates.create]=>[create] Execution of completed in 122.04 ms
-INFO:54:2025-09-11 01:06:21,259:[BaseTemplates.delete]=>[delete] Starting Execution
-INFO:54:2025-09-11 01:06:21,260:[DatabaseManager.delete]=>[delete] Starting Execution
-INFO:54:2025-09-11 01:06:21,260:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-11 01:06:21,260:[DatabaseManager.save]=>[save] Execution of completed in 0.07 ms
-INFO:64:2025-09-11 01:06:21,260:[DatabaseManager.delete]=>[delete] Execution of completed in 0.23 ms
-INFO:64:2025-09-11 01:06:21,260:[BaseTemplates.delete]=>[delete] Execution of completed in 0.32 ms
-INFO:114:2025-09-11 01:06:28,262:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:06:28,262:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:06:28,262:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-11 01:06:28,263:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.65 ms
-INFO:54:2025-09-11 01:06:28,264:[BaseTemplates.delete]=>[delete] Starting Execution
-INFO:54:2025-09-11 01:06:28,264:[DatabaseManager.delete]=>[delete] Starting Execution
-INFO:54:2025-09-11 01:06:28,265:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-11 01:06:28,265:[DatabaseManager.save]=>[save] Execution of completed in 0.20 ms
-INFO:64:2025-09-11 01:06:28,265:[DatabaseManager.delete]=>[delete] Execution of completed in 1.05 ms
-INFO:64:2025-09-11 01:06:28,265:[BaseTemplates.delete]=>[delete] Execution of completed in 1.20 ms
-INFO:114:2025-09-11 01:06:36,119:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-11 01:06:36,119:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-11 01:06:36,119:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.09 ms
-INFO:122:2025-09-11 01:06:36,119:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.47 ms
-INFO:54:2025-09-11 01:06:36,120:[BaseTemplates.delete]=>[delete] Starting Execution
-INFO:54:2025-09-11 01:06:36,120:[DatabaseManager.delete]=>[delete] Starting Execution
-INFO:54:2025-09-11 01:06:36,121:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-11 01:06:36,225:[DatabaseManager.save]=>[save] Execution of completed in 104.41 ms
-INFO:64:2025-09-11 01:06:36,225:[DatabaseManager.delete]=>[delete] Execution of completed in 105.38 ms
-INFO:64:2025-09-11 01:06:36,225:[BaseTemplates.delete]=>[delete] Execution of completed in 105.59 ms
+sqlite3.OperationalError: no such column: role_id
+INFO:64:2025-09-12 00:21:49,321:[BaseTemplates.get]=>[get] Execution of completed in 5.02 ms
+INFO:114:2025-09-12 00:22:25,507:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:114:2025-09-12 00:22:25,507:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:122:2025-09-12 00:22:25,507:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.09 ms
+INFO:122:2025-09-12 00:22:25,507:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.51 ms
+INFO:54:2025-09-12 00:22:25,508:[BaseTemplates.get]=>[get] Starting Execution
+INFO:54:2025-09-12 00:22:25,508:[DatabaseManager.get]=>[get] Starting Execution
+INFO:64:2025-09-12 00:22:25,509:[DatabaseManager.get]=>[get] Execution of completed in 0.78 ms
+INFO:64:2025-09-12 00:22:25,509:[BaseTemplates.get]=>[get] Execution of completed in 0.98 ms
+INFO:114:2025-09-12 01:59:34,678:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:114:2025-09-12 01:59:34,699:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:122:2025-09-12 01:59:34,699:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.27 ms
+INFO:122:2025-09-12 01:59:34,700:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 22.00 ms
+INFO:54:2025-09-12 01:59:34,707:[BaseTemplates.get]=>[get] Starting Execution
+INFO:54:2025-09-12 01:59:34,707:[DatabaseManager.get]=>[get] Starting Execution
+INFO:64:2025-09-12 01:59:34,708:[DatabaseManager.get]=>[get] Execution of completed in 0.87 ms
+INFO:64:2025-09-12 01:59:34,708:[BaseTemplates.get]=>[get] Execution of completed in 1.38 ms

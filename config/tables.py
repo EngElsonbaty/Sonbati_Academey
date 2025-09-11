@@ -29,6 +29,7 @@ class_rooms = {
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each classroom.
     "classroom_name": "TEXT NOT NULL UNIQUE",  # The name of the classroom.
     "classroom_code": "TEXT NOT NULL UNIQUE",  # The unique code for the classroom.
+    "counter": "INTEGER NOT NULL",
 }
 
 courses = {

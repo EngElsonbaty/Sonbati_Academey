@@ -231,7 +231,9 @@ class DatabaseManager:
                 query = f"SELECT * FROM {table}"
             # If all_data is False, proceed with the conditional query.
             elif all_data:
-                query = f"SELECT " + ", ".join(columns) + f" FROM {table} WHERE {condition}"
+                query = (
+                    f"SELECT " + ", ".join(columns) + f" FROM {table} WHERE {condition}"
+                )
             else:
                 # Construct the query by joining the provided column names.
                 query = (
