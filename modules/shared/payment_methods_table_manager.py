@@ -62,6 +62,7 @@ class PaymentMethodsTableManager:
                 # Calls the database's 'insert' method to add the data to the table.
                 db.insert(self.table_name, data_table)
 
+    @log_and_execute_time_with
     def get(self, payment_id: int = 0, all_table: bool = False):
         """
         Retrieves payment methods data from the 'payment_methods' table.

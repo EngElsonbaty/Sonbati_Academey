@@ -17,6 +17,7 @@ from modules.base_tamplates import BaseTemplates
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 from core.log_utils import log_and_execute_time_with
+from modules.database_manager import db
 
 
 class EmployeeDetailsTableManager(BaseTemplates):
@@ -54,10 +55,11 @@ class EmployeeDetailsTableManager(BaseTemplates):
     # The decorator logs and times the execution of the 'create' method.
     @log_and_execute_time_with
     # The 'create' method inserts a new employee details record.
-    def create(self, record_id: int, emp_id: int, data: dict):
+    def create(self, emp_id: int, data: dict):
         # Call the 'create' method of the parent class (BaseTemplates).
         # It handles the actual database insertion.
         # This call passes the record_id, data dictionary, a boolean 'True', and the emp_id.
+        record_id = db.get_last_row(self.table_name, "id") + 1
         return super().create(record_id, data, True, emp_id, False, 0)
 
     # The decorator logs and times the execution of the 'update' method.

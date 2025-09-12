@@ -24,6 +24,7 @@ sys.path.append(root_path)
 # This class provides the generic database management logic.
 # Imports the base class for table management, providing core database functionalities.
 from modules.base_tamplates import BaseTemplates
+from modules.database_manager import db
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 # Imports a custom decorator used for logging function execution time.
@@ -55,7 +56,8 @@ class EmployeeRolesTableManager(BaseTemplates):
             "role_id",
         ]
 
-    def create(self, id, data, emp_id=0):
+    @log_and_execute_time_with
+    def create(self, data, emp_id=0):
         """
         Creates a new record in the 'employee_roles' table.
 
@@ -68,9 +70,11 @@ class EmployeeRolesTableManager(BaseTemplates):
         Returns:
             any: The result of the create operation from the parent class.
         """
+        record_id = db.get_last_row(self.table_name, "id") + 1
         # Returns the result of calling the parent's create method with the prepared data.
-        return super().create(id, data, True, emp_id)
+        return super().create(record_id, data, True, emp_id)
 
+    @log_and_execute_time_with
     def update(self, emp_id, data):
         """
         Updates an existing record in the 'employee_roles' table.
@@ -85,6 +89,7 @@ class EmployeeRolesTableManager(BaseTemplates):
         # Returns the result of calling the parent's update method with the employee ID and new data.
         return super().update(emp_id, data, True)
 
+    @log_and_execute_time_with
     def delete(self, emp_id):
         """
         Deletes a record from the 'employee_roles' table.
@@ -98,6 +103,7 @@ class EmployeeRolesTableManager(BaseTemplates):
         # Returns the result of calling the parent's delete method with the employee ID.
         return super().delete(emp_id, True)
 
+    @log_and_execute_time_with
     def get(self, emp_id):
         """
         Retrieves an employee's role data from the database.

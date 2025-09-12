@@ -62,6 +62,7 @@ class RolesTableManager:
                 # Calls the database's 'insert' method to add the data to the table.
                 db.insert(self.table_name, data_table)
 
+    @log_and_execute_time_with
     def get(self, role_id: int = 0, all_table: bool = False):
         """
         Retrieves role data from the 'roles' table.
@@ -87,4 +88,3 @@ class RolesTableManager:
             )
         # Returns the final results of the database query.
         return results
-

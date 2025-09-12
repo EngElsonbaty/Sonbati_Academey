@@ -25,11 +25,12 @@ class AttendanceEmployeeTableManager(BaseTemplates):
     def __init__(self):
         super().__init__("attendance_employee")
         self.rows = ["id", "emp_id", "type", "time", "created_at"]
-
+    @log_and_execute_time_with
     def create(
         self, id, data, subtable=False, emp_id=0, permission_module=False, role_id=0
     ):
         return super().create(id, data, subtable, emp_id, permission_module, role_id)
 
+    @log_and_execute_time_with
     def get(self, emp_id):
         return super().get(emp_id, True, *self.rows)

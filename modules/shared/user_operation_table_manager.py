@@ -58,6 +58,7 @@ class UserOperationTableManager:
             "date",
         ]
 
+    @log_and_execute_time_with
     def create(self, emp_id: int, oper_type: str, details: str):
         """
         Creates a new record (log entry) in the 'user_operation' table.
@@ -85,6 +86,7 @@ class UserOperationTableManager:
         # Calls the database's insert method and returns its result.
         return db.insert(self.table_name, data_table)
 
+    @log_and_execute_time_with
     def get(self, emp_id: int):
         """
         Retrieves a user's operation records from the database based on an employee ID.

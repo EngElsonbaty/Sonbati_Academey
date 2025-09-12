@@ -24,7 +24,7 @@ sys.path.append(root_path)
 # Import the custom BaseTemplates class from the base_templates module.
 # This class provides the generic database management logic.
 # Imports the base class for table management, providing core database functionalities.
-from governorates_table_manager import GovernoratesTableManager
+from modules.shared.governorates_table_manager import GovernoratesTableManager
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 # Imports a custom decorator used for logging function execution time.
@@ -72,7 +72,7 @@ class CountriesTableManager:
                 # Creates a new instance of the governorates manager, passing the new country's ID and its list of governorates.
                 GovernoratesTableManager(last_id, item[1])
 
-    # @log_and_execute_time_with
+    @log_and_execute_time_with
     def get(self, country_id: int = 0, all_countries: bool = False):
         """
         Retrieves country data from the 'countries' table.
@@ -101,4 +101,3 @@ class CountriesTableManager:
         data_country = {"id": results[0][0], "country_name": results[0][1]}
         # Returns the final results of the database query.
         return data_country
-

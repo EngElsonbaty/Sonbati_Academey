@@ -14,6 +14,7 @@ sys.path.append(root_path)
 # Import the custom BaseTemplates class from the base_templates module.
 # This class provides the generic database management logic.
 from modules.base_tamplates import BaseTemplates
+from modules.database_manager import db
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 from core.log_utils import log_and_execute_time_with
@@ -33,15 +34,20 @@ class PermissionsTableManager(BaseTemplates):
         ]
         super().__init__("permissions")
 
-    def create(self, id, data, role_id: int = 0):
-        return super().create(id, data, False, 0, True, role_id)
+    @log_and_execute_time_with
+    def create(self, data, role_id: int = 0):
+        record_id = db.get_last_row(self.table_name, "id") + 1
+        return super().create(record_id, data, False, 0, True, role_id)
 
+    @log_and_execute_time_with
     def update(self, emp_id, data):
         return super().update(emp_id, data, False, True)
 
+    @log_and_execute_time_with
     def delete(self, emp_id):
         return super().delete(emp_id, False, True)
 
+    @log_and_execute_time_with
     def get(self, emp_id):
         results = super().get(emp_id, False, True, *self.rows)
         data_permissions = None
@@ -57,17 +63,3 @@ class PermissionsTableManager(BaseTemplates):
                 "customize": results[0][7],
             }
         return data_permissions
-
-
-p = PermissionsTableManager()
-
-data_table = {
-    "addition": True,
-    "edition": False,
-    "deletion": False,
-    "view": True,
-    "print": True,
-    "customize": True,
-}
-
-print(p.get(2))

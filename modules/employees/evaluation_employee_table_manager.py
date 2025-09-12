@@ -26,14 +26,18 @@ class EvaluationEmployeeTableManager(BaseTemplates):
         super().__init__("evaluation_employee")
         self.rows = ["id", "emp_id", "evaluation_type", "rating", "created_at"]
 
+    @log_and_execute_time_with
     def create(self, id, data, emp_id=0):
         return super().create(id, data, True, emp_id)
 
+    @log_and_execute_time_with
     def update(self, emp_id, data):
         return super().update(emp_id, data, True)
 
+    @log_and_execute_time_with
     def delete(self, emp_id):
         return super().delete(emp_id, True)
 
+    @log_and_execute_time_with
     def get(self, emp_id, *rows):
         return super().get(emp_id, True, False, *self.rows)

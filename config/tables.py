@@ -104,6 +104,7 @@ employee_roles = {
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the role assignment.
     "emp_id": "INTEGER NOT NULL UNIQUE",  # The ID of the employee, must be unique to assign one role per employee.
     "role_id": "INTEGER NOT NULL",  # The ID of the assigned role.
+    "create_at": "DATE NOT NULL",
     "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",  # Links to the 'employees' table.
     "FOREIGN KEY": "(role_id) REFERENCES roles(id)",  # Links to the 'roles' table.
 }
@@ -130,7 +131,7 @@ user_operation = {
 permissions = {
     # The 'permissions' table defines access rights for each role.
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the permission set.
-    "role_id": "INTEGER NOT NULL UNIQUE",  # The ID of the role, must be unique to assign one permission set per role.
+    "role_id": "INTEGER NOT NULL",  # The ID of the role, must be unique to assign one permission set per role.
     "addition": "BOOLEAN NOT NULL DEFAULT 0 CHECK(addition IN (0, 1))",  # Permission to add data.
     "edition": "BOOLEAN NOT NULL DEFAULT 0 CHECK(edition IN (0, 1))",  # Permission to edit data.
     "deletion": "BOOLEAN NOT NULL DEFAULT 0 CHECK(deletion IN (0, 1))",  # Permission to delete data.

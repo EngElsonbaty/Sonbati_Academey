@@ -24,6 +24,7 @@ sys.path.append(root_path)
 # This class provides the generic database management logic.
 # Imports the base class for table management, which provides core database functionalities.
 from modules.base_tamplates import BaseTemplates
+from modules.database_manager import db
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 # Imports a custom decorator used for logging function execution time.
@@ -58,7 +59,8 @@ class UserTableManager(BaseTemplates):
         # Calls the parent class's initializer, passing the table name.
         super().__init__(self.table_name)
 
-    def create(self, id, data, emp_id=0):
+    @log_and_execute_time_with
+    def create(self, data, emp_id=0):
         """
         Creates a new record in the 'users' table.
 
@@ -80,8 +82,10 @@ class UserTableManager(BaseTemplates):
         # # Merges the provided user data into the final data dictionary.
         # data_table.update(data)
         # Returns the result of calling the parent's create method with the prepared data.
-        return super().create(id, data, True, emp_id)
+        record_id = db.get_last_row(self.table_name, "id") + 1
+        return super().create(record_id, data, True, emp_id)
 
+    @log_and_execute_time_with
     def update(self, emp_id, data):
         """
         Updates an existing user record in the 'users' table.
@@ -134,12 +138,3 @@ class UserTableManager(BaseTemplates):
             }
         # Returns the final dictionary of user data or None.
         return data_user
-
-
-u = UserTableManager()
-
-data_emp = {"username": "elsonbaty111", "password": "123"}
-
-# print(u.create(1, data_emp, 5))
-
-print(u.delete(5))
