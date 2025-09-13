@@ -44,4 +44,14 @@ class CoursesTableManager(BaseTemplates):
             results = db.get(self.table_name, "", True, False, *self.rows)
             return results
         else:
-            return super().get(emp_id, False, False, *self.rows)
+            results = super().get(emp_id, False, False, *self.rows)
+            if results:
+                data_table = {
+                    "id": results[0][0],
+                    "course_name": results[0][1],
+                    "course_code": results[0][2],
+                    "create_at": results[0][3],
+                }
+                return data_table
+            else:
+                return None
