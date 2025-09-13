@@ -16,6 +16,7 @@ sys.path.append(root_path)
 # Import the custom BaseTemplates class from the base_templates module.
 # This class provides the generic database management logic.
 from modules.base_tamplates import BaseTemplates
+from modules.database_manager import db
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 from core.log_utils import log_and_execute_time_with
@@ -35,14 +36,21 @@ class ClassRoomsTableManager(BaseTemplates):
     def delete(self, emp_id):
         return super().delete(emp_id, False, False)
 
-    def get(self, emp_id):
-        results = super().get(emp_id, False, False, *self.rows)
-        data = None
-        if results:
-            data = {
-                "id": results[0][0],
-                "classroom_name": results[0][1],
-                "classroom_code": results[0][2],
-                "counter": results[0][3],
-            }
-        return data
+    def get(self, emp_id, all_data=False):
+        if all_data:
+            results = db.get(self.table_name, "", True, False, *self.rows)
+            return results
+        else:
+            results = super().get(emp_id, False, False, *self.rows)
+            if results:
+                data_table = {
+                    "id": results[0][0],
+                    "classroom_name": results[0][1],
+                    "classroom_code": results[0][2],
+                    "counter": results[0][3],
+                }
+                return data_table
+            else:
+                return None
+
+
