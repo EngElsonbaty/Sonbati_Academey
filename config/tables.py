@@ -37,6 +37,7 @@ courses = {
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each course.
     "course_name": "TEXT NOT NULL UNIQUE",  # The name of the course.
     "course_code": "TEXT NOT NULL UNIQUE",  # The unique code for the course.
+    "create_at": "DATETIME NOT NULL",
 }
 
 roles = {

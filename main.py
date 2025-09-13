@@ -12,11 +12,11 @@ from datetime import date
 for table in tables:
     print(db.create_table(table[0], table[1]))
 
-c = CountriesTableManager()
-p = PaymentMethodsTableManager()
-r = RolesTableManager()
+# c = CountriesTableManager()
+# p = PaymentMethodsTableManager()
+# r = RolesTableManager()
 
-from modules.employees_manager import EmployeesManager
+# from modules.employees_manager import EmployeesManager
 
 
 # def create_fake_employee_data(number_of_records: int):
