@@ -13,7 +13,7 @@ root_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(root_path)
 # Import the custom BaseTemplates class from the base_templates module.
 # This class provides the generic database management logic.
-from modules.base_tamplates import BaseTemplates
+from modules.students.base_tamplates_students import BaseTemplates
 from modules.database_manager import db
 from datetime import datetime
 

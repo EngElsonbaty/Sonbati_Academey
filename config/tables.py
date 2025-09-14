@@ -73,8 +73,8 @@ evaluation_student = {
 exam_student = {
     # The 'exam_student' table records student grades on exams.
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each exam grade.
-    "exam_id": "INTEGER NOT NULL",  # The ID of the exam.
     "student_id": "INTEGER NOT NULL",  # The ID of the student.
+    "exam_id": "INTEGER NOT NULL",  # The ID of the exam.
     "student_grade": "REAL NOT NULL",  # The grade the student received.
     "file_pdf": "TEXT NOT NULL",  # Path to the PDF file of the student's answers.
     "date": "DATETIME NOT NULL",  # The date the grade was recorded.
@@ -86,8 +86,8 @@ exam_student = {
 homework_student = {
     # The 'homework_student' table records student grades on homework.
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each homework grade.
-    "homework_id": "INTEGER NOT NULL",  # The ID of the homework.
     "student_id": "INTEGER NOT NULL",  # The ID of the student.
+    "homework_id": "INTEGER NOT NULL",  # The ID of the homework.
     "student_grade": "REAL NOT NULL",  # The grade the student received.
     "date": "DATETIME NOT NULL",  # The date the grade was recorded.
     "notes": "TEXT NOT NULL",  # Notes about the student's homework.
