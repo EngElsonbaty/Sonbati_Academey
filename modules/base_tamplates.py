@@ -25,8 +25,6 @@ from core.log_utils import log_and_execute_time_with
 # connections and queries.
 from modules.database_manager import db
 
-from config.tables import employees
-
 
 class BaseTemplates:
     """
