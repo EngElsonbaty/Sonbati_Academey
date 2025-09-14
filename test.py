@@ -134,6 +134,7 @@ teacher_courses = {
     "day_of_week": "TEXT NOT NULL",  # The day of the week for the class.
     "start_time": "TIME NOT NULL",  # The start time of the class.
     "end_time": "TIME NOT NULL",  # The end time of the class.
+    "fees": "",
     "created_at": "DATE NOT NULL",  # The date the assignment was created.
     "FOREIGN KEY": "(teacher_id) REFERENCES employees(id)",  # Links to the 'employees' table.
     "FOREIGN KEY": "(course_id) REFERENCES courses(id)",  # Links to the 'courses' table.
@@ -148,4 +149,18 @@ students = {
     "gender": "TEXT NOT NULL CHECK(gender IN ('male', 'female'))",  # The gender, must be 'male' or 'female'.
     "id_photo": "TEXT NOT NULL",  # Path to the student's ID photo.
     "photo": "TEXT NOT NULL",  # Path to the student's personal photo.
+}
+student_details = {
+    # The 'student_details' table stores additional, detailed information about students.
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the detail record.
+    "student_id": "INTEGER NOT NULL UNIQUE",  # The ID of the student, must be unique for a one-to-one relationship.
+    "address": "TEXT NOT NULL",  # The student's residential address.
+    "nationality_id": "INTEGER NOT NULL",  # The ID of the student's nationality.
+    "governorate_id": "INTEGER NOT NULL",  # The ID of the student's governorate.
+    "email": "TEXT NOT NULL UNIQUE",  # The student's email address, must be unique.
+    "phone_number": "TEXT NOT NULL UNIQUE",  # The student's phone number, must be unique.
+    "fees": "REAL NOT NULL",  # The student's fees.
+    "FOREIGN KEY": "(student_id) REFERENCES students(id)",  # Links to the 'students' table.
+    "FOREIGN KEY": "(nationality_id) REFERENCES countries(id)",  # Links to the 'countries' table.
+    "FOREIGN KEY": "(governorate_id) REFERENCES governorates(id)",  # Links to the 'governorates' table.
 }

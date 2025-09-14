@@ -76,4 +76,3 @@ class BaseTemplatesStudents:
                 return db.get(
                     self.table_name, f"id = {student_id}", False, False, *rows
                 )
-

@@ -69,7 +69,7 @@ class EmployeeTableManager(BaseTemplates):
     # The 'get' method retrieves an employee record and formats the result.
     def get(self, emp_id):
         # Call the 'get' method of the parent class to fetch the raw data.
-        results = super().get(emp_id, False, *self.row)
+        results = super().get(emp_id, False, False, *self.row)
         # Initialize a variable to hold the formatted employee data.
         data_employee = None
         # Check if any results were returned from the database.

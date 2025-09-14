@@ -4,21 +4,6 @@ Each dictionary represents a table, with keys as column names and values as
 SQL data types and constraints.
 """
 
-student_details = {
-    # The 'student_details' table stores additional, detailed information about students.
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the detail record.
-    "student_id": "INTEGER NOT NULL UNIQUE",  # The ID of the student, must be unique for a one-to-one relationship.
-    "address": "TEXT NOT NULL",  # The student's residential address.
-    "nationality_id": "INTEGER NOT NULL",  # The ID of the student's nationality.
-    "governorate_id": "INTEGER NOT NULL",  # The ID of the student's governorate.
-    "email": "TEXT NOT NULL UNIQUE",  # The student's email address, must be unique.
-    "phone_number": "TEXT NOT NULL UNIQUE",  # The student's phone number, must be unique.
-    "fees": "REAL NOT NULL",  # The student's fees.
-    "FOREIGN KEY": "(student_id) REFERENCES students(id)",  # Links to the 'students' table.
-    "FOREIGN KEY": "(nationality_id) REFERENCES countries(id)",  # Links to the 'countries' table.
-    "FOREIGN KEY": "(governorate_id) REFERENCES governorates(id)",  # Links to the 'governorates' table.
-}
-
 exams = {
     # The 'exams' table stores information about scheduled exams.
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the exam.
@@ -250,41 +235,41 @@ attendance_analytics = {
 }
 
 
-tables = [
-    # This list holds the names and schemas of all tables in the database.
-    ("countries", countries),
-    ("governorates", governorates),
-    ("payment_methods", payment_methods),
-    ("class_rooms", class_rooms),
-    ("courses", courses),
-    ("roles", roles),
-    ("employees", employees),
-    ("students", students),
-    ("employee_details", employee_details),
-    ("student_details", student_details),
-    ("employee_roles", employee_roles),
-    ("users", users),
-    ("user_operation", user_operation),
-    ("permissions", permissions),
-    ("teacher_courses", teacher_courses),
-    ("exams", exams),
-    ("homework", homework),
-    ("attendance_employee", attendance_employee),
-    ("attendance_student", attendance_student),
-    ("evaluation_employee", evaluation_employee),
-    ("evaluation_student", evaluation_student),
-    ("exam_student", exam_student),
-    ("homework_student", homework_student),
-    ("student_courses", student_courses),
-    ("expenses", expenses),
-    ("revenues", revenues),
-    ("payment_preferences", payment_preferences),
-    ("bank_accounts", bank_accounts),
-    ("bank_checks", bank_checks),
-    ("e_wallets", e_wallets),
-    ("salaries", salaries),
-    ("financial_analysis", financial_analysis),
-    ("course_analytics", course_analytics),
-    ("classroom_analytics", classroom_analytics),
-    ("attendance_analytics", attendance_analytics),
-]
+# tables = [
+#     # This list holds the names and schemas of all tables in the database.
+#     ("countries", countries),
+#     ("governorates", governorates),
+#     ("payment_methods", payment_methods),
+#     ("class_rooms", class_rooms),
+#     ("courses", courses),
+#     ("roles", roles),
+#     ("employees", employees),
+#     ("students", students),
+#     ("employee_details", employee_details),
+#     ("student_details", student_details),
+#     ("employee_roles", employee_roles),
+#     ("users", users),
+#     ("user_operation", user_operation),
+#     ("permissions", permissions),
+#     ("teacher_courses", teacher_courses),
+#     ("exams", exams),
+#     ("homework", homework),
+#     ("attendance_employee", attendance_employee),
+#     ("attendance_student", attendance_student),
+#     ("evaluation_employee", evaluation_employee),
+#     ("evaluation_student", evaluation_student),
+#     ("exam_student", exam_student),
+#     ("homework_student", homework_student),
+#     ("student_courses", student_courses),
+#     ("expenses", expenses),
+#     ("revenues", revenues),
+#     ("payment_preferences", payment_preferences),
+#     ("bank_accounts", bank_accounts),
+#     ("bank_checks", bank_checks),
+#     ("e_wallets", e_wallets),
+#     ("salaries", salaries),
+#     ("financial_analysis", financial_analysis),
+#     ("course_analytics", course_analytics),
+#     ("classroom_analytics", classroom_analytics),
+#     ("attendance_analytics", attendance_analytics),
+# ]

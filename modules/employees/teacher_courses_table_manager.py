@@ -32,7 +32,7 @@ class TeacherCoursesTableManager(BaseTemplates):
             "day_of_week",
             "start_time",
             "end_time",
-            "created_at",
+            "fees" "created_at",
         ]
 
     def create(self, id: int, data: dict):
@@ -67,7 +67,8 @@ class TeacherCoursesTableManager(BaseTemplates):
                     "day_of_week": results[0][4],
                     "start_time": results[0][5],
                     "end_time": results[0][6],
-                    "created_at": results[0][7],
+                    "fees": results[0][7],
+                    "created_at": results[0][8],
                 }
                 return data_table
             else:

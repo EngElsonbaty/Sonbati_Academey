@@ -84,7 +84,7 @@ class EmployeeDetailsTableManager(BaseTemplates):
     def get(self, emp_id: int, all_emp: bool = False):
         # Call the 'get' method of the parent class to fetch the raw data.
         # It uses the 'self.row' list to specify the columns to be retrieved.
-        results = super().get(emp_id, True, *self.row)
+        results = super().get(emp_id, True, False, *self.row)
         # Initialize a variable to hold the formatted employee details data.
         data_employee = None
         # Check if any results were returned from the database.

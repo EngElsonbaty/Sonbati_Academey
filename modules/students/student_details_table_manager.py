@@ -13,7 +13,7 @@ root_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(root_path)
 # Import the custom BaseTemplates class from the base_templates module.
 # This class provides the generic database management logic.
-from modules.students.base_tamplates_students import BaseTemplates
+from modules.students.base_tamplates_students import BaseTemplatesStudents
 from modules.database_manager import db
 from datetime import datetime
 
@@ -21,5 +21,28 @@ from datetime import datetime
 from core.log_utils import log_and_execute_time_with
 
 
-class StudentDetailsTableManager(BaseTemplates):
-    pass
+class StudentDetailsTableManager(BaseTemplatesStudents):
+    def __init__(self) -> None:
+        super().__init__("student_details")
+        self.rows = [
+            "id",
+            "student_id",
+            "address",
+            "nationality_id",
+            "governorate_id",
+            "email",
+            "phone_number",
+            "fees",
+        ]
+
+    def create(self, id: int, student_id: int, data: dict):
+        return super().create(id, student_id, data)
+
+    def update(self, student_id: int, data: dict):
+        return super().update(student_id, data)
+
+    def delete(self, student_id: int):
+        return super().delete(student_id)
+
+    def get(self, student_id: int):
+        return super().get(student_id, True, False, False, *self.rows)
