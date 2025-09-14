@@ -164,3 +164,5 @@ student_details = {
     "FOREIGN KEY": "(nationality_id) REFERENCES countries(id)",  # Links to the 'countries' table.
     "FOREIGN KEY": "(governorate_id) REFERENCES governorates(id)",  # Links to the 'governorates' table.
 }
+
+test = {}
