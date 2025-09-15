@@ -202,3 +202,17 @@ exams = {
     "FOREIGN KEY": "(course_id) REFERENCES courses(id)",  # Links to the 'courses' table.
     "FOREIGN KEY": "(class_rooms_id) REFERENCES class_rooms(id)",  # Links to the 'class_rooms' table.
 }
+homework = {
+    # The 'homework' table stores information about assignments given.
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the homework.
+    "teacher_id": "INTEGER NOT NULL",  # The ID of the teacher who assigned the homework.
+    "course_id": "INTEGER NOT NULL",  # The ID of the course the homework belongs to.
+    "class_room_id": "INTEGER NOT NULL",  # The ID of the classroom the homework is for.
+    "file_pdf": "TEXT NOT NULL",  # Path to the PDF file of the homework questions.
+    "finally_grade": "REAL NOT NULL",  # The final grade for the homework.
+    "date": "DATE NOT NULL",  # The date the homework was assigned.
+    "create_at": "DATETIME NOT NULL",
+    "FOREIGN KEY": "(teacher_id) REFERENCES employees(id)",  # Links to the 'employees' table.
+    "FOREIGN KEY": "(course_id) REFERENCES courses(id)",  # Links to the 'courses' table.
+    "FOREIGN KEY": "(class_room_id) REFERENCES class_rooms(id)",  # Links to the 'class_rooms' table.
+}
