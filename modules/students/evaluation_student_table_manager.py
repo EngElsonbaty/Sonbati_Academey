@@ -1,0 +1,45 @@
+# The 'os' module provides functions for interacting with the operating system.
+import os
+
+# The 'sys' module provides access to system-specific parameters and functions.
+import sys
+
+# Get the absolute path of the directory containing the current file.
+# The 'os.path.dirname' function is called three times to navigate up
+# the directory tree to the project's root folder.
+root_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+# Add the project's root directory to the Python path.
+# This allows for direct imports from any location within the project.
+sys.path.append(root_path)
+# Import the custom BaseTemplates class from the base_templates module.
+# This class provides the generic database management logic.
+from modules.students.base_tamplates_students import BaseTemplatesStudents
+from modules.database_manager import db
+from datetime import datetime
+
+# Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
+from core.log_utils import log_and_execute_time_with
+
+
+class EvaluationStudentTableManager(BaseTemplatesStudents):
+    def __init__(self) -> None:
+        super().__init__("evaluation_student")
+        self.rows = [
+            "id",
+            "student_id",
+            "evaluation_type",
+            "rating",
+            "created_at",
+        ]
+
+    def create(self, id: int, student_id: int, data: dict):
+        return super().create(id, student_id, data)
+
+    def update(self, recored_id: int, data: dict):
+        return db.update(self.table_name, f"id = {recored_id}", data)
+
+    def delete(self, student_id: int):
+        return super().delete(student_id)
+
+    def get(self, student_id: int, all_table: bool = False):
+        return super().get(student_id, True, True, all_table, *self.rows)

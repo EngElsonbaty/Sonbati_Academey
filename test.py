@@ -165,4 +165,22 @@ student_details = {
     "FOREIGN KEY": "(governorate_id) REFERENCES governorates(id)",  # Links to the 'governorates' table.
 }
 
-test = {}
+attendance_student = {
+    # The 'attendance_student' table records attendance for students.
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each attendance record.
+    "student_id": "INTEGER NOT NULL",  # The ID of the student.
+    "type": "TEXT NOT NULL CHECK (type IN ('in', 'out'))",  # The type of record, either 'in' or 'out'.
+    "time": "TIME NOT NULL",  # The time of the attendance record.
+    "created_at": "DATE NOT NULL",  # The date of the attendance record.
+    "FOREIGN KEY": "(student_id) REFERENCES students(id)",  # Links to the 'students' table.
+}
+
+evaluation_student = {
+    # The 'evaluation_student' table stores student evaluation records.
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each evaluation record.
+    "student_id": "INTEGER NOT NULL",  # The ID of the student being evaluated.
+    "evaluation_type": "TEXT NOT NULL",  # The type of evaluation (e.g., 'behavior').
+    "rating": "REAL NOT NULL",  # The numerical rating of the evaluation.
+    "created_at": "DATETIME NOT NULL",  # The date and time the evaluation was created.
+    "FOREIGN KEY": "(student_id) REFERENCES students(id)",  # Links to the 'students' table.
+}
