@@ -184,3 +184,21 @@ evaluation_student = {
     "created_at": "DATETIME NOT NULL",  # The date and time the evaluation was created.
     "FOREIGN KEY": "(student_id) REFERENCES students(id)",  # Links to the 'students' table.
 }
+
+exams = {
+    # The 'exams' table stores information about scheduled exams.
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the exam.
+    "course_id": "INTEGER NOT NULL",  # The ID of the course the exam belongs to.
+    "teacher_id": "INTEGER NOT NULL",  # The ID of the teacher who created the exam.
+    "class_rooms_id": "INTEGER NOT NULL",  # The ID of the classroom where the exam takes place.
+    "finally_grade": "REAL NOT NULL",  # The final grade for the exam.
+    "full_time": "TIME NOT NULL",  # The total duration of the exam.
+    "start_time": "TIME NOT NULL",  # The start time of the exam.
+    "end_time": "TIME NOT NULL",  # The end time of the exam.
+    "file_pdf": "TEXT NOT NULL",  # Path to the PDF file of the exam questions.
+    "date": "DATE NOT NULL",  # The date of the exam.
+    "create_at": "DATETIME NOT NULL",
+    "FOREIGN KEY": "(teacher_id) REFERENCES employees(id)",  # Links to the 'employees' table.
+    "FOREIGN KEY": "(course_id) REFERENCES courses(id)",  # Links to the 'courses' table.
+    "FOREIGN KEY": "(class_rooms_id) REFERENCES class_rooms(id)",  # Links to the 'class_rooms' table.
+}
