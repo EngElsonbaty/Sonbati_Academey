@@ -27,15 +27,19 @@ class ClassRoomsTableManager(BaseTemplates):
         super().__init__("class_rooms")
         self.rows = ["id", "classroom_name", "classroom_code", "counter"]
 
+    @log_and_execute_time_with
     def create(self, id, data):
         return super().create(id, data, False, 0, False, 0)
 
+    @log_and_execute_time_with
     def update(self, emp_id, data):
         return super().update(emp_id, data, False, False)
 
+    @log_and_execute_time_with
     def delete(self, emp_id):
         return super().delete(emp_id, False, False)
 
+    @log_and_execute_time_with
     def get(self, emp_id, all_data=False):
         if all_data:
             results = db.get(self.table_name, "", True, False, *self.rows)
@@ -52,5 +56,3 @@ class ClassRoomsTableManager(BaseTemplates):
                 return data_table
             else:
                 return None
-
-

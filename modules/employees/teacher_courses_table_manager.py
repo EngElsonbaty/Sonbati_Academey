@@ -35,18 +35,22 @@ class TeacherCoursesTableManager(BaseTemplates):
             "fees" "created_at",
         ]
 
+    @log_and_execute_time_with
     def create(self, id: int, data: dict):
         data_table = data
         date_now = datetime.now().date().strftime("%d-%m-%Y")
         data_table.update({"created_at": date_now})
         return super().create(id, data_table, False, 0, False, 0)
 
+    @log_and_execute_time_with
     def update(self, emp_id: int, data: dict):
         return super().update(emp_id, data, False, False)
 
+    @log_and_execute_time_with
     def delete(self, emp_id: int):
         return super().delete(emp_id, False, False)
 
+    @log_and_execute_time_with
     def get(self, emp_id: int, all_data: bool = False, all_table: bool = False):
         if all_data:
             results = db.get(

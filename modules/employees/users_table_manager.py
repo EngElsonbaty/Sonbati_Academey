@@ -100,6 +100,7 @@ class UserTableManager(BaseTemplates):
         # Returns the result of calling the parent's update method with the employee ID and new data.
         return super().update(emp_id, data, True)
 
+    @log_and_execute_time_with
     def delete(self, emp_id):
         """
         Deletes a user record from the 'users' table.
@@ -113,6 +114,7 @@ class UserTableManager(BaseTemplates):
         # Returns the result of calling the parent's delete method with the employee ID.
         return super().delete(emp_id, True, False)
 
+    @log_and_execute_time_with
     def get(self, emp_id):
         """
         Retrieves a user's data from the database.

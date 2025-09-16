@@ -30,6 +30,7 @@ class BaseTemplatesStudents:
     def __init__(self, table_name: str) -> None:
         self.table_name = table_name
 
+    @log_and_execute_time_with
     def create(self, id: int, student_id: int, data: dict):
         data_table = {
             "id": id,
@@ -38,18 +39,21 @@ class BaseTemplatesStudents:
         data_table.update(data)
         return db.insert(self.table_name, data_table)
 
+    @log_and_execute_time_with
     def update(self, student_id: int, data: dict):
         if self.table_name == "students":
             return db.update(self.table_name, f"id = {student_id}", data)
         else:
             return db.update(self.table_name, f"student_id = {student_id}", data)
 
+    @log_and_execute_time_with
     def delete(self, student_id: int):
         if self.table_name == "students":
             return db.delete(self.table_name, f"id = {student_id}")
         else:
             return db.delete(self.table_name, f"student_id = {student_id}")
 
+    @log_and_execute_time_with
     def get(
         self,
         student_id: int,

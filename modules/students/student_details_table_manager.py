@@ -35,14 +35,32 @@ class StudentDetailsTableManager(BaseTemplatesStudents):
             "fees",
         ]
 
+    @log_and_execute_time_with
     def create(self, id: int, student_id: int, data: dict):
         return super().create(id, student_id, data)
 
+    @log_and_execute_time_with
     def update(self, student_id: int, data: dict):
         return super().update(student_id, data)
 
+    @log_and_execute_time_with
     def delete(self, student_id: int):
         return super().delete(student_id)
 
+    @log_and_execute_time_with
     def get(self, student_id: int):
-        return super().get(student_id, True, False, False, *self.rows)
+        results = super().get(student_id, True, False, False, *self.rows)
+        if results:
+            data_table = {
+                "id": results[0][0],
+                "student_id": results[0][1],
+                "address": results[0][2],
+                "nationality_id": results[0][3],
+                "governorate_id": results[0][4],
+                "email": results[0][5],
+                "phone_number": results[0][6],
+                "fees": results[0][7],
+            }
+            return data_table
+        else:
+            return None

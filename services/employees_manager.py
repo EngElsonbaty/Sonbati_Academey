@@ -11,6 +11,7 @@ from modules.employees.evaluation_employee_table_manager import (
     EvaluationEmployeeTableManager,
 )
 from modules.database_manager import db
+from core.log_utils import log_and_execute_time_with
 
 
 class EmployeesManager:
@@ -68,13 +69,16 @@ class EmployeesManager:
             status = [False]
         return all(status)
 
-    def update(self):
+    @log_and_execute_time_with
+    def update(self, id: int, data: dict):
         pass
 
-    def delete(self):
+    @log_and_execute_time_with
+    def delete(self, id: int):
         pass
 
-    def get(self):
+    @log_and_execute_time_with
+    def get(self, id: int):
         pass
 
 

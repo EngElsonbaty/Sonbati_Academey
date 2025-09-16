@@ -39,15 +39,19 @@ class ExamsTableManager:
             "create_at",
         ]
 
+    @log_and_execute_time_with
     def create(self, id: int, data: dict):
         return db.insert(self.table_name, data)
 
+    @log_and_execute_time_with
     def update(self, id: int, data: dict):
         return db.update(self.table_name, f"id = {id}", data)
 
+    @log_and_execute_time_with
     def delete(self, id: int):
         return db.delete(self.table_name, f"id = {id}")
 
+    @log_and_execute_time_with
     def get(self, id: int, all_data: bool = False, all_table: bool = False):
         if all_data:
             return db.get(self.table_name, f"course_id = {id}", False, True, *self.rows)

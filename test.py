@@ -216,3 +216,62 @@ homework = {
     "FOREIGN KEY": "(course_id) REFERENCES courses(id)",  # Links to the 'courses' table.
     "FOREIGN KEY": "(class_room_id) REFERENCES class_rooms(id)",  # Links to the 'class_rooms' table.
 }
+exam_student = {
+    # The 'exam_student' table records student grades on exams.
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each exam grade.
+    "student_id": "INTEGER NOT NULL",  # The ID of the student.
+    "exam_id": "INTEGER NOT NULL",  # The ID of the exam.
+    "student_grade": "REAL NOT NULL",  # The grade the student received.
+    "file_pdf": "TEXT NOT NULL",  # Path to the PDF file of the student's answers.
+    "date": "DATETIME NOT NULL",  # The date the grade was recorded.
+    "FOREIGN KEY": "(student_id) REFERENCES students(id)",  # Links to the 'students' table.
+    "FOREIGN KEY": "(exam_id) REFERENCES exams(id)",  # Links to the 'exams' table.
+    "UNIQUE": "(exam_id, student_id)",  # Ensures a student can't have multiple grades for the same exam.
+}
+homework_student = {
+    # The 'homework_student' table records student grades on homework.
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each homework grade.
+    "student_id": "INTEGER NOT NULL",  # The ID of the student.
+    "homework_id": "INTEGER NOT NULL",  # The ID of the homework.
+    "student_grade": "REAL NOT NULL",  # The grade the student received.
+    "date": "DATETIME NOT NULL",  # The date the grade was recorded.
+    "notes": "TEXT NOT NULL",  # Notes about the student's homework.
+    "FOREIGN KEY": "(homework_id) REFERENCES homework(id)",  # Links to the 'homework' table.
+    "FOREIGN KEY": "(student_id) REFERENCES students(id)",  # Links to the 'students' table.
+}
+student_courses = {
+    # The 'student_courses' table links students to specific course schedules.
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the course enrollment.
+    "student_id": "INTEGER NOT NULL",  # The ID of the student.
+    "teacher_course_id": "INTEGER NOT NULL",  # The ID of the specific course schedule.
+    "join_date": "DATE NOT NULL",  # The date the student joined the course.
+    "FOREIGN KEY": "(student_id) REFERENCES students(id)",  # Links to the 'students' table.
+    "FOREIGN KEY": "(teacher_course_id) REFERENCES teacher_courses(id)",  # Links to the 'teacher_courses' table.
+    "UNIQUE": "(student_id, teacher_course_id)",
+}
+expenses = {
+    # The 'expenses' table records all expenses.
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each expense.
+    "expense_type": "TEXT NOT NULL",  # The type of expense (e.g., 'salaries', 'rent').
+    "amount": "REAL NOT NULL",  # The amount of the expense.
+    "receiver": "TEXT NOT NULL",  # The name of the receiver of the funds.
+    "emp_id": "INTEGER NOT NULL",  # The ID of the employee who authorized the expense.
+    "expense_date": "DATETIME NOT NULL",  # The date and time of the expense.
+    "payment_method_id": "INTEGER NOT NULL",  # The ID of the payment method used.
+    "notes": "TEXT NOT NULL",  # Optional notes about the expense.
+    "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",  # Links to the 'employees' table.
+}
+
+revenues = {
+    # The 'revenues' table records all income.
+    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each revenue record.
+    "income_type": "TEXT NOT NULL",  # The type of income (e.g., 'student fees').
+    "amount": "REAL NOT NULL",  # The amount of income.
+    "source_id": "INTEGER NOT NULL",  # The ID of the source of the income (e.g., a student).
+    "emp_id": "INTEGER NOT NULL",  # The ID of the employee who recorded the income.
+    "transaction_date": "DATETIME NOT NULL",  # The date and time of the transaction.
+    "payment_method_id": "INTEGER NOT NULL",  # The ID of the payment method used.
+    "notes": "TEXT",  # Optional notes about the income.
+    "FOREIGN KEY": "(source_id) REFERENCES students(id)",  # Links to the 'students' table.
+    "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",  # Links to the 'employees' table.
+}

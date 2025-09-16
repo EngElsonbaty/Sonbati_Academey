@@ -32,14 +32,18 @@ class EvaluationStudentTableManager(BaseTemplatesStudents):
             "created_at",
         ]
 
+    @log_and_execute_time_with
     def create(self, id: int, student_id: int, data: dict):
         return super().create(id, student_id, data)
 
+    @log_and_execute_time_with
     def update(self, recored_id: int, data: dict):
         return db.update(self.table_name, f"id = {recored_id}", data)
 
+    @log_and_execute_time_with
     def delete(self, student_id: int):
         return super().delete(student_id)
 
+    @log_and_execute_time_with
     def get(self, student_id: int, all_table: bool = False):
         return super().get(student_id, True, True, all_table, *self.rows)

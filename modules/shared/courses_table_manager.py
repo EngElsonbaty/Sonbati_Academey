@@ -27,18 +27,22 @@ class CoursesTableManager(BaseTemplates):
         super().__init__("courses")
         self.rows = ["id", "course_name", "course_code", "create_at"]
 
+    @log_and_execute_time_with
     def create(self, id, data):
         data_table = data
         date_now = datetime.now().strftime("%d-%m-%Y,%I:%M:%S.%f %p")
         data_table.update({"create_at": date_now})
         return super().create(id, data, False, 0, False, 0)
 
+    @log_and_execute_time_with
     def update(self, emp_id, data):
         return super().update(emp_id, data, False, False)
 
+    @log_and_execute_time_with
     def delete(self, emp_id):
         return super().delete(emp_id, False, False)
 
+    @log_and_execute_time_with
     def get(self, emp_id, all_data: bool = False):
         if all_data:
             results = db.get(self.table_name, "", True, False, *self.rows)

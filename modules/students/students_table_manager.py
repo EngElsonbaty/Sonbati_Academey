@@ -34,17 +34,21 @@ class StudentsTableManager(BaseTemplates):
             "photo",
         ]
 
+    @log_and_execute_time_with
     def create(self, id: int, data: dict):
         return super().create(id, data, False, 0, False, 0)
 
+    @log_and_execute_time_with
     def update(
         self, emp_id: int, data: dict, subtable: bool = False, role: bool = False
     ):
         return super().update(emp_id, data, subtable, role)
 
+    @log_and_execute_time_with
     def delete(self, emp_id: int, submodule: bool = False, role: bool = False):
         return super().delete(emp_id, submodule, role)
 
+    @log_and_execute_time_with
     def get(self, emp_id: int, all_table: bool = False):
         if all_table:
             results = db.get(self.table_name, "", True, False, *self.rows)

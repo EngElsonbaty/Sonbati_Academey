@@ -71,7 +71,7 @@ class GovernoratesTableManager:
             # Calls the database's 'insert' method to add the data to the table.
             db.insert(self.table_name, data_table)
 
-    # Note: Test
+    @log_and_execute_time_with
     def get(self, gov_id: int = 0, all_table: bool = False):
         """
         Retrieves governorate data from the 'governorates' table.
@@ -104,4 +104,3 @@ class GovernoratesTableManager:
         }
         # Returns the final results of the database query.
         return data_governorates
-

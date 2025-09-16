@@ -32,6 +32,7 @@ class AttendanceEmployeeTableManager(BaseTemplates):
     ):
         return super().create(id, data, subtable, emp_id, permission_module, role_id)
 
+    @log_and_execute_time_with
     def update(self, emp_id: int, data: dict):
         return super().update(emp_id, data, True, False)
 
