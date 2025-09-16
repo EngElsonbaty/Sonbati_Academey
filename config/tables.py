@@ -4,57 +4,7 @@ Each dictionary represents a table, with keys as column names and values as
 SQL data types and constraints.
 """
 
-payment_preferences = {
-    # The 'payment_preferences' table links a person to their preferred payment methods.
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the preference record.
-    "source_id": "INTEGER NOT NULL",  # The ID of the person (employee or student).
-    "source_type": "TEXT NOT NULL",  # The type of person ('employee' or 'student').
-    "payment_method_id": "INTEGER NOT NULL",  # The ID of the payment method.
-    "created_at": "DATETIME NOT NULL",  # The date and time the preference was set.
-    "FOREIGN KEY": "(payment_method_id) REFERENCES payment_methods(id)",  # Links to the 'payment_methods' table.
-    "UNIQUE": "(source_id, source_type, payment_method_id)",  # Ensures a person has only one record for each payment method.
-}
 
-bank_accounts = {
-    # The 'bank_accounts' table stores bank account details for individuals.
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each bank account.
-    "payment_methods": "INTEGER NOT NULL",  # The ID linking to the payment preference.
-    "source_id": "INTEGER NOT NULL",  # The ID of the account holder.
-    "source_type": "TEXT NOT NULL",  # The type of account holder ('employee' or 'student').
-    "holder_name": "TEXT NOT NULL",  # The name of the account holder.
-    "bank_name": "TEXT NOT NULL",  # The name of the bank.
-    "account_number": "TEXT NOT NULL UNIQUE",  # The unique account number.
-    "iban": "TEXT NOT NULL UNIQUE",  # The unique IBAN number.
-    "date": "DATETIME NOT NULL",  # The date the account was recorded.
-    "UNIQUE": "(source_id, source_type, account_number, payment_methods)",  # Ensures uniqueness for this combination.
-    "FOREIGN KEY": "(payment_methods) REFERENCES payment_preferences(id)",  # Links to the 'payment_preferences' table.
-}
-
-bank_checks = {
-    # The 'bank_checks' table records details about bank checks.
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each check.
-    "payment_methods": "INTEGER NOT NULL",  # The ID linking to the payment preference.
-    "source_id": "INTEGER NOT NULL",  # The ID of the check source.
-    "source_type": "TEXT NOT NULL",  # The type of check source ('employee' or 'student').
-    "bank_name": "TEXT NOT NULL",  # The name of the bank the check is from.
-    "holder_name": "TEXT NOT NULL",  # The name of the check holder.
-    "check_number": "TEXT NOT NULL UNIQUE",  # The unique check number.
-    "date": "DATETIME NOT NULL",  # The date the check was recorded.
-    "FOREIGN KEY": "(payment_methods) REFERENCES payment_preferences(id)",  # Links to the 'payment_preferences' table.
-}
-
-e_wallets = {
-    # The 'e_wallets' table stores details about electronic wallets.
-    "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for each e-wallet.
-    "payment_methods": "INTEGER NOT NULL",  # The ID linking to the payment preference.
-    "source_id": "INTEGER NOT NULL",  # The ID of the wallet owner.
-    "source_type": "TEXT NOT NULL",  # The type of wallet owner ('employee' or 'student').
-    "number": "TEXT NOT NULL UNIQUE",  # The unique phone number associated with the wallet.
-    "holder_name": "TEXT NOT NULL UNIQUE",  # The name of the wallet holder, must be unique.
-    "date": "DATETIME NOT NULL",  # The date the e-wallet was recorded.
-    "UNIQUE": "(source_id, source_type, number, payment_methods)",  # Ensures uniqueness for this combination.
-    "FOREIGN KEY": "(payment_methods) REFERENCES payment_preferences(id)",  # Links to the 'payment_preferences' table.
-}
 
 salaries = {
     # The 'salaries' table records salary payments.
