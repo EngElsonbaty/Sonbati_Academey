@@ -32,7 +32,7 @@ This project is built using **Python 3.9** or newer and is designed to run on **
 1. **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/YourUsername/Sonbati_Academey.git](https://github.com/YourUsername/Sonbati_Academey.git)
+    git clone [https://github.com/EngElsonbaty/Sonbati_Academey.git](https://github.com/EngElsonbaty/Sonbati_Academey.git)
     cd Sonbati_Academey
     ```
 
@@ -56,13 +56,3 @@ To launch the desktop application, use the following command from the project's 
 
 ```bash
 /media/elsonbaty/My/Projects/Sonbati_Academey/.venv/bin/python main.py
-```
-
----
-
-## **Author**
-
-* **Name:** Sonbati
-* **Version:** 1.0.0
-* **Contact:** [https://github.com/EngElsonbaty]
-* **Copyright:** © 2025 Sonbati. All rights reserved.
