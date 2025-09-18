@@ -32,7 +32,7 @@ This project is built using **Python 3.9** or newer and is designed to run on **
 1. **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/EngElsonbaty/Sonbati_Academey.git](https://github.com/EngElsonbaty/Sonbati_Academey.git)
+    git clone https://github.com/EngElsonbaty/Sonbati_Academey.git
     cd Sonbati_Academey
     ```
 
@@ -56,3 +56,49 @@ To launch the desktop application, use the following command from the project's 
 
 ```bash
 /media/elsonbaty/My/Projects/Sonbati_Academey/.venv/bin/python main.py
+```
+
+---
+
+## **Project Structure**
+
+A simplified view of the project's directory structure:
+
+```
+Sonbati_Academey/
+├── config/
+├── modules/
+├── services/
+├── main.py
+├── Execute_time.txt
+├── README.md
+├── requirements.txt
+└── .venv/
+```
+
+---
+
+## **Author**
+
+**Name:** Mahmoud Elsonbaty  
+**Version:** 1.0.0  
+**GitHub:** [https://github.com/EngElsonbaty](https://github.com/EngElsonbaty)  
+**LinkedIn:** [https://www.linkedin.com/in/mahmoud-elsonbaty-50a393315/](https://www.linkedin.com/in/mahmoud-elsonbaty-50a393315/)  
+**Facebook:** [https://www.facebook.com/Eng.Elsonbty12](https://www.facebook.com/Eng.Elsonbty12)  
+**Email:** [mahmoudelsonbaty43@gmail.com](mailto:mahmoudelsonbaty43@gmail.com)  
+**Phone:** 01064480148  
+**Copyright:** © 2025 Mahmoud Elsonbaty. All rights reserved.
+
+---
+
+## **License**
+
+This project is open-source and available under the MIT License.
+
+**Copyright (c) 2025 Mahmoud Elsonbaty**
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
