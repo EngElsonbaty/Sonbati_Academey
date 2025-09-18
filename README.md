@@ -55,7 +55,7 @@ This project is built using **Python 3.9** or newer and is designed to run on **
 To launch the desktop application, use the following command from the project's root directory:
 
 ```bash
-/media/elsonbaty/My/Projects/Sonbati_Academey/.venv/bin/python main.py
+Sonbati_Academey/.venv/bin/python main.py
 ```
 
 ---
