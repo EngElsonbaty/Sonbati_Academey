@@ -49,8 +49,11 @@ class PaymentPreferencesTableManager:
         ]
 
     @log_and_execute_time_with
-    def create(self, id: int, data: dict):
-        return db.insert(self.table_name, data)
+    def create(self, source_id: int, data: dict):
+        last_id = db.get_last_row(self.table_name, "id") + 1
+        data_table = {"id": last_id, "source_id": source_id}
+        data_table.update(data)
+        return db.insert(self.table_name, data_table)
 
     @log_and_execute_time_with
     def update(self, id: int, data: dict):

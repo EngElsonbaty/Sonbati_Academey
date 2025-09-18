@@ -13,6 +13,13 @@ from modules.employees.evaluation_employee_table_manager import (
 from modules.employees.teacher_courses_table_manager import TeacherCoursesTableManager
 from modules.database_manager import db
 from core.log_utils import log_and_execute_time_with
+from modules.financial.payment_preferences_table_manager import (
+    PaymentPreferencesTableManager,
+)
+from modules.financial.e_wallets_table_manager import EWalletsTableManager
+from modules.financial.bank_accounts_table_manager import BankAccountsTableManager
+from modules.financial.bank_checks_table_manager import BankChecksTableManager
+from modules.financial.salaries_table_manager import SalariesTableManager
 
 
 class EmployeesManager:
@@ -25,6 +32,11 @@ class EmployeesManager:
         self.employee_attendance = AttendanceEmployeeTableManager()  # data 6
         self.employee_evaluation = EvaluationEmployeeTableManager()  # data 7
         self.employee_course = TeacherCoursesTableManager()
+        self.employee_payment = PaymentPreferencesTableManager()
+        self.employee_e_wallets = EWalletsTableManager()
+        self.employee_account_bank = BankAccountsTableManager()
+        self.employee_check_bank = BankChecksTableManager()
+        self.employee_salary = SalariesTableManager()
         self.date_now = datetime.now().date().strftime("%d-%m-%Y")
         self.time_now = datetime.now().time().strftime("%I:%M:%S.%f %p")
 
@@ -33,10 +45,16 @@ class EmployeesManager:
         self,
         role_name: str,
         role_id: int,
+        payment_type: str,
         employee_base_info: dict,
         employee_details: dict,
-        user_info:dict,
-        course_info:dict,
+        payment_preferences: dict,
+        e_wallets: dict,
+        account_bank: dict,
+        check_bank: dict,
+        user_info: dict,
+        course_info: dict,
+        employee_salary: dict,
     ):
         status = []
         last_id = db.get_last_row("employees", "id") + 1
@@ -44,6 +62,7 @@ class EmployeesManager:
         status.append(self.employee_details.create(last_id, employee_details))
         data_role = {"role_id": role_id, "create_at": self.date_now}
         status.append(self.employee_roles.create(data_role, last_id))
+        status.append(self.employee_payment.create(last_id, payment_preferences))
         if (
             role_name == "Administrator"
             or role_name == "Manager"
@@ -78,6 +97,20 @@ class EmployeesManager:
                 status.append(self.employee_user.create(user_info, last_id))
         else:
             status = [False]
+        if payment_type == "":
+            pass
+        elif payment_type == "":
+            pass
+        elif payment_type == "":
+            pass
+        elif payment_type == "":
+            pass
+        elif payment_type == "":
+            pass
+        elif payment_type == "":
+            pass
+        else:
+            pass
         return all(status)
 
     @log_and_execute_time_with

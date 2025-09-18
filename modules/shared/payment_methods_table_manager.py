@@ -95,3 +95,4 @@ class PaymentMethodsTableManager:
         }
         # Returns the final results of the database query.
         return data_payment
+

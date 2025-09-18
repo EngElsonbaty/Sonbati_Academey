@@ -56,23 +56,30 @@ class GovernoratesTableManager:
         # Defines the list of primary columns for this table.
         self.rows = ["id", "country_id", "governorate_name"]
         # Loops through each governorate name in the provided list.
-        for item in governorates:
-            # Gets the ID of the last row and adds 1 to determine the new record's ID.
-            last_id = db.get_last_row(self.table_name) + 1
-            # Creates a dictionary of the governorate's data to be inserted.
-            data_table = {
-                # Sets the new record's ID.
-                "id": last_id,
-                # Associates the governorate with its parent country.
-                "country_id": country_id,
-                # Sets the name of the governorate.
-                "governorate_name": item,
-            }
-            # Calls the database's 'insert' method to add the data to the table.
-            db.insert(self.table_name, data_table)
+        if country_id != 0 and governorates != []:
+            for item in governorates:
+                # Gets the ID of the last row and adds 1 to determine the new record's ID.
+                last_id = db.get_last_row(self.table_name) + 1
+                # Creates a dictionary of the governorate's data to be inserted.
+                data_table = {
+                    # Sets the new record's ID.
+                    "id": last_id,
+                    # Associates the governorate with its parent country.
+                    "country_id": country_id,
+                    # Sets the name of the governorate.
+                    "governorate_name": item,
+                }
+                # Calls the database's 'insert' method to add the data to the table.
+                db.insert(self.table_name, data_table)
 
     @log_and_execute_time_with
-    def get(self, gov_id: int = 0, all_table: bool = False):
+    def get(
+        self,
+        gov_id: int = 0,
+        country: bool = False,
+        country_id: int = 0,
+        all_table: bool = False,
+    ):
         """
         Retrieves governorate data from the 'governorates' table.
 
@@ -91,6 +98,10 @@ class GovernoratesTableManager:
             # If True, calls the database's get method to fetch all records from the table.
             results = db.get(self.table_name, "", True, True, *self.rows)
             return results
+        elif country:
+            return db.get(
+                self.table_name, f"country_id = {country_id}", False, True, *self.rows
+            )
         # If 'all_table' is False, this block handles retrieving a specific governorate by ID.
         else:
             # Calls the database's get method to fetch the record with the matching ID.
@@ -104,3 +115,4 @@ class GovernoratesTableManager:
         }
         # Returns the final results of the database query.
         return data_governorates
+
