@@ -16,7 +16,7 @@ Sonbati_Academey is a holistic system dedicated to managing all operational aspe
 * **Financial Oversight:** Tracks and analyzes **profits** and **losses**, providing a clear financial picture of the academy's operations.
 * **Data-Driven Insights:** Performs **data analysis** on key metrics to aid in strategic decision-making and operational improvements.
 * **Automated Database Generation:** Automatically creates a structured database with all necessary tables.
-* **Detailed Performance Logging:** Generates a detailed log file (`Execute_time.txt`) that tracks execution times and pinpoints any data insertion failures with timestamps and relevant information.
+* **Detailed Performance Logging:** Generates a detailed log file (`Execute_time.log`) that tracks execution times and pinpoints any data insertion failures with timestamps and relevant information.
 * **Graphical User Interface (GUI):** Provides a user-friendly graphical interface for all administrative tasks.
 
 ---
@@ -62,19 +62,46 @@ To launch the desktop application, use the following command from the project's 
 
 ## **Project Structure**
 
-A simplified view of the project's directory structure:
+Below is the updated project directory structure based on the latest file listing, with a brief description of each folder and file:
 
 ```
 Sonbati_Academey/
-├── config/
-├── modules/
-├── services/
-├── main.py
-├── Execute_time.txt
-├── README.md
-├── requirements.txt
-└── .venv/
+├── asstes/                 # Contains static assets like images, icons, or other resources used in the GUI
+├── config/                 # Configuration files for the application (e.g., database settings, app configurations)
+├── controllers/            # Logic for handling user inputs and coordinating between views and models
+├── core/                   # Core functionality and business logic of the application
+├── log/                    # Directory for log files, including execution logs
+├── modules/                # Reusable modules or libraries specific to the project
+├── services/               # Service layer for handling external integrations or backend logic
+├── views/                  # GUI components and templates for the desktop application
+├── Execute_time.log        # Log file tracking execution times and data insertion failures
+├── main.py                 # Entry point of the application
+├── README.md               # Project documentation (this file)
+├── requirements.txt        # List of Python dependencies for the project
+├── test1.py                # Temporary or experimental script for testing purposes
+├── test.py                 # Main test script for testing application functionality
+└── .venv/                  # Virtual environment for Python dependencies
+├── .git/                   # Git repository metadata (not included in distribution)
 ```
+
+### **Directory and File Descriptions**
+
+- **asstes/**: Stores static assets like images, fonts, or icons used in the GUI of the application.
+* **config/**: Contains configuration files such as database connection settings or application parameters.
+* **controllers/**: Includes scripts that handle user interactions, process inputs, and manage communication between the UI and backend logic.
+* **core/**: Houses the core business logic and essential functionalities of the academy management system.
+* **log/**: Stores log files, including `Execute_time.log`, which tracks performance metrics and errors.
+* **modules/**: Contains modular code or libraries that can be reused across different parts of the application.
+* **services/**: Manages external services or backend logic, such as database queries or API integrations.
+* **views/**: Includes the GUI components, such as Tkinter or PyQt templates, for the desktop application.
+* **Execute_time.log**: A log file that records execution times and details of any data insertion failures with timestamps.
+* **main.py**: The main script to launch the application, serving as the entry point.
+* **README.md**: The main documentation file for the project, providing an overview and instructions.
+* **requirements.txt**: Lists all required Python libraries and their versions for the project.
+* **test1.py**: A temporary or experimental script, likely used for testing small features or debugging.
+* **test.py**: The primary test script for validating the application's functionality.
+* **.venv/**: The virtual environment directory containing Python dependencies and configurations.
+* **.git/**: Contains Git repository metadata (not included in the final distribution).
 
 ---
 

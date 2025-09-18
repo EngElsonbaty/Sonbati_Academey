@@ -4040,10 +4040,10 @@ def create_fake_employee(n: int):
                     "fees": round(uniform(100, 1000), 2),
                     "created_at": datetime.now().strftime("%d-%m-%Y %I:%M:%S.%f %p"),
                 }
+            # if 
+            result = employee_manager
 
-            # result = employee_manager.create()
-
-            # status.append(result)
+            status.append(result)
             success_count += 1
             employee_status = "Success"
 
@@ -4060,7 +4060,7 @@ def create_fake_employee(n: int):
         log_execution(
             "Execute_time.log",
             "create_fake_employee",
-            f"Employee #{i}: {employee_status} | Role: {role_name}",
+            f"Employee #{i}: {employee_status}: {result} | Role: {role_name}",
             employee_start_time,
             employee_end_time,
             employee_perf_start,
