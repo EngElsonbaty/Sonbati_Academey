@@ -56,6 +56,7 @@ To launch the desktop application, use the following command from the project's 
 
 ```bash
 /media/elsonbaty/My/Projects/Sonbati_Academey/.venv/bin/python main.py
+```
 
 ## **Author**
 
