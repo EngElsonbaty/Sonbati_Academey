@@ -1,158 +1,25 @@
-INFO:114:2025-09-16 05:37:28,668:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:37:28,668:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:37:28,668:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-16 05:37:28,668:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.47 ms
-INFO:54:2025-09-16 05:37:28,670:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:76:2025-09-16 05:37:28,671:Execution of [DatabaseManager.insert]=>[insert] failed
-ERROR:79:2025-09-16 05:37:28,671:[DatabaseManager.insert]=>[insert] => UNIQUE constraint failed: e_wallets.holder_name
-Traceback (most recent call last):
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/core/log_utils.py", line 58, in wrappers
-    results = func(*args, **kwd)
-              ^^^^^^^^^^^^^^^^^^
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/modules/database_manager.py", line 141, in insert
-    curr.execute(query, tuple(data.values()))
-sqlite3.IntegrityError: UNIQUE constraint failed: e_wallets.holder_name
-INFO:114:2025-09-16 05:38:06,863:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:38:06,863:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:38:06,863:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.12 ms
-INFO:122:2025-09-16 05:38:06,863:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.56 ms
-INFO:54:2025-09-16 05:38:06,866:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:54:2025-09-16 05:38:06,867:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-16 05:38:06,920:[DatabaseManager.save]=>[save] Execution of completed in 53.26 ms
-INFO:64:2025-09-16 05:38:06,920:[DatabaseManager.insert]=>[insert] Execution of completed in 54.22 ms
-INFO:114:2025-09-16 05:38:24,936:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:38:24,936:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:38:24,936:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
-INFO:122:2025-09-16 05:38:24,937:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.72 ms
-INFO:54:2025-09-16 05:38:24,939:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:76:2025-09-16 05:38:24,939:Execution of [DatabaseManager.insert]=>[insert] failed
-ERROR:79:2025-09-16 05:38:24,939:[DatabaseManager.insert]=>[insert] => UNIQUE constraint failed: e_wallets.id
-Traceback (most recent call last):
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/core/log_utils.py", line 58, in wrappers
-    results = func(*args, **kwd)
-              ^^^^^^^^^^^^^^^^^^
-  File "/media/elsonbaty/My/Projects/Sonbati_Academey/modules/database_manager.py", line 141, in insert
-    curr.execute(query, tuple(data.values()))
-sqlite3.IntegrityError: UNIQUE constraint failed: e_wallets.id
-INFO:114:2025-09-16 05:38:29,763:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:38:29,763:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:38:29,763:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.09 ms
-INFO:122:2025-09-16 05:38:29,763:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.49 ms
-INFO:54:2025-09-16 05:38:29,765:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:54:2025-09-16 05:38:29,766:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-16 05:38:29,837:[DatabaseManager.save]=>[save] Execution of completed in 70.79 ms
-INFO:64:2025-09-16 05:38:29,837:[DatabaseManager.insert]=>[insert] Execution of completed in 71.80 ms
-INFO:114:2025-09-16 05:38:44,441:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:38:44,441:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:38:44,441:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-16 05:38:44,442:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.46 ms
-INFO:54:2025-09-16 05:38:44,444:[DatabaseManager.update]=>[update] Starting Execution
-INFO:54:2025-09-16 05:38:44,445:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-16 05:38:44,516:[DatabaseManager.save]=>[save] Execution of completed in 71.03 ms
-INFO:64:2025-09-16 05:38:44,516:[DatabaseManager.update]=>[update] Execution of completed in 72.12 ms
-INFO:114:2025-09-16 05:38:53,877:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:38:53,877:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:38:53,877:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.09 ms
-INFO:122:2025-09-16 05:38:53,877:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.70 ms
-INFO:54:2025-09-16 05:38:53,880:[DatabaseManager.delete]=>[delete] Starting Execution
-INFO:54:2025-09-16 05:38:53,881:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-16 05:38:53,956:[DatabaseManager.save]=>[save] Execution of completed in 75.58 ms
-INFO:64:2025-09-16 05:38:53,956:[DatabaseManager.delete]=>[delete] Execution of completed in 76.60 ms
-INFO:114:2025-09-16 05:38:59,834:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:38:59,835:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:38:59,835:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-16 05:38:59,835:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.46 ms
-INFO:54:2025-09-16 05:38:59,837:[DatabaseManager.get]=>[get] Starting Execution
-INFO:64:2025-09-16 05:38:59,838:[DatabaseManager.get]=>[get] Execution of completed in 0.61 ms
-INFO:114:2025-09-16 05:39:05,419:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:39:05,419:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:39:05,419:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
-INFO:122:2025-09-16 05:39:05,419:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.48 ms
-INFO:54:2025-09-16 05:39:05,422:[DatabaseManager.get]=>[get] Starting Execution
-INFO:64:2025-09-16 05:39:05,423:[DatabaseManager.get]=>[get] Execution of completed in 0.78 ms
-INFO:114:2025-09-16 05:39:22,191:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:39:22,191:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:39:22,191:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.09 ms
-INFO:122:2025-09-16 05:39:22,191:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.51 ms
-INFO:54:2025-09-16 05:39:22,194:[DatabaseManager.get]=>[get] Starting Execution
-INFO:64:2025-09-16 05:39:22,195:[DatabaseManager.get]=>[get] Execution of completed in 0.71 ms
-INFO:114:2025-09-16 05:39:31,272:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:39:31,272:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:39:31,273:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
-INFO:122:2025-09-16 05:39:31,273:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.35 ms
-INFO:54:2025-09-16 05:39:31,275:[DatabaseManager.get]=>[get] Starting Execution
-INFO:64:2025-09-16 05:39:31,275:[DatabaseManager.get]=>[get] Execution of completed in 0.50 ms
-INFO:114:2025-09-16 05:48:01,448:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:48:01,448:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:48:01,448:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
-INFO:122:2025-09-16 05:48:01,448:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.40 ms
-INFO:54:2025-09-16 05:48:01,450:[SalariesTableManager.create]=>[create] Starting Execution
-INFO:54:2025-09-16 05:48:01,450:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:54:2025-09-16 05:48:01,451:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-16 05:48:01,528:[DatabaseManager.save]=>[save] Execution of completed in 77.54 ms
-INFO:64:2025-09-16 05:48:01,529:[DatabaseManager.insert]=>[insert] Execution of completed in 78.51 ms
-INFO:64:2025-09-16 05:48:01,529:[SalariesTableManager.create]=>[create] Execution of completed in 78.72 ms
-INFO:114:2025-09-16 05:49:33,295:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:49:33,296:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:49:33,296:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
-INFO:122:2025-09-16 05:49:33,296:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.36 ms
-INFO:54:2025-09-16 05:49:33,298:[SalariesTableManager.create]=>[create] Starting Execution
-INFO:54:2025-09-16 05:49:33,298:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:54:2025-09-16 05:49:33,298:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-16 05:49:33,373:[DatabaseManager.save]=>[save] Execution of completed in 74.89 ms
-INFO:64:2025-09-16 05:49:33,374:[DatabaseManager.insert]=>[insert] Execution of completed in 75.69 ms
-INFO:64:2025-09-16 05:49:33,374:[SalariesTableManager.create]=>[create] Execution of completed in 75.83 ms
-INFO:114:2025-09-16 05:50:05,513:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:50:05,513:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:50:05,513:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.06 ms
-INFO:122:2025-09-16 05:50:05,513:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.36 ms
-INFO:54:2025-09-16 05:50:05,515:[SalariesTableManager.create]=>[create] Starting Execution
-INFO:54:2025-09-16 05:50:05,515:[DatabaseManager.insert]=>[insert] Starting Execution
-INFO:54:2025-09-16 05:50:05,516:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-16 05:50:05,576:[DatabaseManager.save]=>[save] Execution of completed in 60.04 ms
-INFO:64:2025-09-16 05:50:05,576:[DatabaseManager.insert]=>[insert] Execution of completed in 60.84 ms
-INFO:64:2025-09-16 05:50:05,576:[SalariesTableManager.create]=>[create] Execution of completed in 61.03 ms
-INFO:114:2025-09-16 05:50:26,451:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:50:26,451:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:50:26,451:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.11 ms
-INFO:122:2025-09-16 05:50:26,451:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.71 ms
-INFO:54:2025-09-16 05:50:26,454:[SalariesTableManager.update]=>[update] Starting Execution
-INFO:54:2025-09-16 05:50:26,454:[DatabaseManager.update]=>[update] Starting Execution
-INFO:54:2025-09-16 05:50:26,456:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-16 05:50:26,516:[DatabaseManager.save]=>[save] Execution of completed in 60.40 ms
-INFO:64:2025-09-16 05:50:26,516:[DatabaseManager.update]=>[update] Execution of completed in 62.03 ms
-INFO:64:2025-09-16 05:50:26,516:[SalariesTableManager.update]=>[update] Execution of completed in 62.31 ms
-INFO:114:2025-09-16 05:50:42,319:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:50:42,319:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:50:42,319:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
-INFO:122:2025-09-16 05:50:42,319:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.49 ms
-INFO:54:2025-09-16 05:50:42,322:[SalariesTableManager.delete]=>[delete] Starting Execution
-INFO:54:2025-09-16 05:50:42,322:[DatabaseManager.delete]=>[delete] Starting Execution
-INFO:54:2025-09-16 05:50:42,322:[DatabaseManager.save]=>[save] Starting Execution
-INFO:64:2025-09-16 05:50:42,386:[DatabaseManager.save]=>[save] Execution of completed in 63.36 ms
-INFO:64:2025-09-16 05:50:42,386:[DatabaseManager.delete]=>[delete] Execution of completed in 64.15 ms
-INFO:64:2025-09-16 05:50:42,386:[SalariesTableManager.delete]=>[delete] Execution of completed in 64.33 ms
-INFO:114:2025-09-16 05:50:58,210:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:50:58,210:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:50:58,210:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
-INFO:122:2025-09-16 05:50:58,210:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.37 ms
-INFO:54:2025-09-16 05:50:58,212:[SalariesTableManager.get]=>[get] Starting Execution
-INFO:54:2025-09-16 05:50:58,212:[DatabaseManager.get]=>[get] Starting Execution
-INFO:64:2025-09-16 05:50:58,213:[DatabaseManager.get]=>[get] Execution of completed in 0.50 ms
-INFO:64:2025-09-16 05:50:58,213:[SalariesTableManager.get]=>[get] Execution of completed in 0.63 ms
-INFO:114:2025-09-16 05:51:04,745:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:51:04,745:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:51:04,745:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
-INFO:122:2025-09-16 05:51:04,745:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.41 ms
-INFO:54:2025-09-16 05:51:04,747:[SalariesTableManager.get]=>[get] Starting Execution
-INFO:54:2025-09-16 05:51:04,747:[DatabaseManager.get]=>[get] Starting Execution
-INFO:64:2025-09-16 05:51:04,748:[DatabaseManager.get]=>[get] Execution of completed in 0.51 ms
-INFO:64:2025-09-16 05:51:04,748:[SalariesTableManager.get]=>[get] Execution of completed in 0.64 ms
-INFO:114:2025-09-16 05:51:18,624:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
-INFO:114:2025-09-16 05:51:18,624:[DatabaseManager.get_path]=>[get_path] Starting Execution
-INFO:122:2025-09-16 05:51:18,624:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.06 ms
-INFO:122:2025-09-16 05:51:18,624:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.36 ms
-INFO:54:2025-09-16 05:51:18,626:[SalariesTableManager.get]=>[get] Starting Execution
-INFO:54:2025-09-16 05:51:18,626:[DatabaseManager.get]=>[get] Starting Execution
-INFO:64:2025-09-16 05:51:18,627:[DatabaseManager.get]=>[get] Execution of completed in 0.45 ms
-INFO:64:2025-09-16 05:51:18,627:[SalariesTableManager.get]=>[get] Execution of completed in 0.58 ms
+INFO:73:2025-09-18 04:56:19,847:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:73:2025-09-18 04:56:19,848:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:77:2025-09-18 04:56:19,848:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.09 ms
+INFO:77:2025-09-18 04:56:19,849:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 1.27 ms
+DEBUG:20:2025-09-18 04:56:20,253:Not in REPL -> leaving logger event level as is.
+INFO:73:2025-09-18 04:59:09,995:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:73:2025-09-18 04:59:09,995:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:77:2025-09-18 04:59:09,995:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.06 ms
+INFO:77:2025-09-18 04:59:09,995:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.37 ms
+DEBUG:20:2025-09-18 04:59:10,090:Not in REPL -> leaving logger event level as is.
+INFO:73:2025-09-18 05:02:13,390:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:73:2025-09-18 05:02:13,391:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:77:2025-09-18 05:02:13,391:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.08 ms
+INFO:77:2025-09-18 05:02:13,391:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.67 ms
+DEBUG:20:2025-09-18 05:02:13,492:Not in REPL -> leaving logger event level as is.
+INFO:73:2025-09-18 05:02:21,269:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:73:2025-09-18 05:02:21,269:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:77:2025-09-18 05:02:21,269:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.07 ms
+INFO:77:2025-09-18 05:02:21,269:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.48 ms
+DEBUG:20:2025-09-18 05:02:21,369:Not in REPL -> leaving logger event level as is.
+INFO:73:2025-09-18 05:05:03,738:[DatabaseManager.get_connection]=>[get_connection] Starting Execution
+INFO:73:2025-09-18 05:05:03,738:[DatabaseManager.get_path]=>[get_path] Starting Execution
+INFO:77:2025-09-18 05:05:03,738:[DatabaseManager.get_path]=>[get_path] Execution of completed in 0.10 ms
+INFO:77:2025-09-18 05:05:03,739:[DatabaseManager.get_connection]=>[get_connection] Execution of completed in 0.53 ms
+DEBUG:20:2025-09-18 05:05:03,848:Not in REPL -> leaving logger event level as is.

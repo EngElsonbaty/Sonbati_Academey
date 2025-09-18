@@ -1,0 +1,192 @@
+Log generated at: 2025-09-18 05:05:03
+
+
+Starting table creation...
+Creating table 'users' - Status: False
+Creating table 'employees' - Status: True
+------------------------------
+Table creation completed.
+Total time: 0.0000 seconds | 0.02 ms
+Total time (readable): 0:00:00.000022
+------------------------------
+
+Starting data creation for courses...
+Creating course 'Anatomy - علم التشريح' - Status: True
+------------------------------
+Data creation completed.
+Total time: 0.0000 seconds | 0.01 ms
+Total time (readable): 0:00:00.000014
+------------------------------
+------------------------------
+Loop is: 1 
+Role: IT Support 
+Account: No 
+Course: No
+------------------------------
+------------------------------
+Loop is: 2 
+Role: Data Entry 
+Account: Yes 
+Course: No
+------------------------------
+
+##################################################
+!! CRITICAL FAILURE REPORT !!
+Failure occurred at Loop Index: 2
+Failure Time: 2025-09-18 05:05:03 (0.02 ms)
+--- Data sent during this operation ---
+Employee Record: {'full_name': 'Fake Name', 'national_id': 12345678901234, 'birthday': datetime.date(2025, 9, 18), 'gender': 'male', 'id_photo': 'media/photos/id/fake_uuid.jpg', 'photo': 'media/photos/employee/fake_uuid.jpg'}
+Details Record: {'address': 'Fake Address', 'nationality_id': 5, 'governorate_id': 6, 'email': 'fake@email.com', 'phone_number': '01001234567', 'qualification': 'Fake Job', 'documents': 'media/documents/fake_uuid.pdf', 'salary': 27115}
+Users Record: {'username': 'fake_user', 'password': 'fake_password'}
+Teacher Course Record: {}
+##################################################
+
+------------------------------
+Loop is: 3 
+Role: Supervisor 
+Account: Yes 
+Course: No
+------------------------------
+------------------------------
+Loop is: 4 
+Role: Cleaner 
+Account: No 
+Course: No
+------------------------------
+
+##################################################
+!! CRITICAL FAILURE REPORT !!
+Failure occurred at Loop Index: 4
+Failure Time: 2025-09-18 05:05:03 (0.01 ms)
+--- Data sent during this operation ---
+Employee Record: {'full_name': 'Fake Name', 'national_id': 12345678901234, 'birthday': datetime.date(2025, 9, 18), 'gender': 'male', 'id_photo': 'media/photos/id/fake_uuid.jpg', 'photo': 'media/photos/employee/fake_uuid.jpg'}
+Details Record: {'address': 'Fake Address', 'nationality_id': 19, 'governorate_id': 12, 'email': 'fake@email.com', 'phone_number': '01001234567', 'qualification': 'Fake Job', 'documents': 'media/documents/fake_uuid.pdf', 'salary': 18856}
+Users Record: {}
+Teacher Course Record: {}
+##################################################
+
+------------------------------
+Loop is: 5 
+Role: HR Manager 
+Account: No 
+Course: No
+------------------------------
+------------------------------
+Loop is: 6 
+Role: Maintenance Staff 
+Account: No 
+Course: No
+------------------------------
+------------------------------
+Loop is: 7 
+Role: Teacher 
+Account: No 
+Course: Yes
+------------------------------
+------------------------------
+Loop is: 8 
+Role: Receptionist 
+Account: No 
+Course: No
+------------------------------
+
+##################################################
+!! CRITICAL FAILURE REPORT !!
+Failure occurred at Loop Index: 8
+Failure Time: 2025-09-18 05:05:03 (0.01 ms)
+--- Data sent during this operation ---
+Employee Record: {'full_name': 'Fake Name', 'national_id': 12345678901234, 'birthday': datetime.date(2025, 9, 18), 'gender': 'male', 'id_photo': 'media/photos/id/fake_uuid.jpg', 'photo': 'media/photos/employee/fake_uuid.jpg'}
+Details Record: {'address': 'Fake Address', 'nationality_id': 17, 'governorate_id': 5, 'email': 'fake@email.com', 'phone_number': '01001234567', 'qualification': 'Fake Job', 'documents': 'media/documents/fake_uuid.pdf', 'salary': 26394}
+Users Record: {}
+Teacher Course Record: {}
+##################################################
+
+------------------------------
+Loop is: 9 
+Role: Financial Officer 
+Account: No 
+Course: No
+------------------------------
+------------------------------
+Loop is: 10 
+Role: Librarian 
+Account: No 
+Course: No
+------------------------------
+------------------------------
+Loop is: 11 
+Role: Administrator 
+Account: Yes 
+Course: No
+------------------------------
+------------------------------
+Loop is: 12 
+Role: Security Guard 
+Account: No 
+Course: No
+------------------------------
+------------------------------
+Loop is: 13 
+Role: Assistant Teacher 
+Account: No 
+Course: No
+------------------------------
+------------------------------
+Loop is: 14 
+Role: Marketing Specialist 
+Account: No 
+Course: No
+------------------------------
+
+##################################################
+!! CRITICAL FAILURE REPORT !!
+Failure occurred at Loop Index: 14
+Failure Time: 2025-09-18 05:05:03 (0.01 ms)
+--- Data sent during this operation ---
+Employee Record: {'full_name': 'Fake Name', 'national_id': 12345678901234, 'birthday': datetime.date(2025, 9, 18), 'gender': 'female', 'id_photo': 'media/photos/id/fake_uuid.jpg', 'photo': 'media/photos/employee/fake_uuid.jpg'}
+Details Record: {'address': 'Fake Address', 'nationality_id': 2, 'governorate_id': 21, 'email': 'fake@email.com', 'phone_number': '01001234567', 'qualification': 'Fake Job', 'documents': 'media/documents/fake_uuid.pdf', 'salary': 25926}
+Users Record: {}
+Teacher Course Record: {}
+##################################################
+
+------------------------------
+Loop is: 15 
+Role: Manager 
+Account: Yes 
+Course: No
+------------------------------
+------------------------------
+Loop is: 16 
+Role: Student 
+Account: No 
+Course: No
+------------------------------
+------------------------------
+Loop is: 17 
+Role: IT Support 
+Account: No 
+Course: No
+------------------------------
+------------------------------
+Loop is: 18 
+Role: Data Entry 
+Account: Yes 
+Course: No
+------------------------------
+------------------------------
+Loop is: 19 
+Role: Supervisor 
+Account: Yes 
+Course: No
+------------------------------
+------------------------------
+Loop is: 20 
+Role: Cleaner 
+Account: No 
+Course: No
+------------------------------
+
+==================================================
+FINAL TEST RESULT: FAILURE
+==================================================
+
