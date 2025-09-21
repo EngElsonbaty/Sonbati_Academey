@@ -10,7 +10,6 @@ from modules.shared.countries_table_manager import CountriesTableManager
 from modules.shared.payment_methods_table_manager import PaymentMethodsTableManager
 from modules.shared.roles_table_manager import RolesTableManager
 from config.tables import tables
-from config.data import countries
 from random import choice, randint, random, uniform
 from faker import Faker
 
@@ -29,25 +28,16 @@ payment_method = [
     (12, "Cash on Delivery (COD)"),
     (13, "Bank Transfer"),
     (14, "Checks"),
-    (15, "Fawry"),
-    (16, "FawryPay"),
-    (17, "Paymob"),
-    (18, "OPay"),
-    (19, "Paytabs"),
-    (20, "PayPal"),
     (21, "Credit Cards"),
     (22, "Debit Cards"),
     (23, "Meeza Cards"),
     (24, "Point of Sale (POS)"),
-    (25, "Instalment Plans (Tabby, valU, etc.)"),
 ]
 roles = [
     (1, "Administrator"),
     (2, "Manager"),
     (3, "Supervisor"),
     (4, "Teacher"),
-    (5, "Assistant Teacher"),
-    (6, "Student"),
     (7, "HR Manager"),
     (8, "Financial Officer"),
     (9, "Marketing Specialist"),
@@ -3587,6 +3577,28 @@ governorate_master = [
     (3282, 194, "Matabeleland South Province"),
     (3283, 194, "Midlands Province"),
 ]
+e_wallets = [
+    # Mobile Wallets & Digital Payment Apps
+    "InstaPay",
+    "Vodafone Cash",
+    "e& money",
+    "Orange Money",
+    "We Pay",
+    "CIB Smart Wallet",
+    "QNB Al Ahli E-Wallet",
+    "BM Wallet",
+    "Easycash",
+    "EBank Wallet (Gebe)",
+]
+bank_account = [
+    "Bank Transfer",
+    "Credit Cards",
+    "Debit Cards",
+    "Meeza Cards",
+    "Point of Sale (POS)",
+]
+
+
 def log_execution(
     filename,
     function_name,
@@ -3665,6 +3677,21 @@ def log_execution(
         if operation_details:
             f.write(f"Operation Details: {operation_details}\n")
         f.write("-" * 80 + "\n")
+
+
+def generate_egyptian_national_id():
+    fake = Faker("en_US")
+    century = choice(["2", "3"])
+    year = fake.year()[-2:]
+    month = fake.month().zfill(2)
+    day = fake.day_of_month().zfill(2)
+    gov_codes = ["01", "02", "03", "04", "11", "12", "13", "14", "15"]
+    governorate_code = choice(gov_codes)
+    serial = str(randint(1000, 9999))
+    national_id = century + year + month + day + governorate_code + serial
+    return national_id
+
+
 def create_tables():
     """
     Create all database tables.
@@ -3685,15 +3712,13 @@ def create_tables():
         operation_start = time.time()
         operation_perf_start = time.perf_counter()
 
-        result = db.create_table(table_name, table_schema)
+        results = db.create_table(table_name, table_schema)
         field_count = len(table_schema.keys())  # Count number of fields
 
         operation_end = time.time()
         operation_perf_end = time.perf_counter()
 
-        details = (
-            f"Table #{i}: {table_name} | Field Count: {field_count} | Success: {result}"
-        )
+        details = f"Table #{i}: {table_name} | Field Count: {field_count} | Success: {results}"
         log_execution(
             "Execute_time.log",
             "create_tables",
@@ -3703,7 +3728,6 @@ def create_tables():
             operation_perf_start,
             operation_perf_end,
         )
-        print(result)
 
     end_time = time.time()
     perf_end = time.perf_counter()
@@ -3716,6 +3740,8 @@ def create_tables():
         perf_start,
         perf_end,
     )
+
+
 def create_base_data():
     """
     Create base data for courses, classrooms, and other entities.
@@ -3838,10 +3864,10 @@ def create_base_data():
         # Create course
         course_start = time.time()
         course_perf_start = time.perf_counter()
-        course_result = course.create(i, course_data)
+        course_results = course.create(i, course_data)
         course_end = time.time()
         course_perf_end = time.perf_counter()
-        course_details = f"Course #{i}: {course_data['course_name']} (Code: {course_data['course_code']}) | Success: {course_result}"
+        course_details = f"Course #{i}: {course_data['course_name']} (Code: {course_data['course_code']}) | Success: {course_results}"
         log_execution(
             "Execute_time.log",
             "create_base_data",
@@ -3855,10 +3881,10 @@ def create_base_data():
         # Create classroom
         classroom_start = time.time()
         classroom_perf_start = time.perf_counter()
-        classroom_result = class_room.create(i, classroom_data)
+        classroom_results = class_room.create(i, classroom_data)
         classroom_end = time.time()
         classroom_perf_end = time.perf_counter()
-        classroom_details = f"Classroom #{i}: {classroom_data['classroom_name']} (Code: {classroom_data['classroom_code']}) | Success: {classroom_result}"
+        classroom_details = f"Classroom #{i}: {classroom_data['classroom_name']} (Code: {classroom_data['classroom_code']}) | Success: {classroom_results}"
         log_execution(
             "Execute_time.log",
             "create_base_data",
@@ -3904,187 +3930,205 @@ def create_base_data():
 
 def create_fake_employee(n: int):
     start_time = time.time()
-    perf_start = time.perf_counter()
+    start_perf = time.perf_counter()
     log_execution(
         "Execute_time.log",
         "create_fake_employee",
-        f"Starting creation of {n} fake employees",
+        "Starting Function",
         start_time=start_time,
-        perf_start=perf_start,
+        perf_start=start_perf,
     )
-
-    last_id = db.get_last_row("employees", "id") + 1
-    employee_manager = EmployeesManager()
-    status = []
-    success_count = 0
-    error_count = 0
-
+    last_id = db.get_last_row("employees") + 1
+    f = Faker("en_US")
+    admin = ["Administrator", "Manager", "Supervisor", "Data Entry"]
+    day_of_week = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ]
+    gender = ["male", "female"]
+    employee = EmployeesManager()
     for i in range(last_id, last_id + n):
-        employee_start_time = time.time()
-        employee_perf_start = time.perf_counter()
-
-        try:
-            index_role = randint(0, len(roles) - 1)
-            index_payment = randint(0, len(payment_method) - 1)
-            index_courses = randint(0, len(courses) - 1)
-            index_class_rooms = randint(0, len(class_rooms) - 1)
-            role_id, role_name = roles[index_role]
-            payment_method_id, payment_method_name = payment_method[index_payment]
-            course_id, course_name, course_code = courses[index_courses][0:3]
-            class_room_id, class_room_name, class_room_counter = class_rooms[
-                index_class_rooms
-            ][0:3]
-            index_country = randint(0, len(counties) - 1)
-            employee_country = counties[index_country]
-            employee_country1_index = None
-            governorate_employee = None
-            gender = ["male", "female"]
-            gender_index = randint(0, len(gender) - 1)
-            employee_gender = gender[gender_index]
-            qualification = ["Bachelor", "Master", "PhD", "Diploma"]
-            index_qualification = randint(0, len(qualification) - 1)
-            days_of_week = [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-                "Sunday",
-            ]
-            index_days_of_week = randint(0, len(days_of_week) - 1)
-
-            # البحث عن الدولة والمحافظة مع معالجة الحالات الخاصة
-            for country in countries:
-                if country[0] == employee_country[1]:
-                    # التحقق من وجود محافظات للدولة
-                    if not country[1]:  # إذا لم يكن هناك محافظات
-                        # استخدام محافظة افتراضية أو تخطي إنشاء هذا الموظف
-                        raise Exception(
-                            f"لا توجد محافظات للدولة: {employee_country[1]}"
-                        )
-
-                    # التأكد من أن الفهرس ضمن النطاق الصحيح
-                    if len(country[1]) == 1:
-                        employee_country1_index = 0  # استخدام المحافظة الوحيدة
-                    else:
-                        employee_country1_index = randint(0, len(country[1]) - 1)
-
-                    governorate_employee = country[1][employee_country1_index]
-                    break
-
-            # إذا لم نتمكن من العثور على المحافظة، نرفع استثناء
-            if governorate_employee is None:
-                raise Exception(
-                    f"لم يتم العثور على محافظة للدولة: {employee_country[1]}"
-                )
-
-            # البحث عن تفاصيل المحافظة
-            found_governorate = None
-            for gover in governorate_master:
-                if gover[2] == governorate_employee:
-                    found_governorate = gover
-                    break
-
-            # إذا لم نعثر على المحافظة في القائمة الرئيسية، نستخدم قيمة افتراضية
-            if found_governorate is None:
-                # يمكننا استخدام أول محافظة متاحة أو رفع استثناء
-                if governorate_master:
-                    found_governorate = governorate_master[0]
-                else:
-                    raise Exception("لا توجد محافظات في القائمة الرئيسية")
-
-            governorate_employee = found_governorate
-
-            f = Faker()
-            employees = {
-                "full_name": f.name(),
-                "national_id": f.unique.ssn().replace("-", ""),
-                "birthday": f.date_of_birth(minimum_age=22, maximum_age=60).strftime(
-                    "%d-%m-%Y"
-                ),
-                "gender": employee_gender,
-                "id_photo": f"/path/to/id_photos/{f.uuid4()}.jpg",
-                "photo": f"/path/to/photos/{f.uuid4()}.jpg",
-            }
-
-            employee_details = {
-                "emp_id": i,
-                "address": f.address(),
-                "nationality_id": employee_country[0],
-                "governorate_id": governorate_employee[0],
-                "email": f.email(),
-                "phone_number": f.phone_number(),
-                "qualification": qualification[index_qualification],
-                "documents": f"/path/to/documents/{f.uuid4()}.pdf",
-                "salary": round(uniform(3000, 10000), 2),
-            }
-
-            users = {}
-            teacher_courses = {}
-
-            if role_name in ["Administrator", "Manager", "Supervisor", "Data Entry"]:
-                users = {
-                    "emp_id": i,
-                    "username": f.user_name(),
-                    "password": f.password(30),
-                }
-            elif role_name == "Teacher":
-                teacher_courses = {
-                    "teacher_id": i,
-                    "course_id": course_id,
-                    "class_room_id": class_room_id,
-                    "day_of_week": days_of_week[index_days_of_week],
-                    "start_time": f.time(),
-                    "end_time": f.time(),
-                    "fees": round(uniform(100, 1000), 2),
-                    "created_at": datetime.now().strftime("%d-%m-%Y %I:%M:%S.%f %p"),
-                }
-            # if 
-            result = employee_manager
-
-            status.append(result)
-            success_count += 1
-            employee_status = "Success"
-
-        except Exception as e:
-            print(f"Error creating employee #{i}: {e}")
-            status.append(False)
-            error_count += 1
-            employee_status = f"Error: {str(e)}"
-
-        employee_end_time = time.time()
-        employee_perf_end = time.perf_counter()
-
-        # تسجيل تفاصيل إنشاء كل موظف
+        start_time = time.time()
+        start_perf = time.perf_counter()
+        date_now = datetime.now().strftime("%d-%m-%Y")
+        time_now = datetime.now().strftime("%H:%M:%S.%f %p")
         log_execution(
             "Execute_time.log",
             "create_fake_employee",
-            f"Employee #{i}: {employee_status}: {result} | Role: {role_name}",
-            employee_start_time,
-            employee_end_time,
-            employee_perf_start,
-            employee_perf_end,
+            f"Attempting to create employee #{i}",
+            start_time=start_time,
+            perf_start=start_perf,
         )
+        # Roles
+        index_role = randint(0, len(roles) - 1)
+        role_id, role_name = roles[index_role]
 
+        # Payment Methods
+        index_payment = randint(0, len(payment_method) - 1)
+        payment_id, payment_name = payment_method[index_payment]
+
+        # Country
+        index_country = randint(0, len(counties) - 1)
+        country_id, country_name = counties[index_country]
+
+        # Course
+        index_course = randint(0, len(courses) - 1)
+        course_id, course_name = courses[index_course][:2]
+
+        # Class_rooms
+        index_class_room = randint(0, len(class_rooms) - 1)
+        class_room_id, class_room_name = class_rooms[index_class_room][:2]
+
+        # Day Of Week
+        index_day = randint(0, len(day_of_week) - 1)
+        day = day_of_week[index_day]
+
+        # Gender
+        index_gender = randint(0, len(gender) - 1)
+        employee_gender = gender[index_gender]
+
+        # Governorate
+        employee_governorate_id = employee_governorate_name = None
+        for (
+            governorate_id,
+            country_governorate_id,
+            governorate_name,
+        ) in governorate_master:
+            if country_governorate_id == country_id:
+                employee_governorate_id = governorate_id
+                employee_governorate_name = governorate_name
+
+        # Data
+        employee_wallets = {}
+        employee_bank_accounts = {}
+        employee_bank_checks = {}
+        employee_user = {}
+        employee_course = {}
+        employees = {
+            "full_name": f.name(),  # The full name of the employee.
+            "national_id": generate_egyptian_national_id(),  # The national ID of the employee, must be unique.
+            "birthday": f.date_of_birth(
+                minimum_age=21, maximum_age=55
+            ),  # The employee's date of birth.
+            "gender": employee_gender,  # The gender, must be 'male' or 'female'.
+            "id_photo": f.file_name(
+                extension="jpg"
+            ),  # Path to the employee's ID photo.
+            "photo": f.file_name(
+                extension="jpg"
+            ),  # Path to the employee's personal photo.
+        }
+        employee_details = {
+            "address": f.address(),  # The employee's residential address.
+            "nationality_id": country_id,  # The ID of the employee's nationality.
+            "governorate_id": employee_governorate_id,  # The ID of the employee's governorate.
+            "email": f.email(),  # The employee's email address, must be unique.
+            "phone_number": f.phone_number(),  # The employee's phone number, must be unique.
+            "qualification": f.file_name(
+                extension="pdf"
+            ),  # The employee's academic qualification.
+            "documents": f.file_name(extension="pdf"),  # Path to additional documents.
+            "salary": randint(5000, 15000),  # The employee's salary.
+        }
+        payment_preferences = {
+            "source_type": "employee",  # The type of person ('employee' or 'student').
+            "payment_method_id": payment_id,  # The ID of the payment method.
+            "created_at": date_now,  # The date and time the preference was set.
+        }
+        if payment_name in e_wallets:
+            employee_wallets = {
+                "payment_methods": payment_id,  # The ID linking to the payment preference.
+                "source_id": i,  # The ID of the wallet owner.
+                "source_type": "employee",  # The type of wallet owner ('employee' or 'student').
+                "number": f.phone_number(),  # The unique phone number associated with the wallet.
+                "holder_name": f.name(),  # The name of the wallet holder, must be unique.
+                "date": date_now,  # The date the e-wallet was recorded.
+            }
+        elif payment_name in bank_account:
+            employee_bank_accounts = {
+                "payment_methods": payment_id,  # The ID linking to the payment preference.
+                "source_id": i,  # The ID of the account holder.
+                "source_type": "employee",  # The type of account holder ('employee' or 'student').
+                "holder_name": f.name(),  # The name of the account holder.
+                "bank_name": f.name(),  # The name of the bank.
+                "account_number": f.random_number(10),  # The unique account number.
+                "iban": f.random_number(10),  # The unique IBAN number.
+                "date": date_now,  # The date the account was recorded.
+            }
+        elif payment_name == "Checks":
+            employee_bank_checks = {
+                "payment_methods": payment_id,  # The ID linking to the payment preference.
+                "source_id": i,  # The ID of the check source.
+                "source_type": "employee",  # The type of check source ('employee' or 'student').
+                "bank_name": f.name(),  # The name of the bank the check is from.
+                "holder_name": f.name(),  # The name of the check holder.
+                "check_number": f.random_number(10),  # The unique check number.
+                "date": date_now,  # The date the check was recorded.
+            }
+        if role_name in admin:
+            employee_user = {"username": f.user_name(), "password": f.password()}
+        elif role_name == "Teacher":
+            employee_course = {
+                "course_id": course_id,  # The ID of the course.
+                "class_room_id": class_room_id,  # The ID of the classroom.
+                "day_of_week": day,  # The day of the week for the class.
+                "start_time": time_now,  # The start time of the class.
+                "end_time": time_now,  # The end time of the class.
+                "fees": 50000,
+                "created_at": date_now,  # The date the assignment was created.
+            }
+        print(f"The Employee #{i}")
+        print(f"Role Name: {role_name}")
+        if payment_name in e_wallets:
+            print(f"Employee In List E_Wallets: {payment_name}")
+        elif payment_name in bank_account:
+            print(f"Employee In List Bank_Account: {payment_name}")
+        elif payment_name == "Checks":
+            print(f"Employee In List Checks: {payment_name}")
+        print("=" * 50)
+        results = employee.create(
+            role_name,
+            role_id,
+            payment_name,
+            employees,
+            employee_details,
+            payment_preferences,
+            employee_wallets,
+            employee_bank_accounts,
+            employee_user,
+            employee_course,
+        )
+        end_time = time.time()
+        end_perf = time.perf_counter()
+        log_execution(
+            "Execute_time.log",
+            "create_fake_employee",
+            f"Employee creation process Success {results}",
+            start_time=start_time,
+            end_time=end_time,
+            perf_end=end_perf,
+            perf_start=start_perf,
+        )
     end_time = time.time()
-    perf_end = time.perf_counter()
-
-    # تسجيل ملخص عملية الإنشاء
+    end_perf = time.perf_counter()
     log_execution(
         "Execute_time.log",
         "create_fake_employee",
-        f"Completed creating {n} employees | Success: {success_count} | Errors: {error_count}",
-        start_time,
-        end_time,
-        perf_start,
-        perf_end,
+        f"End Function",
+        start_time=start_time,
+        end_time=end_time,
+        perf_end=end_perf,
+        perf_start=start_perf,
     )
-
-    return all(status)
 
 
 if __name__ == "__main__":
     # create_tables()
     # create_base_data()
-    create_fake_employee(1000)
+    # create_fake_employee(10000000)
+    pass

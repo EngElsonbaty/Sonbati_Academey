@@ -140,7 +140,7 @@ teacher_courses = {
     "day_of_week": "TEXT NOT NULL",  # The day of the week for the class.
     "start_time": "TIME NOT NULL",  # The start time of the class.
     "end_time": "TIME NOT NULL",  # The end time of the class.
-    "fees": "",
+    "fees": "REAL NOT NULL",
     "created_at": "DATE NOT NULL",  # The date the assignment was created.
     "FOREIGN KEY": "(teacher_id) REFERENCES employees(id)",  # Links to the 'employees' table.
     "FOREIGN KEY": "(course_id) REFERENCES courses(id)",  # Links to the 'courses' table.
@@ -232,7 +232,6 @@ exam_student = {
     "date": "DATETIME NOT NULL",  # The date the grade was recorded.
     "FOREIGN KEY": "(student_id) REFERENCES students(id)",  # Links to the 'students' table.
     "FOREIGN KEY": "(exam_id) REFERENCES exams(id)",  # Links to the 'exams' table.
-    "UNIQUE": "(exam_id, student_id)",  # Ensures a student can't have multiple grades for the same exam.
 }
 homework_student = {
     # The 'homework_student' table records student grades on homework.
@@ -253,7 +252,6 @@ student_courses = {
     "join_date": "DATE NOT NULL",  # The date the student joined the course.
     "FOREIGN KEY": "(student_id) REFERENCES students(id)",  # Links to the 'students' table.
     "FOREIGN KEY": "(teacher_course_id) REFERENCES teacher_courses(id)",  # Links to the 'teacher_courses' table.
-    "UNIQUE": "(student_id, teacher_course_id)",
 }
 expenses = {
     # The 'expenses' table records all expenses.
@@ -289,7 +287,6 @@ payment_preferences = {
     "payment_method_id": "INTEGER NOT NULL",  # The ID of the payment method.
     "created_at": "DATETIME NOT NULL",  # The date and time the preference was set.
     "FOREIGN KEY": "(payment_method_id) REFERENCES payment_methods(id)",  # Links to the 'payment_methods' table.
-    "UNIQUE": "(source_id, source_type, payment_method_id)",  # Ensures a person has only one record for each payment method.
 }
 bank_accounts = {
     # The 'bank_accounts' table stores bank account details for individuals.
@@ -302,7 +299,6 @@ bank_accounts = {
     "account_number": "TEXT NOT NULL UNIQUE",  # The unique account number.
     "iban": "TEXT NOT NULL UNIQUE",  # The unique IBAN number.
     "date": "DATETIME NOT NULL",  # The date the account was recorded.
-    "UNIQUE": "(source_id, source_type, account_number, payment_methods)",  # Ensures uniqueness for this combination.
     "FOREIGN KEY": "(payment_methods) REFERENCES payment_preferences(id)",  # Links to the 'payment_preferences' table.
 }
 bank_checks = {
@@ -326,7 +322,6 @@ e_wallets = {
     "number": "TEXT NOT NULL UNIQUE",  # The unique phone number associated with the wallet.
     "holder_name": "TEXT NOT NULL",  # The name of the wallet holder, must be unique.
     "date": "DATETIME NOT NULL",  # The date the e-wallet was recorded.
-    "UNIQUE": "(source_id, source_type, number, payment_methods)",  # Ensures uniqueness for this combination.
     "FOREIGN KEY": "(payment_methods) REFERENCES payment_preferences(id)",  # Links to the 'payment_preferences' table.
 }
 salaries = {

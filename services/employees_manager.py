@@ -24,21 +24,41 @@ from modules.financial.salaries_table_manager import SalariesTableManager
 
 class EmployeesManager:
     def __init__(self):
-        self.employee_info_master = EmployeeTableManager()  # data1
-        self.employee_details = EmployeeDetailsTableManager()  # data2
-        self.employee_roles = EmployeeRolesTableManager()  # data3
-        self.employee_permissions = PermissionsTableManager()  # data4
-        self.employee_user = UserTableManager()  # data3
-        self.employee_attendance = AttendanceEmployeeTableManager()  # data 6
-        self.employee_evaluation = EvaluationEmployeeTableManager()  # data 7
+        self.employee_info_master = EmployeeTableManager()
+        self.employee_details = EmployeeDetailsTableManager()
+        self.employee_roles = EmployeeRolesTableManager()
+        self.employee_permissions = PermissionsTableManager()
+        self.employee_user = UserTableManager()
         self.employee_course = TeacherCoursesTableManager()
         self.employee_payment = PaymentPreferencesTableManager()
         self.employee_e_wallets = EWalletsTableManager()
         self.employee_account_bank = BankAccountsTableManager()
         self.employee_check_bank = BankChecksTableManager()
         self.employee_salary = SalariesTableManager()
+        self.employee_evaluation = EvaluationEmployeeTableManager()
+        self.employee_attendance = AttendanceEmployeeTableManager()
         self.date_now = datetime.now().date().strftime("%d-%m-%Y")
         self.time_now = datetime.now().time().strftime("%I:%M:%S.%f %p")
+        self.e_wallets = [
+            # Mobile Wallets & Digital Payment Apps
+            "InstaPay",
+            "Vodafone Cash",
+            "e& money",
+            "Orange Money",
+            "We Pay",
+            "CIB Smart Wallet",
+            "QNB Al Ahli E-Wallet",
+            "BM Wallet",
+            "Easycash",
+            "EBank Wallet (Gebe)",
+        ]
+        self.bank_account = [
+            "Bank Transfer",
+            "Credit Cards",
+            "Debit Cards",
+            "Meeza Cards",
+            "Point of Sale (POS)",
+        ]
 
     @log_and_execute_time_with
     def create(
@@ -46,30 +66,32 @@ class EmployeesManager:
         role_name: str,
         role_id: int,
         payment_type: str,
-        employee_base_info: dict,
+        employee_inf: dict,
         employee_details: dict,
         payment_preferences: dict,
-        e_wallets: dict,
-        account_bank: dict,
-        check_bank: dict,
-        user_info: dict,
-        course_info: dict,
-        employee_salary: dict,
+        employee_wallets: dict = {},
+        employee_bank_accounts: dict = {},
+        employee_user: dict = {},
+        employee_course: dict = {},
     ):
         status = []
         last_id = db.get_last_row("employees", "id") + 1
-        status.append(self.employee_info_master.create(last_id, employee_base_info))
+        status.append(self.employee_info_master.create(last_id, employee_inf))
         status.append(self.employee_details.create(last_id, employee_details))
-        data_role = {"role_id": role_id, "create_at": self.date_now}
-        status.append(self.employee_roles.create(data_role, last_id))
-        status.append(self.employee_payment.create(last_id, payment_preferences))
+        employee_role = {
+            "emp_id": last_id,
+            "role_id": role_id,
+            "create_at": self.date_now,
+        }
+        status.append(self.employee_roles.create(employee_role, last_id))
         if (
             role_name == "Administrator"
             or role_name == "Manager"
             or role_name == "Supervisor"
         ):
-            if user_info != {}:
-                permissions = {
+            if employee_user != {}:
+                permission = {
+                    "role_id": role_id,  # The ID of the role, must be unique to assign one permission set per role.
                     "addition": True,  # Permission to add data.
                     "edition": True,  # Permission to edit data.
                     "deletion": True,  # Permission to delete data.
@@ -77,50 +99,27 @@ class EmployeesManager:
                     "print": True,  # Permission to print data.
                     "customize": True,  # Permission to customize settings.
                 }
-                status.append(self.employee_permissions.create(permissions, role_id))
-                status.append(self.employee_user.create(user_info, last_id))
-        elif role_name == "Teacher":
-            if course_info != {}:
-                last_id = db.get_last_row("teacher_courses", "id") + 1
-                status.append(self.employee_course.create(last_id, course_info))
+                status.append(self.employee_permissions.create(permission, role_id))
+                status.append(self.employee_user.create(employee_user, last_id))
         elif role_name == "Data Entry":
-            if user_info != {}:
-                permissions = {
-                    "addition": True,  # Permission to add data.
-                    "edition": False,  # Permission to edit data.
-                    "deletion": False,  # Permission to delete data.
-                    "view": True,  # Permission to view data.
-                    "print": False,  # Permission to print data.
-                    "customize": True,  # Permission to customize settings.
-                }
-                status.append(self.employee_permissions.create(permissions, role_id))
-                status.append(self.employee_user.create(user_info, last_id))
-        else:
-            status = [False]
-        if payment_type == "":
-            pass
-        elif payment_type == "":
-            pass
-        elif payment_type == "":
-            pass
-        elif payment_type == "":
-            pass
-        elif payment_type == "":
-            pass
-        elif payment_type == "":
-            pass
-        else:
-            pass
+            permission = {
+                "role_id": role_id,  # The ID of the role, must be unique to assign one permission set per role.
+                "addition": True,  # Permission to add data.
+                "edition": False,  # Permission to edit data.
+                "deletion": False,  # Permission to delete data.
+                "view": False,  # Permission to view data.
+                "print": True,  # Permission to print data.
+                "customize": True,  # Permission to customize settings.
+            }
+            status.append(self.employee_permissions.create(permission, role_id))
+            status.append(self.employee_user.create(employee_user, last_id))
+        elif role_name == "Teacher":
+            status.append(self.employee_course.create(last_id, employee_course))
+        status.append(self.employee_payment.create(last_id, payment_preferences))
+        if payment_type in self.bank_account:
+            if employee_bank_accounts != {}:
+                status.append(self.employee_account_bank.create(employee_bank_accounts))
+        elif payment_type in self.e_wallets:
+            if employee_wallets != {}:
+                status.append(self.employee_e_wallets.create(employee_wallets))
         return all(status)
-
-    @log_and_execute_time_with
-    def update(self, id: int, data: dict):
-        pass
-
-    @log_and_execute_time_with
-    def delete(self, id: int):
-        pass
-
-    @log_and_execute_time_with
-    def get(self, id: int):
-        pass

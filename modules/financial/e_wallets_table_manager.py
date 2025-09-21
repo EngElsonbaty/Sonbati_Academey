@@ -51,18 +51,19 @@ class EWalletsTableManager:
         ]
 
     @log_and_execute_time_with
-    def create(self, id: int, data: dict):
-        data_table = {"id": id}
+    def create(self, data: dict):
+        last_id = db.get_last_row("e_wallets") + 1
+        data_table = {"id": last_id}
         data_table.update(data)
         return db.insert(self.table_name, data_table)
 
     @log_and_execute_time_with
-    def update(self, id: int, data: dict):
-        return db.update(self.table_name, f"id = {id}", data)
+    def update(self, source_id: int, data: dict):
+        return db.update(self.table_name, f"source_id = {source_id}", data)
 
     @log_and_execute_time_with
-    def delete(self, id: int):
-        return db.delete(self.table_name, f"id = {id}")
+    def delete(self, source_id: int):
+        return db.delete(self.table_name, f"source_id = {source_id}")
 
     @log_and_execute_time_with
     def get(self, id: int, all_data: bool = False, all_table: bool = False):

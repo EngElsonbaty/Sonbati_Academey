@@ -36,8 +36,11 @@ class TeacherCoursesTableManager(BaseTemplates):
         ]
 
     @log_and_execute_time_with
-    def create(self, id: int, data: dict):
-        return super().create(id, data, False, 0, False, 0)
+    def create(self, emp_id: int, data: dict):
+        last_id = db.get_last_row(self.table_name, "id") + 1
+        data_table = {"teacher_id": emp_id}
+        data_table.update(data)
+        return super().create(last_id, data_table, False, 0, False, 0)
 
     @log_and_execute_time_with
     def update(self, emp_id: int, data: dict):

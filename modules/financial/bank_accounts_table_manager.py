@@ -53,8 +53,9 @@ class BankAccountsTableManager:
         ]
 
     @log_and_execute_time_with
-    def create(self, id: int, data: dict):
-        data_table = {"id": id}
+    def create(self, data: dict):
+        last_id = db.get_last_row("bank_accounts", "id") + 1
+        data_table = {"id": last_id}
         data_table.update(data)
         return db.insert(self.table_name, data_table)
 
