@@ -61,18 +61,20 @@ class BankAccountsTableManager:
 
     @log_and_execute_time_with
     def update(self, id: int, data: dict):
-        return db.update(self.table_name, f"id = {id}", data)
+        return db.update(self.table_name, f"source_id = {id}", data)
 
     @log_and_execute_time_with
     def delete(self, id: int):
-        return db.delete(self.table_name, f"id = {id}")
+        return db.delete(self.table_name, f"source_id = {id}")
 
     @log_and_execute_time_with
     def get(self, id: int, all_table: bool = False):
         if all_table:
             return db.get(self.table_name, "", True, False, *self.rows)
         else:
-            results = db.get(self.table_name, f"id = {id}", False, False, *self.rows)
+            results = db.get(
+                self.table_name, f"source_id = {id}", False, False, *self.rows
+            )
             if results:
                 data_table = {
                     "id": results[0][0],

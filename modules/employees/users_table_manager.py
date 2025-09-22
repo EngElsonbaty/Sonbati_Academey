@@ -98,7 +98,7 @@ class UserTableManager(BaseTemplates):
             any: The result of the update operation from the parent class.
         """
         # Returns the result of calling the parent's update method with the employee ID and new data.
-        return super().update(emp_id, data, True)
+        return super().update(emp_id, data, True, False)
 
     @log_and_execute_time_with
     def delete(self, emp_id):

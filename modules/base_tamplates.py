@@ -72,7 +72,12 @@ class BaseTemplates:
     @log_and_execute_time_with
     # The 'update' method modifies an existing record in the database.
     def update(
-        self, emp_id: int, data: dict, subtable: bool = False, role: bool = False
+        self,
+        emp_id: int,
+        data: dict,
+        subtable: bool = False,
+        role: bool = False,
+        is_teacher: bool = False,
     ):
         # Call the 'update' method from the 'db' object.
         # It updates the record where the id matches the provided employee ID.
@@ -80,6 +85,8 @@ class BaseTemplates:
             return db.update(self.table_name, f"emp_id = {emp_id}", data)
         elif role:
             return db.update(self.table_name, f"role_id = {emp_id}", data)
+        elif is_teacher:
+            return db.update(self.table_name, f"teacher_id = {emp_id}", data)
         else:
             return db.update(self.table_name, f"id = {emp_id}", data)
 

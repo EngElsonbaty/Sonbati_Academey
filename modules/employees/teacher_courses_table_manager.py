@@ -44,7 +44,7 @@ class TeacherCoursesTableManager(BaseTemplates):
 
     @log_and_execute_time_with
     def update(self, emp_id: int, data: dict):
-        return super().update(emp_id, data, False, False)
+        return super().update(emp_id, data, is_teacher=True)
 
     @log_and_execute_time_with
     def delete(self, emp_id: int):

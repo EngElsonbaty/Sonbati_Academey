@@ -1,4 +1,10 @@
 from datetime import datetime
+import os, sys
+
+path_root = os.path.dirname(os.path.dirname(__file__))
+
+sys.path.append(path_root)
+
 from modules.employees.employee_table_manager import EmployeeTableManager
 from modules.employees.employee_details_table_manager import EmployeeDetailsTableManager
 from modules.employees.employee_roles_table_manager import EmployeeRolesTableManager
@@ -122,4 +128,54 @@ class EmployeesManager:
         elif payment_type in self.e_wallets:
             if employee_wallets != {}:
                 status.append(self.employee_e_wallets.create(employee_wallets))
+        return all(status)
+
+    @log_and_execute_time_with
+    def update(
+        self,
+        emp_id: int,
+        data: dict = {},
+        e_wallets: dict = {},
+        account_bank: dict = {},
+        is_info_master: bool = False,
+        is_details: bool = False,
+        is_role: bool = False,
+        is_payment: bool = False,
+        is_info_payment: bool = False,
+        is_permission: bool = False,
+        is_users: bool = False,
+        is_teacher: bool = False,
+    ):
+        status = []
+        if is_info_master:
+            if data != {}:
+                status.append(self.employee_info_master.update(emp_id, data))
+        elif is_details:
+            if data != {}:
+                status.append(self.employee_details.update(emp_id, data))
+        elif is_role:
+            if data != {}:
+                status.append(self.employee_roles.update(emp_id, data))
+        elif is_payment:
+            if data != {}:
+                status.append(self.employee_payment.update(emp_id, data))
+        elif is_info_payment:
+            if e_wallets != {}:
+                status.append(self.employee_e_wallets.update(emp_id, e_wallets))
+            elif account_bank != {}:
+                status.append(self.employee_account_bank.update(emp_id, account_bank))
+            else:
+                status.append(False)
+        elif is_permission:
+            if data != {}:
+                status.append(self.employee_permissions.update(emp_id, data))
+        elif is_users:
+            if data != {}:
+                status.append(self.employee_user.update(emp_id, data))
+        elif is_teacher:
+            if data != {}:
+                status.append(self.employee_course.update(emp_id, data))
+
+        else:
+            return status.append(False)
         return all(status)

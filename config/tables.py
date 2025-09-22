@@ -135,9 +135,7 @@ teacher_courses = {
     # The 'teacher_courses' table links teachers to courses and classrooms.
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the course assignment.
     "teacher_id": "INTEGER NOT NULL",  # The ID of the teacher.
-    "course_id": "INTEGER NOT NULL",  # The ID of the course.
-    "class_room_id": "INTEGER NOT NULL",  # The ID of the classroom.
-    "day_of_week": "TEXT NOT NULL",  # The day of the week for the class.
+    >
     "start_time": "TIME NOT NULL",  # The start time of the class.
     "end_time": "TIME NOT NULL",  # The end time of the class.
     "fees": "REAL NOT NULL",
