@@ -54,6 +54,7 @@ class EmployeeRolesTableManager(BaseTemplates):
             "id",
             "emp_id",
             "role_id",
+            #  "is_active", "create_at"
         ]
 
     @log_and_execute_time_with
@@ -122,9 +123,9 @@ class EmployeeRolesTableManager(BaseTemplates):
         if results is not None:
             # Creates a dictionary from the fetched tuple for easier data access by name.
             data_roles = {
-                "id": results[0][0],
-                "emp_id": results[0][1],
                 "role_id": results[0][2],
+                # "is_active": results[0][3],
+                # "create_at": results[0][4],
             }
         # Returns the final dictionary of role data or None.
         return data_roles

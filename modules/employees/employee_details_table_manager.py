@@ -93,14 +93,14 @@ class EmployeeDetailsTableManager(BaseTemplates):
             # The keys are taken from the 'self.row' list, and the values are
             # from the corresponding columns of the query result.
             data_employee = {
-                "address": results[0][0],
-                "nationality_id": results[0][1],
-                "governorate_id": results[0][2],
-                "email": results[0][3],
-                "phone_number": results[0][4],
-                "qualification": results[0][5],
-                "documents": results[0][6],
-                "salary": results[0][7],
+                "address": results[0][2],
+                "nationality_id": results[0][3],
+                "governorate_id": results[0][4],
+                "email": results[0][5],
+                "phone_number": results[0][6],
+                "qualification": results[0][7],
+                "documents": results[0][8],
+                "salary": results[0][9],
             }
         # Return the formatted dictionary if results were found, otherwise return None.
         return data_employee

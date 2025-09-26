@@ -3907,7 +3907,6 @@ roles = [
     "Manager",
     "Supervisor",
     "Teacher",
-    "Assistant Teacher",
     "Student",
     "HR Manager",
     "Financial Officer",

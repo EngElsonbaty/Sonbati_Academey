@@ -133,8 +133,6 @@ class UserTableManager(BaseTemplates):
         if results is not None:
             # Creates a dictionary from the fetched tuple for easier data access by name.
             data_user = {
-                "id": results[0][0],
-                "emp_id": results[0][1],
                 "username": results[0][2],
                 "password": results[0][3],
             }

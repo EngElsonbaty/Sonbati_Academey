@@ -93,13 +93,21 @@ class BaseTemplates:
     # The decorator logs and times the execution of the 'delete' method.
     @log_and_execute_time_with
     # The 'delete' method removes a record from the database.
-    def delete(self, emp_id: int, submodule: bool = False, role: bool = False):
+    def delete(
+        self,
+        emp_id: int,
+        submodule: bool = False,
+        role: bool = False,
+        is_teacher: bool = False,
+    ):
         # Call the 'delete' method from the 'db' object.
         # It deletes the record where the id matches the provided employee ID.
         if submodule:
             return db.delete(self.table_name, f"emp_id = {emp_id}")
         elif role:
             return db.delete(self.table_name, f"role_id = {emp_id}")
+        elif is_teacher:
+            return db.delete(self.table_name, f"teacher_id = {emp_id}")
         else:
             return db.delete(self.table_name, f"id = {emp_id}")
 

@@ -115,4 +115,3 @@ class GovernoratesTableManager:
         }
         # Returns the final results of the database query.
         return data_governorates
-

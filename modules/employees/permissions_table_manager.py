@@ -53,8 +53,6 @@ class PermissionsTableManager(BaseTemplates):
         data_permissions = None
         if results:
             data_permissions = {
-                "id": results[0][0],
-                "role_id": results[0][1],
                 "addition": results[0][2],
                 "edition": results[0][3],
                 "deletion": results[0][4],

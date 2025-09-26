@@ -15,7 +15,6 @@ sys.path.append(root_path)
 # This class provides the generic database management logic.
 from modules.students.base_tamplates_students import BaseTemplatesStudents
 from modules.database_manager import db
-from datetime import datetime
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 from core.log_utils import log_and_execute_time_with

@@ -15,7 +15,7 @@ sys.path.append(root_path)
 # This class provides the generic database management logic.
 from modules.students.base_tamplates_students import BaseTemplatesStudents
 from modules.database_manager import db
-from datetime import datetime
+
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 from core.log_utils import log_and_execute_time_with
@@ -33,18 +33,19 @@ class HomeworkStudentTableManager(BaseTemplatesStudents):
             "notes",
         ]
 
+    @log_and_execute_time_with
     def create(self, id: int, student_id: int, data: dict):
         return super().create(id, student_id, data)
 
-    def update(self, student_id: int, data: dict, submodule: bool = False):
-        if submodule:
-            return db.update(self.table_name, f"id = {student_id}", data)
-        else:
-            return super().update(student_id, data)
+    @log_and_execute_time_with
+    def update(self, student_id: int, data: dict):
+        return super().update(student_id, data)
 
+    @log_and_execute_time_with
     def delete(self, student_id: int):
         return super().delete(student_id)
 
+    @log_and_execute_time_with
     def get(self, student_id: int, all_table: bool = False):
         if all_table:
             return super().get(student_id, True, False, True, *self.rows)

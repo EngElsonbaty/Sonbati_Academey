@@ -21,10 +21,7 @@ root_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # This allows for direct imports from any location within the project.
 # Adds the project's root path to the Python system path for module imports.
 sys.path.append(root_path)
-# Import the custom BaseTemplates class from the base_templates module.
-# This class provides the generic database management logic.
-# Imports the base class for table management, providing core database functionalities.
-from modules.shared.governorates_table_manager import GovernoratesTableManager
+
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 # Imports a custom decorator used for logging function execution time.
@@ -33,8 +30,7 @@ from core.log_utils import log_and_execute_time_with, log_and_execute_time_witho
 # Imports the database connection object.
 from modules.database_manager import db
 
-# Imports the list of countries and governorates from the configuration file.
-from config.data import countries
+
 
 
 class EWalletsTableManager:
@@ -72,16 +68,18 @@ class EWalletsTableManager:
         elif all_data:
             return db.get(self.table_name, f"source_id = {id}", False, True, *self.rows)
         else:
-            results = db.get(self.table_name, f"id = {id}", False, False, *self.rows)
+            results = db.get(
+                self.table_name, f"source_id = {id}", False, False, *self.rows
+            )
             if results:
                 data_table = {
                     "id": results[0][0],
-                    "payment_methods": results[0][0],
-                    "source_id": results[0][0],
-                    "source_type": results[0][0],
-                    "number": results[0][0],
-                    "holder_name": results[0][0],
-                    "date": results[0][0],
+                    "payment_methods": results[0][1],
+                    "source_id": results[0][2],
+                    "source_type": results[0][3],
+                    "number": results[0][4],
+                    "holder_name": results[0][5],
+                    "date": results[0][6],
                 }
                 return data_table
             else:

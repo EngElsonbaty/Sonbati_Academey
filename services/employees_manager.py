@@ -1,5 +1,5 @@
-from datetime import datetime
 import os, sys
+from datetime import datetime
 
 path_root = os.path.dirname(os.path.dirname(__file__))
 
@@ -26,6 +26,9 @@ from modules.financial.e_wallets_table_manager import EWalletsTableManager
 from modules.financial.bank_accounts_table_manager import BankAccountsTableManager
 from modules.financial.bank_checks_table_manager import BankChecksTableManager
 from modules.financial.salaries_table_manager import SalariesTableManager
+from modules.shared.countries_table_manager import CountriesTableManager
+from modules.shared.governorates_table_manager import GovernoratesTableManager
+from modules.shared.roles_table_manager import RolesTableManager
 
 
 class EmployeesManager:
@@ -121,6 +124,8 @@ class EmployeesManager:
             status.append(self.employee_user.create(employee_user, last_id))
         elif role_name == "Teacher":
             status.append(self.employee_course.create(last_id, employee_course))
+        payment_preferences["source_id"] = last_id
+        payment_preferences["source_type"] = "employee"
         status.append(self.employee_payment.create(last_id, payment_preferences))
         if payment_type in self.bank_account:
             if employee_bank_accounts != {}:
@@ -150,32 +155,170 @@ class EmployeesManager:
         if is_info_master:
             if data != {}:
                 status.append(self.employee_info_master.update(emp_id, data))
-        elif is_details:
+        if is_details:
             if data != {}:
                 status.append(self.employee_details.update(emp_id, data))
-        elif is_role:
+        if is_role:
             if data != {}:
                 status.append(self.employee_roles.update(emp_id, data))
-        elif is_payment:
+        if is_payment:
             if data != {}:
                 status.append(self.employee_payment.update(emp_id, data))
-        elif is_info_payment:
+        if is_info_payment:
             if e_wallets != {}:
                 status.append(self.employee_e_wallets.update(emp_id, e_wallets))
             elif account_bank != {}:
                 status.append(self.employee_account_bank.update(emp_id, account_bank))
             else:
                 status.append(False)
-        elif is_permission:
+        if is_permission:
             if data != {}:
                 status.append(self.employee_permissions.update(emp_id, data))
-        elif is_users:
+        if is_users:
             if data != {}:
                 status.append(self.employee_user.update(emp_id, data))
-        elif is_teacher:
+        if is_teacher:
             if data != {}:
                 status.append(self.employee_course.update(emp_id, data))
 
         else:
             return status.append(False)
         return all(status)
+
+    @log_and_execute_time_with
+    def delete(self, emp_id: int, is_teacher: bool = False, is_manager: bool = False):
+        status = []
+        if is_teacher and is_manager:
+            status.append(self.employee_info_master.delete(emp_id))
+            status.append(self.employee_details.delete(emp_id))
+            status.append(self.employee_roles.delete(emp_id))
+            status.append(self.employee_permissions.delete(emp_id))
+            status.append(self.employee_user.delete(emp_id))
+            status.append(self.employee_course.delete(emp_id))
+            status.append(self.employee_payment.delete(emp_id))
+            status.append(self.employee_e_wallets.delete(emp_id))
+            status.append(self.employee_account_bank.delete(emp_id))
+            status.append(self.employee_check_bank.delete(emp_id))
+            status.append(self.employee_salary.delete(emp_id))
+            status.append(self.employee_evaluation.delete(emp_id))
+            status.append(self.employee_attendance.delete(emp_id))
+        elif is_teacher:
+            status.append(self.employee_info_master.delete(emp_id))
+            status.append(self.employee_details.delete(emp_id))
+            status.append(self.employee_course.delete(emp_id))
+            status.append(self.employee_payment.delete(emp_id))
+            status.append(self.employee_e_wallets.delete(emp_id))
+            status.append(self.employee_account_bank.delete(emp_id))
+            status.append(self.employee_check_bank.delete(emp_id))
+            status.append(self.employee_salary.delete(emp_id))
+            status.append(self.employee_evaluation.delete(emp_id))
+            status.append(self.employee_attendance.delete(emp_id))
+        elif is_manager:
+            status.append(self.employee_info_master.delete(emp_id))
+            status.append(self.employee_details.delete(emp_id))
+            status.append(self.employee_roles.delete(emp_id))
+            status.append(self.employee_permissions.delete(emp_id))
+            status.append(self.employee_user.delete(emp_id))
+            status.append(self.employee_payment.delete(emp_id))
+            status.append(self.employee_e_wallets.delete(emp_id))
+            status.append(self.employee_account_bank.delete(emp_id))
+            status.append(self.employee_check_bank.delete(emp_id))
+            status.append(self.employee_salary.delete(emp_id))
+            status.append(self.employee_evaluation.delete(emp_id))
+            status.append(self.employee_attendance.delete(emp_id))
+        else:
+            status.append(False)
+        return all(status)
+
+    @log_and_execute_time_with
+    def get(self, emp_id: int = 0, all_employee: bool = False):
+        results = None
+        employee = []
+        country = CountriesTableManager()
+        if all_employee:
+            employee = self.employee_info_master.get(0, True)
+            if employee:
+                for i in employee:
+                    employee_info = {
+                        "id": i[0],
+                        "full_name": i[1],
+                        "gender": i[4],
+                        "photo": i[6],
+                    }
+                    employee.append(employee_info)
+                employee = None
+                for i in employee:
+                    employee = self.employee_details.get(i["id"])
+                    i["nationality"] = employee["nationality_id"]
+                    i["governorate"] = employee["governorate_id"]
+                    employee = self.employee_roles.get(i["id"])
+                    i["role"] = employee["role_id"]
+                    employee = self.employee_evaluation.get(i["id"])
+                    i["rating"] = employee["rating"] if employee else None
+                    employee = self.employee_payment.get(i["id"])
+                    i["payment_method"] = employee["payment_method_id"]
+                    i["governorate"] = GovernoratesTableManager().get(i["governorate"])[
+                        "governorate_name"
+                    ]
+                    i["nationality"] = country.get(i["nationality"])["country_name"]
+                    i["role"] = RolesTableManager().get(i["role"])[0][1]
+                return employee
+            else:
+                return None
+
+        else:
+            employee = self.employee_info_master.get(emp_id, False)
+            if employee:
+                results = self.employee_details.get(employee["id"])
+                employee.update(results)
+                results = self.employee_roles.get(employee["id"])
+                employee.update(results)
+                results = self.employee_payment.get(employee["id"])["payment_method_id"]
+                employee.update({"payment_method_id": results})
+                results = self.employee_e_wallets.get(employee["id"])
+                if results:
+                    results.pop("id")
+                    results.pop("payment_methods")
+                    results.pop("source_id")
+                    results.pop("source_type")
+                    results.pop("date")
+                    employee.update(results)
+                results = self.employee_account_bank.get(employee["id"])
+                if results:
+                    employee.update(results)
+                results = self.employee_check_bank.get(employee["id"])
+                if results:
+                    employee.update(results)
+                results = self.employee_permissions.get(employee["id"])
+                if results:
+                    employee.update(results)
+                results = self.employee_user.get(employee["id"])
+                if results:
+                    employee.update(results)
+                results = self.employee_course.get(employee["id"], True)
+                if results:
+                    employee.update(results)
+                results = self.employee_salary.get(employee["id"], True)
+                if results:
+                    employee.update({"salaries": results})
+                results = self.employee_evaluation.get(employee["id"], True)
+                if results:
+                    employee.update({"evaluation": results})
+                results = self.employee_attendance.get(employee["id"], True)
+                if results:
+                    employee.update({"attendance": results})
+                return employee
+            else:
+                return None
+
+    @log_and_execute_time_with
+    def attendance_employee(self, emp_id: int, data: dict):
+        return self.employee_attendance.create(emp_id, data)
+
+    @log_and_execute_time_with
+    def evaluation_employee(self, emp_id: int, data: dict):
+        return self.employee_evaluation.create(emp_id, data)
+
+    @log_and_execute_time_with
+    def salary_employee(self, emp_id: int, data: dict):
+        return self.employee_salary.create(emp_id, data)

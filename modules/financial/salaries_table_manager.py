@@ -21,20 +21,13 @@ root_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # This allows for direct imports from any location within the project.
 # Adds the project's root path to the Python system path for module imports.
 sys.path.append(root_path)
-# Import the custom BaseTemplates class from the base_templates module.
-# This class provides the generic database management logic.
-# Imports the base class for table management, providing core database functionalities.
-from modules.shared.governorates_table_manager import GovernoratesTableManager
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 # Imports a custom decorator used for logging function execution time.
-from core.log_utils import log_and_execute_time_with, log_and_execute_time_without
+from core.log_utils import log_and_execute_time_with
 
 # Imports the database connection object.
 from modules.database_manager import db
-
-# Imports the list of countries and governorates from the configuration file.
-from config.data import countries
 
 
 class SalariesTableManager:
@@ -52,17 +45,18 @@ class SalariesTableManager:
 
     @log_and_execute_time_with
     def create(self, id: int, data: dict):
-        data_table = {"id": id}
+        last_id = db.get_last_row(self.table_name, "id") + 1
+        data_table = {"id": last_id, "emp_id": id}
         data_table.update(data)
         return db.insert(self.table_name, data_table)
 
     @log_and_execute_time_with
     def update(self, id: int, data: dict):
-        return db.update(self.table_name, f"id = {id}", data)
+        return db.update(self.table_name, f"emp_id = {id}", data)
 
     @log_and_execute_time_with
     def delete(self, id: int):
-        return db.delete(self.table_name, f"id = {id}")
+        return db.delete(self.table_name, f"emp_id = {id}")
 
     @log_and_execute_time_with
     def get(self, id: int, all_data: bool = False, all_table: bool = False):

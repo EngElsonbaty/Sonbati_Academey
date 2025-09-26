@@ -15,7 +15,6 @@ sys.path.append(root_path)
 # This class provides the generic database management logic.
 from modules.base_tamplates import BaseTemplates
 from modules.database_manager import db
-from datetime import datetime
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 from core.log_utils import log_and_execute_time_with
@@ -32,7 +31,8 @@ class TeacherCoursesTableManager(BaseTemplates):
             "day_of_week",
             "start_time",
             "end_time",
-            "fees" "created_at",
+            "fees",
+            "created_at",
         ]
 
     @log_and_execute_time_with
@@ -53,27 +53,16 @@ class TeacherCoursesTableManager(BaseTemplates):
     @log_and_execute_time_with
     def get(self, emp_id: int, all_data: bool = False, all_table: bool = False):
         if all_data:
-            results = db.get(
+            return db.get(
                 self.table_name, f"teacher_id = {emp_id}", False, True, *self.rows
             )
-            return results if results != [] else None
         elif all_table:
-            results = db.get(self.table_name, "", True, False, *self.rows)
-            return results if results != [] else None
+            return db.get(self.table_name, "", True, False, *self.rows)
         else:
-            results = super().get(emp_id, False, False, *self.rows)
+            results = db.get(
+                self.table_name, f"teacher_id = {emp_id}", False, False, *self.rows
+            )
             if results:
-                data_table = {
-                    "id": results[0][0],
-                    "teacher_id": results[0][1],
-                    "course_id": results[0][2],
-                    "class_room_id": results[0][3],
-                    "day_of_week": results[0][4],
-                    "start_time": results[0][5],
-                    "end_time": results[0][6],
-                    "fees": results[0][7],
-                    "created_at": results[0][8],
-                }
-                return data_table
+                data_table = {}
             else:
-                return None
+                pass

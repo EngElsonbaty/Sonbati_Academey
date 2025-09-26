@@ -17,6 +17,7 @@ from modules.base_tamplates import BaseTemplates
 
 # Import the custom decorator 'log_and_execute_time_with' from the logging utilities module.
 from core.log_utils import log_and_execute_time_with
+from modules.database_manager import db
 
 
 class EmployeeTableManager(BaseTemplates):
@@ -67,29 +68,32 @@ class EmployeeTableManager(BaseTemplates):
     # The decorator logs and times the execution of the 'get' method.
     @log_and_execute_time_with
     # The 'get' method retrieves an employee record and formats the result.
-    def get(self, emp_id):
+    def get(self, emp_id, all_table: bool = False):
+        if all_table:
+            return db.get(self.table_name, "", True, False, *self.row)
         # Call the 'get' method of the parent class to fetch the raw data.
-        results = super().get(emp_id, False, False, *self.row)
-        # Initialize a variable to hold the formatted employee data.
-        data_employee = None
-        # Check if any results were returned from the database.
-        if results is not None:
-            # If results exist, create a new dictionary to hold the data.
-            data_employee = {
-                # Map the first column from the result to the 'id' key.
-                "id": results[0][0],
-                # Map the second column from the result to the 'full_name' key.
-                "full_name": results[0][1],
-                # Map the third column from the result to the 'national_id' key.
-                "national_id": results[0][2],
-                # Map the fourth column from the result to the 'birthday' key.
-                "birthday": results[0][3],
-                # Map the fifth column from the result to the 'gender' key.
-                "gender": results[0][4],
-                # Map the sixth column from the result to the 'id_photo' key.
-                "id_photo": results[0][5],
-                # Map the seventh column from the result to the 'photo' key.
-                "photo": results[0][6],
-            }
-        # Return the formatted dictionary if results were found, otherwise return None.
-        return data_employee
+        else:
+            results = super().get(emp_id, False, False, *self.row)
+            # Initialize a variable to hold the formatted employee data.
+            data_employee = None
+            # Check if any results were returned from the database.
+            if results is not None:
+                # If results exist, create a new dictionary to hold the data.
+                data_employee = {
+                    # Map the first column from the result to the 'id' key.
+                    "id": results[0][0],
+                    # Map the second column from the result to the 'full_name' key.
+                    "full_name": results[0][1],
+                    # Map the third column from the result to the 'national_id' key.
+                    "national_id": results[0][2],
+                    # Map the fourth column from the result to the 'birthday' key.
+                    "birthday": results[0][3],
+                    # Map the fifth column from the result to the 'gender' key.
+                    "gender": results[0][4],
+                    # Map the sixth column from the result to the 'id_photo' key.
+                    "id_photo": results[0][5],
+                    # Map the seventh column from the result to the 'photo' key.
+                    "photo": results[0][6],
+                }
+            # Return the formatted dictionary if results were found, otherwise return None.
+            return data_employee

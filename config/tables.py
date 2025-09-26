@@ -60,7 +60,8 @@ employee_roles = {
     # The 'employee_roles' table links employees to their roles.
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the role assignment.
     "emp_id": "INTEGER NOT NULL UNIQUE",  # The ID of the employee, must be unique to assign one role per employee.
-    "role_id": "INTEGER NOT NULL",  # The ID of the assigned role.
+    "role_id": "INTEGER NOT NULL",
+    "is_active": "BOOLEAN NOT NULL CHECK(is_active IN (0, 1))",  # The ID of the assigned role.
     "create_at": "DATE NOT NULL",
     "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",  # Links to the 'employees' table.
     "FOREIGN KEY": "(role_id) REFERENCES roles(id)",  # Links to the 'roles' table.
@@ -135,7 +136,9 @@ teacher_courses = {
     # The 'teacher_courses' table links teachers to courses and classrooms.
     "id": "INTEGER PRIMARY KEY AUTOINCREMENT",  # Unique identifier for the course assignment.
     "teacher_id": "INTEGER NOT NULL",  # The ID of the teacher.
-    >
+    "course_id": "INTEGER NOT NULL",
+    "class_room_id": "INTEGER NOT NULL",
+    "day_of_week": "TEXT NOT NULL",
     "start_time": "TIME NOT NULL",  # The start time of the class.
     "end_time": "TIME NOT NULL",  # The end time of the class.
     "fees": "REAL NOT NULL",
@@ -328,8 +331,8 @@ salaries = {
     "emp_id": "INTEGER NOT NULL",  # The ID of the employee who received the salary.
     "payment_methods": "INTEGER NOT NULL",  # The ID linking to the payment preference used.
     "salary": "REAL NOT NULL",  # The base salary amount.
-    "amount": "REAL NOT NULL",  # The net amount paid.
     "discounts": "REAL NOT NULL",  # Any discounts applied to the salary.
+    "amount": "REAL NOT NULL",  # The net amount paid.
     "date": "DATETIME NOT NULL",  # The date and time of the salary payment.
     "FOREIGN KEY": "(emp_id) REFERENCES employees(id)",  # Links to the 'employees' table.
     "FOREIGN KEY": "(payment_methods) REFERENCES payment_preferences(id)",  # Links to the 'payment_preferences' table.
