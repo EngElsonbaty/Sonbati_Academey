@@ -25,6 +25,8 @@ from modules.financial.e_wallets_table_manager import EWalletsTableManager
 from modules.financial.revenues_table_manager import RevenuesTableManager
 from core.log_utils import log_and_execute_time_with
 from modules.database_manager import db
+from modules.shared.countries_table_manager import CountriesTableManager
+from modules.shared.governorates_table_manager import GovernoratesTableManager
 
 
 class StudentsManager:
@@ -138,14 +140,57 @@ class StudentsManager:
 
     @log_and_execute_time_with
     def get(self, student_id: int, all_student: bool = False):
+        data_student = {}
+        students = []
         if all_student:
             results = self.student_info_master.get(0, True)
             if results:
-                
-            return results
+                for i in results:
+                    data_student = {
+                        "id": i[0],
+                        "full_name": i[1],
+                        "photo": i[-1],
+                        "gender": i[4],
+                    }
+                    students.append(data_student)
+                for i in students:
+                    results = self.student_details.get(i["id"])
+                    if results:
+                        nationality = CountriesTableManager().get(
+                            results["nationality_id"]
+                        )
+                        governorate = GovernoratesTableManager().get(
+                            results["governorate_id"]
+                        )
+                        i["nationality"] = nationality["country_name"]
+                        i["governorate"] = governorate["governorate_name"]
+                        results = self.student_evaluation.get(i["id"])
+                        if results:
+                            i["rating"] = results[-1][3]
+                        else:
+                            i["rating"] = 0
+            return students
         else:
             results = self.student_info_master.get(student_id)
-            return results
+            if results:
+                data_student = {
+                    "id": results["id"],
+                    "full_name": results["full_name"],
+                    "photo": results["photo"],
+                    "gender": results["gender"],
+                }
+                results = self.student_details.get(results["id"])
+                if results:
+                    nationality = CountriesTableManager().get(results["nationality_id"])
+                    governorate = GovernoratesTableManager().get(
+                        results["governorate_id"]
+                    )
+                    data_student["nationality"] = nationality["country_name"]
+                    data_student["governorate"] = governorate["governorate_name"]
+                results = self.student_evaluation.get(data_student["id"])
+                if results:
+                    data_student["rating"] = results[-1][3]
+            return data_student
 
     @log_and_execute_time_with
     def fees(self, student_id: int, data: dict):
@@ -175,9 +220,10 @@ class StudentsManager:
 start_time = time.perf_counter_ns()
 s = StudentsManager()
 
-results = s.get(0, True)
-for i in results:
-    print(i)
+results = s.get(1)
+# for i in results:
+#     print(i)
+print(results)
 end_time = time.perf_counter_ns()
 execution_time = (end_time - start_time) / 1_000_000
 print(f"The Execution Time: {execution_time:.2f}")

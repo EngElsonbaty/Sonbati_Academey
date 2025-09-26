@@ -45,4 +45,4 @@ class EvaluationStudentTableManager(BaseTemplatesStudents):
 
     @log_and_execute_time_with
     def get(self, student_id: int, all_table: bool = False):
-        return super().get(student_id, True, True, all_table, *self.rows)
+        return super().get(student_id, True, True, False, *self.rows)
